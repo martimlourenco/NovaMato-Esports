@@ -681,4 +681,39 @@ body {
         gap: var(--spacing-sm);
         text-align: center;
     }
+    
+    .game-card-header {
+        gap: var(--spacing-xs);
+    }
+    
+    .game-badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .game-icon-home {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .game-card h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+    }
+    
+    .game-icon-home {
+        width: 45px;
+        height: 45px;
+        font-size: 0.9rem;
+    }
 }
