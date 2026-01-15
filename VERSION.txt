@@ -1,4 +1,4 @@
-1.1
+1.2
 
 INSTRUÇÕES:
 Quando fizeres alterações ao styles.css ou script.js:
