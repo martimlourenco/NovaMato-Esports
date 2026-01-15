@@ -16,13 +16,18 @@
             position: relative;
             width: 100%;
             height: 800px;
-        }
-        .map-wrapper iframe {
-            width: 100%;
-            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
             border: 1px solid var(--color-accent);
             border-radius: 2px;
-            display: block;
+        }
+        .map-preview {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
         }
         .map-overlay {
             position: absolute;
@@ -62,38 +67,6 @@
         }
         .enter-map-btn:active {
             transform: translateY(0);
-        }
-        .map-wrapper:fullscreen {
-            background: #000;
-        }
-        .map-wrapper:fullscreen iframe {
-            height: 100vh;
-            border: none;
-        }
-        .fullscreen-btn {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--color-accent);
-            color: var(--color-accent);
-            padding: 8px 16px;
-            font-size: 0.875rem;
-            cursor: pointer;
-            border-radius: 2px;
-            transition: all 0.2s ease;
-            z-index: 10;
-            font-weight: 600;
-        }
-        .fullscreen-btn:hover {
-            background: rgba(0, 255, 0, 0.1);
-            transform: translateY(-1px);
-        }
-        .fullscreen-btn:active {
-            transform: translateY(0);
-        }
-        .fullscreen-btn.hidden {
-            display: none;
         }
         .server-ip {
             margin-bottom: var(--spacing-lg);
@@ -192,13 +165,11 @@
             <div class="map-container">
                 <div class="map-wrapper" id="mapWrapper">
                     <div class="map-overlay" id="mapOverlay">
-                        <button class="enter-map-btn" onclick="enterMap()">▶ Entrar no Mapa</button>
+                        <button class="enter-map-btn" onclick="openMap()">▶ Entrar no Mapa</button>
                     </div>
-                    <button class="fullscreen-btn hidden" id="fullscreenBtn" onclick="toggleFullscreen()">⛶ Ecrã Completo</button>
-                    <iframe 
-                        id="mapIframe"
-                        src="http://46.224.145.80:8100/#world:0:64:0:1500:0:0:0:0:perspective">
-                    </iframe>
+                    <div class="map-preview">
+                        O mapa será aberto numa nova janela
+                    </div>
                 </div>
             </div>
 
@@ -221,35 +192,9 @@
     </section>
 
     <script>
-        function enterMap() {
-            const mapWrapper = document.getElementById('mapWrapper');
-            const overlay = document.getElementById('mapOverlay');
-            const fullscreenBtn = document.getElementById('fullscreenBtn');
-            
-            // Entrar em fullscreen
-            if (document.fullscreenEnabled) {
-                mapWrapper.requestFullscreen().then(() => {
-                    // Remover overlay imediatamente
-                    overlay.classList.add('hidden');
-                    
-                    // Quando sair do fullscreen, mostrar botão fullscreen
-                    document.addEventListener('fullscreenchange', function handler() {
-                        if (!document.fullscreenElement) {
-                            fullscreenBtn.classList.remove('hidden');
-                            document.removeEventListener('fullscreenchange', handler);
-                        }
-                    });
-                }).catch(err => {
-                    console.log('Erro ao entrar em fullscreen:', err);
-                    // Se falhar, apenas remover overlay
-                    overlay.classList.add('hidden');
-                    fullscreenBtn.classList.remove('hidden');
-                });
-            } else {
-                // Se fullscreen não estiver disponível, remover overlay
-                overlay.classList.add('hidden');
-                fullscreenBtn.classList.remove('hidden');
-            }
+        function openMap() {
+            // Abrir mapa numa nova janela em fullscreen
+            window.open('http://46.224.145.80:8100/#world:0:64:0:1500:0:0:0:0:perspective', '_blank', 'fullscreen=yes,width=' + screen.width + ',height=' + screen.height);
         }
 
         function copyServerIp() {
@@ -265,31 +210,6 @@
                 }, 2000);
             });
         }
-
-        function toggleFullscreen() {
-            const mapWrapper = document.getElementById('mapWrapper');
-            const btn = document.getElementById('fullscreenBtn');
-            
-            if (!document.fullscreenElement) {
-                mapWrapper.requestFullscreen().then(() => {
-                    btn.textContent = '✕ Sair de Ecrã Completo';
-                }).catch(err => {
-                    console.error('Erro ao entrar em fullscreen:', err);
-                });
-            } else {
-                document.exitFullscreen().then(() => {
-                    btn.textContent = '⛶ Ecrã Completo';
-                });
-            }
-        }
-
-        // Atualizar texto do botão quando sair de fullscreen com ESC
-        document.addEventListener('fullscreenchange', () => {
-            const btn = document.getElementById('fullscreenBtn');
-            if (btn && !document.fullscreenElement) {
-                btn.textContent = '⛶ Ecrã Completo';
-            }
-        });
     </script>
     <script src="script.js"></script>
 </body>
