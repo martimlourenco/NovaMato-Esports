@@ -5,7 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Counter-Strike 2 — Novamato</title>
     <link rel="icon" type="image/png" href="/imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=1.1">
+    <link rel="stylesheet" href="styles.css?v=1.4">
+    <style>
+        /* CS2 Redesign Styles */
+        .cs2-hero {
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cs2-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .cs2-title-section h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.02em;
+        }
+        
+        .cs2-title-section .subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .cs2-stats-inline {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+        
+        .cs2-stat-inline {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        
+        .cs2-stat-inline .number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+        
+        .cs2-stat-inline .label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .cs2-visual {
+            position: relative;
+            height: 300px;
+            border: 1px solid var(--color-accent);
+            background: rgba(0, 255, 0, 0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .cs2-visual-text {
+            font-size: 8rem;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--color-accent);
+            opacity: 0.3;
+            letter-spacing: -0.05em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cs2-hero-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+            
+            .cs2-title-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cs2-visual {
+                display: none;
+            }
+        }
+        
+        /* Highlight Section */
+        .cs2-highlight {
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid var(--color-border);
+            background: rgba(0, 255, 0, 0.02);
+        }
+        
+        .highlight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .highlight-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .highlight-title::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--color-accent);
+        }
+        
+        .highlight-credit {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+        
+        .highlight-credit a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+        
+        .highlight-credit a:hover {
+            opacity: 0.7;
+        }
+        
+        .highlight-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid var(--color-accent);
+            background: #000;
+        }
+        
+        .highlight-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .highlight-header {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Breathing Background -->
@@ -19,15 +180,39 @@
         </div>
     </nav>
 
-    <!-- Header -->
-    <section class="page-header">
+    <!-- CS2 Hero -->
+    <section class="cs2-hero">
         <div class="container">
-            <div class="page-title-section">
-                <div class="page-icon">CS2</div>
-                <div>
-                    <h1>Counter-Strike 2</h1>
-                    <p class="page-subtitle">Competitive Roster</p>
+            <div class="cs2-hero-grid">
+                <div class="cs2-title-section">
+                    <h1>COUNTER-<br>STRIKE 2</h1>
+                    <p class="subtitle">Main competitive focus — 5v5 tactical roster</p>
+                    <div class="cs2-stats-inline">
+                        <div class="cs2-stat-inline">
+                            <span class="number">12</span>
+                            <span class="label">Players</span>
+                        </div>
+                    </div>
                 </div>
+                <div class="cs2-visual">
+                    <div class="cs2-visual-text">CS2</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight of the Month -->
+    <section class="cs2-highlight">
+        <div class="container">
+            <div class="highlight-header">
+                <div class="highlight-title">Highlight do Mês</div>
+                <div class="highlight-credit">By <a href="https://steamcommunity.com/profiles/76561199053161311" target="_blank">Neto</a></div>
+            </div>
+            <div class="highlight-video-wrapper">
+                <video class="highlight-video" controls autoplay muted loop>
+                    <source src="/imagens/videocs2.mp4" type="video/mp4">
+                    O teu navegador não suporta o elemento de vídeo.
+                </video>
             </div>
         </div>
     </section>
@@ -52,6 +237,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=1.1"></script>
+    <script src="script.js?v=1.4"></script>
 </body>
 </html>

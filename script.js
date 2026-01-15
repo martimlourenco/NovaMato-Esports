@@ -333,6 +333,52 @@ function initCS2Page() {
     });
 }
 
+// Open player profile from highlight section
+function openPlayerProfile(playerName) {
+    const modal = document.querySelector('[data-player-modal]');
+    const modalBody = document.querySelector('[data-modal-body]');
+    
+    if (!modal || !modalBody) return;
+    
+    // Find player by name
+    const player = PLAYERS_DATA.cs2.find(p => p.name.toLowerCase() === playerName.toLowerCase());
+    
+    if (player) {
+        // Trigger the same modal as clicking on player slot
+        modalBody.innerHTML = '<div class="loading">Loading player stats...</div>';
+        modal.classList.add('active');
+        
+        fetchSteamPlayerData(player.id).then(playerData => {
+            if (playerData) {
+                const steamUrl = playerData.steamUrl || `https://steamcommunity.com/profiles/${playerData.steamId64}`;
+                const avatarUrl = playerData.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(playerData.name)}&size=200&background=00ff00&color=000`;
+                const trackerUrl = playerData.trackerUrl || `https://tracker.gg/cs2/profile/steam/${playerData.steamId64}/overview?playlist=premier&season=3`;
+                
+                modalBody.innerHTML = `
+                    <div class="player-detail">
+                        <div class="player-avatar-large" style="background-image: url('${avatarUrl}'); background-size: cover; background-position: center;"></div>
+                        <div class="player-name-large">${playerData.name}</div>
+                        <div class="player-role-large">${player.role}</div>
+                        
+                        <div class="external-links">
+                            <a href="${steamUrl}" target="_blank" class="external-link">
+                                <span class="link-icon">🎮</span>
+                                <span>Steam Profile</span>
+                            </a>
+                            <a href="${trackerUrl}" target="_blank" class="external-link">
+                                <span class="link-icon">📊</span>
+                                <span>CS2 Tracker</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                modalBody.innerHTML = '<div class="error">Failed to load player data</div>';
+            }
+        });
+    }
+}
+
 // Clash Royale Page Functions
 function initClashRoyalePage() {
     const slotsContainer = document.querySelector('[data-cr-slots]');
