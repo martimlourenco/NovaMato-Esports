@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft — Novamato</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .players-section {
+            padding-top: var(--spacing-md);
+        }
+        .map-container {
+            margin-top: var(--spacing-md);
+        }
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+            height: 800px;
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--color-accent);
+            border-radius: 2px;
+            display: block;
+        }
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            border: 1px solid var(--color-accent);
+            border-radius: 2px;
+        }
+        .map-overlay.hidden {
+            display: none;
+        }
+        .enter-map-btn {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .enter-map-btn:hover {
+            background: var(--color-accent);
+            color: #000;
+            transform: translateY(-2px);
+        }
+        .enter-map-btn:active {
+            transform: translateY(0);
+        }
+        .map-wrapper:fullscreen {
+            background: #000;
+        }
+        .map-wrapper:fullscreen iframe {
+            height: 100vh;
+            border: none;
+        }
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            z-index: 10;
+            font-weight: 600;
+        }
+        .fullscreen-btn:hover {
+            background: rgba(0, 255, 0, 0.1);
+            transform: translateY(-1px);
+        }
+        .fullscreen-btn:active {
+            transform: translateY(0);
+        }
+        .fullscreen-btn.hidden {
+            display: none;
+        }
+        .server-ip {
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid var(--color-accent);
+            border-radius: 2px;
+            text-align: center;
+        }
+        .server-ip-label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .server-ip-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .server-ip-value:hover {
+            opacity: 0.7;
+        }
+        .server-ip-value:active {
+            opacity: 0.5;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        .info-card {
+            padding: var(--spacing-md);
+            background: rgba(0, 255, 0, 0.03);
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+        }
+        .info-card h3 {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .info-card-content {
+            font-size: 1.125rem;
+            color: var(--color-text);
+        }
+        .info-card-highlight {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+        .discord-icon {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Breathing Background -->
+    <div class="breathing-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="logo">NOVAMATO</a>
+            <a href="index.html" class="back-link">← Back</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-title-section">
+                <div class="page-icon">MC</div>
+                <div>
+                    <h1>Minecraft</h1>
+                    <p class="page-subtitle">Live Server Map</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="players-section">
+        <div class="container">
+            <div class="server-ip">
+                <div class="server-ip-label">Conecta-te ao servidor</div>
+                <div class="server-ip-value" id="serverIp" onclick="copyServerIp()">46.224.145.80:25565</div>
+            </div>
+            <div class="map-container">
+                <div class="map-wrapper" id="mapWrapper">
+                    <div class="map-overlay" id="mapOverlay">
+                        <button class="enter-map-btn" onclick="enterMap()">▶ Entrar no Mapa</button>
+                    </div>
+                    <button class="fullscreen-btn hidden" id="fullscreenBtn" onclick="toggleFullscreen()">⛶ Ecrã Completo</button>
+                    <iframe 
+                        id="mapIframe"
+                        src="http://46.224.145.80:8100/#world:0:64:0:1500:0:0:0:0:perspective">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Discord Bridge</h3>
+                    <div class="info-card-content">
+                        <span class="discord-icon">💬</span>
+                        Escreve no Discord e aparece no servidor! Chat bidirecional entre Discord e Minecraft para comunicar com quem não está a jogar.
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3>Despesas Totais</h3>
+                    <div class="info-card-content">
+                        Domínio (novamato.pt): <span class="info-card-highlight">4€</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function enterMap() {
+            const mapWrapper = document.getElementById('mapWrapper');
+            const overlay = document.getElementById('mapOverlay');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            
+            // Entrar em fullscreen
+            if (document.fullscreenEnabled) {
+                mapWrapper.requestFullscreen().then(() => {
+                    // Remover overlay imediatamente
+                    overlay.classList.add('hidden');
+                    
+                    // Quando sair do fullscreen, mostrar botão fullscreen
+                    document.addEventListener('fullscreenchange', function handler() {
+                        if (!document.fullscreenElement) {
+                            fullscreenBtn.classList.remove('hidden');
+                            document.removeEventListener('fullscreenchange', handler);
+                        }
+                    });
+                }).catch(err => {
+                    console.log('Erro ao entrar em fullscreen:', err);
+                    // Se falhar, apenas remover overlay
+                    overlay.classList.add('hidden');
+                    fullscreenBtn.classList.remove('hidden');
+                });
+            } else {
+                // Se fullscreen não estiver disponível, remover overlay
+                overlay.classList.add('hidden');
+                fullscreenBtn.classList.remove('hidden');
+            }
+        }
+
+        function copyServerIp() {
+            const ip = '46.224.145.80:25565';
+            navigator.clipboard.writeText(ip).then(() => {
+                const label = document.querySelector('.server-ip-label');
+                const originalText = label.textContent;
+                label.textContent = 'IP copiado!';
+                label.style.color = 'var(--color-accent)';
+                setTimeout(() => {
+                    label.textContent = originalText;
+                    label.style.color = '';
+                }, 2000);
+            });
+        }
+
+        function toggleFullscreen() {
+            const mapWrapper = document.getElementById('mapWrapper');
+            const btn = document.getElementById('fullscreenBtn');
+            
+            if (!document.fullscreenElement) {
+                mapWrapper.requestFullscreen().then(() => {
+                    btn.textContent = '✕ Sair de Ecrã Completo';
+                }).catch(err => {
+                    console.error('Erro ao entrar em fullscreen:', err);
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    btn.textContent = '⛶ Ecrã Completo';
+                });
+            }
+        }
+
+        // Atualizar texto do botão quando sair de fullscreen com ESC
+        document.addEventListener('fullscreenchange', () => {
+            const btn = document.getElementById('fullscreenBtn');
+            if (btn && !document.fullscreenElement) {
+                btn.textContent = '⛶ Ecrã Completo';
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
