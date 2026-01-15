@@ -1,0 +1,9 @@
+1.0
+
+INSTRUÇÕES:
+Quando fizeres alterações ao styles.css ou script.js:
+1. Aumenta este número (ex: 1.0 → 1.1)
+2. Substitui "?v=1.0" por "?v=1.1" em todos os ficheiros HTML
+3. Commit e push
+
+Isto força todos os browsers a carregarem a versão nova dos ficheiros.
