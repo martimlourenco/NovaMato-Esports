@@ -29,7 +29,8 @@ const PLAYERS_DATA = {
         { id: 3, name: 'RICARDO;-) :-P', tag: '#JUC89G', role: 'Co-Líder', trophies: '+10k' },
         { id: 4, name: 'optrista_CG', tag: '#C88YUVP98', role: 'Co-Líder', trophies: '+10k' },
         { id: 5, name: '/Pedro/', tag: '#2ULQYRQP', role: 'Membro', trophies: '+10k' },
-        { id: 6, name: 'CØSTA', tag: '#GRQCURJP', role: 'Co-Líder', trophies: '+10k' }
+        { id: 6, name: 'CØSTA', tag: '#GRQCURJP', role: 'Co-Líder', trophies: '+10k' },
+        { id: 7, name: '✌MIGUEL✌', tag: '#8LJU8JL', role: 'traidor', trophies: '+10k' }
     ]
 };
 
