@@ -10,28 +10,26 @@ const CONFIG = {
 // Mock player data - Replace with real API calls
 const PLAYERS_DATA = {
     cs2: [
-        { id: 1, name: 'White', steamId64: '76561198882548515', role: 'AWP', hours: 2100, rank: '+9k' },
-        { id: 2, name: 'Migggal', customUrl: 'migggal', role: 'Rifler', hours: 2900, rank: 'Supreme' },
-        { id: 3, name: 'Player3', steamId64: '76561199049671771', role: 'IGL', hours: 3500, rank: 'Global Elite' },
-        { id: 4, name: 'Freeza', customUrl: 'freezapqvcmatouokuririn', role: 'Entry', hours: 2700, rank: 'Supreme' },
-        { id: 5, name: 'Player5', steamId64: '76561198843083161', role: 'Support', hours: 2400, rank: 'LE' },
-        { id: 6, name: 'Player6', steamId64: '76561199132612024', role: 'Lurker', hours: 2100, rank: 'Supreme' },
-        { id: 7, name: 'Player7', steamId64: '76561199053161311', role: 'Rifler', hours: 2600, rank: 'LEM' },
-        { id: 8, name: 'Player8', steamId64: '76561199082165295', role: 'AWP', hours: 2300, rank: 'Supreme' },
-        { id: 9, name: 'Player9', steamId64: '76561198183764933', role: 'Support', hours: 2800, rank: 'Global' },
-        { id: 10, name: 'Tomas', customUrl: 'tomas1437', role: 'Entry', hours: 2500, rank: 'LEM' },
-        { id: 11, name: 'Player11', steamId64: '76561199207194374', role: 'IGL', hours: 2200, rank: 'Supreme' },
-        { id: 12, name: 'Narcigod', customUrl: 'narcigod', role: 'Rifler', hours: 2350, rank: 'Supreme' }
+        { id: 1, name: 'White', steamId64: '76561198882548515', role: 'Ainda por preencher' },
+        { id: 2, name: 'Migggal', customUrl: 'migggal', role: 'Ainda por preencher' },
+        { id: 3, name: 'Player3', steamId64: '76561199049671771', role: 'Ainda por preencher' },
+        { id: 4, name: 'Freeza', customUrl: 'freezapqvcmatouokuririn', role: 'Ainda por preencher' },
+        { id: 5, name: 'Player5', steamId64: '76561198843083161', role: 'Ainda por preencher' },
+        { id: 6, name: 'Player6', steamId64: '76561199132612024', role: 'Ainda por preencher' },
+        { id: 7, name: 'Player7', steamId64: '76561199053161311', role: 'Ainda por preencher' },
+        { id: 8, name: 'Player8', steamId64: '76561199082165295', role: 'Ainda por preencher' },
+        { id: 9, name: 'Player9', steamId64: '76561198183764933', role: 'Ainda por preencher' },
+        { id: 10, name: 'Tomas', customUrl: 'tomas1437', role: 'Ainda por preencher' },
+        { id: 11, name: 'Player11', steamId64: '76561199207194374', role: 'Ainda por preencher' },
+        { id: 12, name: 'Narcigod', customUrl: 'narcigod', role: 'Ainda por preencher' }
     ],
     clashRoyale: [
-        { id: 1, name: 'WhiteDeath', tag: '#28G9G2P9Y', trophies: 12450, wins: 1840, losses: 920, level: 14 },
-        { id: 2, name: 'Player2', tag: '#2PP8UYQUY', trophies: 11230, wins: 1620, losses: 1100, level: 14 },
-        { id: 3, name: 'Player3', tag: '#9LQ8UY2', trophies: 10980, wins: 1550, losses: 1180, level: 13 },
-        { id: 4, name: 'Player4', tag: '#88GJPQ2', trophies: 10450, wins: 1420, losses: 1250, level: 13 },
-        { id: 5, name: 'Player5', tag: '#YR02VPJ', trophies: 10120, wins: 1380, losses: 1290, level: 13 },
-        { id: 6, name: 'Player6', tag: '#PVJJ8VV', trophies: 10005, wins: 1310, losses: 1330, level: 13 },
-        { id: 7, name: 'Player7', tag: '#2Y9UYRGC', trophies: 10000, wins: 1290, losses: 1350, level: 12 },
-        { id: 8, name: 'Player8', tag: '#L9UJYLG', trophies: 10000, wins: 1270, losses: 1370, level: 12 }
+        { id: 1, name: 'mr.white', tag: '#28G9G2P9Y', role: 'Líder', trophies: '+10k' },
+        { id: 2, name: 'piquele', tag: '#22C0YC80P', role: 'Co-Líder', trophies: '+10k' },
+        { id: 3, name: 'RICARDO;-) :-P', tag: '#JUC89G', role: 'Co-Líder', trophies: '+10k' },
+        { id: 4, name: 'optrista_CG', tag: '#C88YUVP98', role: 'Co-Líder', trophies: '+10k' },
+        { id: 5, name: '/Pedro/', tag: '#2ULQYRQP', role: 'Membro', trophies: '+10k' },
+        { id: 6, name: 'CØSTA', tag: '#GRQCURJP', role: 'Co-Líder', trophies: '+10k' }
     ]
 };
 
@@ -344,74 +342,73 @@ function initClashRoyalePage() {
     if (!slotsContainer || !modal || !modalBody) return;
     
     // Generate player slots
-    slotsContainer.innerHTML = PLAYERS_DATA.clashRoyale.map(player => `
+    const playerSlots = PLAYERS_DATA.clashRoyale.map(player => `
         <div class="player-slot" data-player-id="${player.id}">
             <div class="player-slot-icon">👑</div>
             <div class="player-slot-name">${player.name}</div>
-            <div class="player-slot-role">${player.trophies.toLocaleString()} 🏆</div>
-            <div class="player-slot-status">Click for stats</div>
+            <div class="player-slot-role">${player.role}</div>
+            <div class="player-slot-status">Ver Stats</div>
         </div>
     `).join('');
     
-    // Add click handlers
-    slotsContainer.querySelectorAll('.player-slot').forEach(slot => {
+    // Add mystery slot
+    const mysterySlot = `
+        <div class="player-slot mystery-slot" style="opacity: 0.5; cursor: default;">
+            <div class="player-slot-icon">❓</div>
+            <div class="player-slot-name">???</div>
+            <div class="player-slot-role" style="font-size: 0.85rem;">quem será o próximo a chegar aos 10k?</div>
+            <div class="player-slot-status">Em Breve...</div>
+        </div>
+    `;
+    
+    slotsContainer.innerHTML = playerSlots + mysterySlot;
+    
+    // Add click handlers (excluding mystery slot)
+    slotsContainer.querySelectorAll('.player-slot:not(.mystery-slot)').forEach(slot => {
         slot.addEventListener('click', async () => {
             const playerId = parseInt(slot.dataset.playerId);
             const player = PLAYERS_DATA.clashRoyale.find(p => p.id === playerId);
             
             if (!player) return;
             
-            // Show loading state
-            modalBody.innerHTML = '<div class="loading">Loading player stats...</div>';
-            modal.classList.add('active');
+            // Remover o # da tag para o URL
+            const tagForUrl = player.tag.replace('#', '');
+            const statsUrl = `https://statsroyale.com/profile/${tagForUrl}`;
             
-            // Fetch player data
-            const playerData = await fetchClashRoyalePlayerData(player.tag);
-            
-            if (playerData) {
-                const winRate = ((playerData.wins / (playerData.wins + playerData.losses)) * 100).toFixed(1);
+            // Show stats info
+            modalBody.innerHTML = `
+                <div class="player-header">
+                    <div class="player-name-large">${player.name}</div>
+                    <div class="player-info-grid">
+                        <div class="player-info-item">
+                            <div class="player-info-label">Player Tag</div>
+                            <div class="player-info-value">${player.tag}</div>
+                        </div>
+                        <div class="player-info-item">
+                            <div class="player-info-label">Role</div>
+                            <div class="player-info-value">${player.role}</div>
+                        </div>
+                        <div class="player-info-item">
+                            <div class="player-info-label">Troféus</div>
+                            <div class="player-info-value">${player.trophies}</div>
+                        </div>
+                    </div>
+                </div>
                 
-                modalBody.innerHTML = `
-                    <div class="player-header">
-                        <div class="player-name-large">${playerData.name}</div>
-                        <div class="player-info-grid">
-                            <div class="player-info-item">
-                                <div class="player-info-label">Player Tag</div>
-                                <div class="player-info-value">${playerData.tag}</div>
-                            </div>
-                            <div class="player-info-item">
-                                <div class="player-info-label">Level</div>
-                                <div class="player-info-value">${playerData.level}</div>
-                            </div>
-                            <div class="player-info-item">
-                                <div class="player-info-label">Trophies</div>
-                                <div class="player-info-value">${playerData.trophies.toLocaleString()}</div>
-                            </div>
-                        </div>
+                <div class="stats-grid">
+                    <div class="stat-item" style="grid-column: 1 / -1;">
+                        <a href="${statsUrl}" target="_blank" rel="noopener noreferrer" 
+                           style="display: block; padding: 1rem; background: rgba(0, 255, 0, 0.1); 
+                                  border: 1px solid var(--color-accent); border-radius: 2px; 
+                                  color: var(--color-accent); text-decoration: none; text-align: center;
+                                  transition: all 0.2s ease;">
+                            📊 Ver Estatísticas Completas no StatsRoyale →
+                        </a>
                     </div>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-item-label">Win Rate</div>
-                            <div class="stat-item-value">${winRate}%</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-item-label">Total Wins</div>
-                            <div class="stat-item-value">${playerData.wins.toLocaleString()}</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-item-label">Total Losses</div>
-                            <div class="stat-item-value">${playerData.losses.toLocaleString()}</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-item-label">Total Battles</div>
-                            <div class="stat-item-value">${(playerData.wins + playerData.losses).toLocaleString()}</div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                modalBody.innerHTML = '<div class="error">Failed to load player data</div>';
-            }
+                </div>
+            `;
+            
+            modal.classList.add('active');
         });
     });
     

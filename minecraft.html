@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft — Novamato</title>
-    <link rel="icon" type="image/png" href="/imagens/favicon.png">
+    <link rel="icon" type="image/png" href="/imagens/favicon2.jpeg">
     <link rel="stylesheet" href="styles.css">
     <style>
         .players-section {
@@ -202,13 +202,17 @@
             const ip = '46.224.145.80:25565';
             navigator.clipboard.writeText(ip).then(() => {
                 const label = document.querySelector('.server-ip-label');
-                const originalText = label.textContent;
-                label.textContent = 'IP copiado!';
-                label.style.color = 'var(--color-accent)';
-                setTimeout(() => {
-                    label.textContent = originalText;
-                    label.style.color = '';
-                }, 2000);
+                if (label) {
+                    const originalText = label.textContent;
+                    label.textContent = 'IP copiado!';
+                    label.style.color = 'var(--color-accent)';
+                    setTimeout(() => {
+                        label.textContent = originalText;
+                        label.style.color = '';
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Erro ao copiar IP:', err);
             });
         }
     </script>
