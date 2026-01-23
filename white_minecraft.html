@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft — NOVAMATO</title>
+    <link rel="icon" type="image/png" href="/imagens/favicon2.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --grid-size: 40px;
+            --grid-color: rgba(0, 0, 0, 0.03);
+            --terminal-accent: #000;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: #fff;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: var(--grid-size) var(--grid-size);
+            z-index: 1;
+            pointer-events: none;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .lights-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            filter: blur(35px);
+            opacity: 0.9;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Layout tipo terminal/console */
+        .minecraft-layout {
+            min-height: 100vh;
+            padding: 120px 4rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header com título */
+        .mc-header {
+            margin-bottom: 4rem;
+        }
+
+        .mc-header h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .mc-subtitle {
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        /* Terminal-style boxes */
+        .terminal-box {
+            background: #000;
+            color: #fff;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid #000;
+            position: relative;
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-title {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .terminal-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .terminal-prompt::before {
+            content: '> ';
+            color: #fff;
+        }
+
+        /* Server IP Box */
+        .ip-box {
+            margin-bottom: 2rem;
+        }
+
+        .ip-value {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            user-select: all;
+        }
+
+        .ip-value:hover {
+            opacity: 0.7;
+        }
+
+        .ip-hint {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        /* Map Button */
+        .map-box {
+            margin-bottom: 2rem;
+        }
+
+        .map-button {
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            padding: 1rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            width: 100%;
+        }
+
+        .map-button:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .info-card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            padding: 2.5rem;
+        }
+
+        .info-card-title {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .info-card-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #000;
+        }
+
+        .info-highlight {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .minecraft-layout {
+                padding: 100px 2rem 2rem;
+            }
+
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .terminal-box {
+                padding: 1.5rem;
+            }
+
+            .ip-value {
+                font-size: 1.25rem;
+                word-break: break-all;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="lights-canvas" id="lights-canvas"></canvas>
+
+    <div class="content">
+        <nav>
+            <a href="white_index.html" class="logo">NOVAMATO</a>
+            <a href="white_index.html" class="back-link">← Back</a>
+        </nav>
+
+        <div class="minecraft-layout">
+            <div class="mc-header">
+                <h1>MINECRAFT</h1>
+                <div class="mc-subtitle">LIVE SERVER — CUSTOM MAP</div>
+            </div>
+
+            <!-- Server IP -->
+            <div class="terminal-box ip-box">
+                <div class="terminal-header">
+                    <div class="terminal-title">SERVER ADDRESS</div>
+                    <div class="terminal-dots">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                </div>
+                <div class="terminal-content">
+                    <div class="terminal-prompt">connect</div>
+                    <div class="ip-value" onclick="copyServerIp()">46.224.145.80:25565</div>
+                    <div class="ip-hint" id="copy-hint">Click to copy</div>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="terminal-box map-box">
+                <div class="terminal-header">
+                    <div class="terminal-title">LIVE MAP</div>
+                    <div class="terminal-dots">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                </div>
+                <div class="terminal-content">
+                    <div class="terminal-prompt">open interactive world map</div>
+                    <button class="map-button" onclick="openMap()">▶ Launch Map Viewer</button>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">Discord Bridge</div>
+                    <div class="info-card-content">
+                        💬 Real-time chat synchronization between Discord and Minecraft server. 
+                        Stay connected with the community even when offline.
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">Hosting Cost</div>
+                    <div class="info-card-content">
+                        Domain: novamato.win
+                        <span class="info-highlight">4€</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openMap() {
+            window.open('http://46.224.145.80:8100/#world:0:64:0:1500:0:0:0:0:perspective', '_blank');
+        }
+
+        function copyServerIp() {
+            const ip = '46.224.145.80:25565';
+            navigator.clipboard.writeText(ip).then(() => {
+                const hint = document.getElementById('copy-hint');
+                hint.textContent = 'IP Copied!';
+                hint.style.color = '#fff';
+                setTimeout(() => {
+                    hint.textContent = 'Click to copy';
+                    hint.style.color = '#666';
+                }, 2000);
+            }).catch(err => {
+                console.error('Error copying IP:', err);
+            });
+        }
+
+        function createBreathingLights() {
+            const canvas = document.getElementById('lights-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            const lights = [];
+            const lightCount = 12;
+            
+            for (let i = 0; i < lightCount; i++) {
+                lights.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    baseX: Math.random() * canvas.width,
+                    baseY: Math.random() * canvas.height,
+                    radius: 100 + Math.random() * 300,
+                    breatheSpeed: 0.01 + Math.random() * 0.02,
+                    breathePhase: Math.random() * Math.PI * 2,
+                    moveSpeed: 0.0003,
+                    movePhase: Math.random() * Math.PI * 2,
+                    orbitRadius: 50 + Math.random() * 150
+                });
+            }
+            
+            const particles = [];
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: 0.5 + Math.random() * 1.5,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    opacity: Math.random() * 0.35,
+                    pulseSpeed: 0.02 + Math.random() * 0.03,
+                    pulsePhase: Math.random() * Math.PI * 2
+                });
+            }
+            
+            let time = 0;
+            
+            function animate() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                time += 0.01;
+                
+                lights.forEach((light) => {
+                    light.breathePhase += light.breatheSpeed;
+                    const breathe = Math.sin(light.breathePhase);
+                    const currentRadius = light.radius + (breathe * 100);
+                    const intensity = 0.025 + (breathe * 0.018);
+                    
+                    light.movePhase += light.moveSpeed;
+                    light.x = light.baseX + Math.cos(light.movePhase) * light.orbitRadius;
+                    light.y = light.baseY + Math.sin(light.movePhase) * light.orbitRadius;
+                    
+                    const gradient = ctx.createRadialGradient(
+                        light.x, light.y, 0,
+                        light.x, light.y, currentRadius
+                    );
+                    
+                    gradient.addColorStop(0, `rgba(0, 0, 0, ${intensity * 1.6})`);
+                    gradient.addColorStop(0.3, `rgba(0, 0, 0, ${intensity * 0.9})`);
+                    gradient.addColorStop(0.6, `rgba(0, 0, 0, ${intensity * 0.45})`);
+                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(light.x, light.y, currentRadius, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.fillStyle = `rgba(0, 0, 0, ${intensity * 2.2})`;
+                    ctx.beginPath();
+                    ctx.arc(light.x, light.y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                for (let i = 0; i < lights.length; i++) {
+                    for (let j = i + 1; j < lights.length; j++) {
+                        const dx = lights[i].x - lights[j].x;
+                        const dy = lights[i].y - lights[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 400) {
+                            const opacity = (1 - distance / 400) * 0.04;
+                            const pulse = Math.sin(time + i + j) * 0.5 + 0.5;
+                            
+                            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * pulse})`;
+                            ctx.lineWidth = 1.2;
+                            ctx.beginPath();
+                            ctx.moveTo(lights[i].x, lights[i].y);
+                            ctx.lineTo(lights[j].x, lights[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                
+                particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    if (particle.x < 0) particle.x = canvas.width;
+                    if (particle.x > canvas.width) particle.x = 0;
+                    if (particle.y < 0) particle.y = canvas.height;
+                    if (particle.y > canvas.height) particle.y = 0;
+                    
+                    particle.pulsePhase += particle.pulseSpeed;
+                    const pulseOpacity = particle.opacity * (0.5 + Math.sin(particle.pulsePhase) * 0.5);
+                    
+                    ctx.fillStyle = `rgba(0, 0, 0, ${pulseOpacity})`;
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                for (let y = 0; y < canvas.height; y += 4) {
+                    const scanlineOpacity = 0.008 * (Math.sin(time * 2 + y * 0.01));
+                    ctx.fillStyle = `rgba(0, 0, 0, ${scanlineOpacity})`;
+                    ctx.fillRect(0, y, canvas.width, 1);
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
+        createBreathingLights();
+    </script>
+</body>
+</html>

@@ -389,19 +389,21 @@ function initClashRoyalePage() {
     if (!slotsContainer || !modal || !modalBody) return;
     
     // Generate player slots
-    const playerSlots = PLAYERS_DATA.clashRoyale.map(player => `
-        <div class="player-slot" data-player-id="${player.id}">
-            <div class="player-slot-icon">👑</div>
-            <div class="player-slot-name">${player.name}</div>
-            <div class="player-slot-role">${player.role}</div>
-            <div class="player-slot-status">Ver Stats</div>
-        </div>
-    `).join('');
+    const playerSlots = PLAYERS_DATA.clashRoyale.map(player => {
+        return `
+            <div class="player-slot" data-player-id="${player.id}">
+                <div class="player-slot-icon">CR</div>
+                <div class="player-slot-name">${player.name}</div>
+                <div class="player-slot-role">${player.role}</div>
+                <div class="player-slot-status">Ver Stats</div>
+            </div>
+        `;
+    }).join('');
     
     // Add mystery slot
     const mysterySlot = `
         <div class="player-slot mystery-slot" style="opacity: 0.5; cursor: default;">
-            <div class="player-slot-icon">❓</div>
+            <div class="player-slot-icon">?</div>
             <div class="player-slot-name">???</div>
             <div class="player-slot-role" style="font-size: 0.85rem;">quem será o próximo a chegar aos 10k?</div>
             <div class="player-slot-status">Em Breve...</div>
