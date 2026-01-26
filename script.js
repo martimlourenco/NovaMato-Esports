@@ -83,6 +83,37 @@ function animateCounter(element, target, suffix = '') {
 
 // API Integration Functions
 
+// Lista de proxies CORS para fallback
+const CORS_PROXIES = [
+    'https://corsproxy.io/?',
+    'https://api.allorigins.win/raw?url='
+];
+
+// Função para fetch com fallback de múltiplos proxies
+async function fetchWithCorsProxy(url) {
+    for (let i = 0; i < CORS_PROXIES.length; i++) {
+        const proxy = CORS_PROXIES[i];
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000);
+            
+            const response = await fetch(proxy + encodeURIComponent(url), {
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
+            
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (e) {
+            console.log(`Proxy ${i + 1} falhou, tentando próximo...`);
+            continue;
+        }
+    }
+    throw new Error('Todos os proxies CORS falharam');
+}
+
 // Resolve Steam vanity URL to SteamID64 (com cache)
 async function resolveSteamVanityUrl(vanityUrl) {
     const cacheKey = `vanity_${vanityUrl}`;
@@ -90,12 +121,10 @@ async function resolveSteamVanityUrl(vanityUrl) {
     if (cached) return cached;
     
     const STEAM_API_KEY = 'BCC8D3D17725838608B428899CFE37B3';
-    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
     
     try {
         const apiUrl = `https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${STEAM_API_KEY}&vanityurl=${vanityUrl}`;
-        const response = await fetch(CORS_PROXY + encodeURIComponent(apiUrl));
-        const data = await response.json();
+        const data = await fetchWithCorsProxy(apiUrl);
         
         if (data.response && data.response.success === 1) {
             setCachedData(cacheKey, data.response.steamid);
@@ -108,7 +137,7 @@ async function resolveSteamVanityUrl(vanityUrl) {
     }
 }
 
-// Steam API (para CS2 stats) - com cache
+// Steam API (para CS2 stats) - com cache e fallback de proxies
 async function fetchSteamPlayerData(playerId) {
     // Verificar cache em memória primeiro
     if (playerDataCache.has(playerId)) {
@@ -124,7 +153,6 @@ async function fetchSteamPlayerData(playerId) {
     }
     
     const STEAM_API_KEY = 'BCC8D3D17725838608B428899CFE37B3';
-    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
     
     try {
         const player = PLAYERS_DATA.cs2.find(p => p.id === playerId);
@@ -141,17 +169,9 @@ async function fetchSteamPlayerData(playerId) {
         
         if (!steamId64) return player;
         
-        // Buscar apenas avatar e nome da Steam
+        // Buscar avatar e nome da Steam usando proxy com fallback
         const steamApiUrl = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${STEAM_API_KEY}&steamids=${steamId64}`;
-        const steamResponse = await fetch(CORS_PROXY + encodeURIComponent(steamApiUrl));
-        
-        if (!steamResponse.ok) {
-            const result = { ...player, steamId64, trackerUrl: `https://tracker.gg/cs2/profile/steam/${steamId64}/overview?playlist=premier&season=3` };
-            playerDataCache.set(playerId, result);
-            return result;
-        }
-        
-        const steamData = await steamResponse.json();
+        const steamData = await fetchWithCorsProxy(steamApiUrl);
         
         if (steamData.response && steamData.response.players.length > 0) {
             const steamPlayer = steamData.response.players[0];
