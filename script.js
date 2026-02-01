@@ -36,18 +36,18 @@ function setCachedData(key, data) {
 // Mock player data - Replace with real API calls
 const PLAYERS_DATA = {
     cs2: [
-        { id: 1, name: 'white', steamUrl: 'https://steamcommunity.com/id/white1209/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/white1209', role: 'Ainda por preencher', photo: 'imagens/1.jpg' },
-        { id: 2, name: 'migga', steamUrl: 'https://steamcommunity.com/id/migggal', trackerUrl: 'https://tracker.gg/cs2/profile/steam/migggal', role: 'Ainda por preencher', photo: 'imagens/2.jpg' },
-        { id: 3, name: 'CØSTA', steamUrl: 'https://steamcommunity.com/profiles/76561199049671771/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199049671771', role: 'Ainda por preencher', photo: 'imagens/3.jpg' },
-        { id: 4, name: 'FurryFeetLover_69', steamUrl: 'https://steamcommunity.com/id/freezapqvcmatouokuririn', trackerUrl: 'https://tracker.gg/cs2/profile/steam/freezapqvcmatouokuririn', role: 'Ainda por preencher', photo: 'imagens/4.jpg' },
-        { id: 5, name: 'mr.albuquecas', steamUrl: 'https://steamcommunity.com/profiles/76561198843083161/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561198843083161', role: 'Ainda por preencher', photo: 'imagens/5.jpg' },
-        { id: 6, name: 'Mr.Pigeon', steamUrl: 'https://steamcommunity.com/profiles/76561199132612024/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199132612024', role: 'Ainda por preencher', photo: 'imagens/6.jpg' },
-        { id: 7, name: 'Neto', steamUrl: 'https://steamcommunity.com/profiles/76561199053161311/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199053161311', role: 'Ainda por preencher', photo: 'imagens/7.jpg' },
-        { id: 8, name: 'Optrista_CG', steamUrl: 'https://steamcommunity.com/profiles/76561199082165295/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199082165295', role: 'Ainda por preencher', photo: 'imagens/8.jpg' },
-        { id: 9, name: 'Tutury', steamUrl: 'https://steamcommunity.com/profiles/76561198183764933/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561198183764933', role: 'Ainda por preencher', photo: 'imagens/9.jpg' },
-        { id: 10, name: 't6maj', steamUrl: 'https://steamcommunity.com/id/tomas1437', trackerUrl: 'https://tracker.gg/cs2/profile/steam/tomas1437', role: 'Ainda por preencher', photo: 'imagens/10.jpg' },
-        { id: 11, name: 'SIDST', steamUrl: 'https://steamcommunity.com/profiles/76561199207194374/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199207194374', role: 'Ainda por preencher', photo: 'imagens/11.jpg' },
-        { id: 12, name: 'paulo minoso-', steamUrl: 'https://steamcommunity.com/id/narcigod', trackerUrl: 'https://tracker.gg/cs2/profile/steam/narcigod', role: 'Ainda por preencher', photo: 'imagens/12.jpg' }
+        { id: 1, name: 'white', steamUrl: 'https://steamcommunity.com/id/white1209/', trackerUrl: 'https://steamcommunity.gg/id/white1209/', role: 'Ainda por preencher', photo: 'imagens/1.jpg' },
+        { id: 2, name: 'migga', steamUrl: 'https://steamcommunity.com/id/migggal', trackerUrl: 'https://steamcommunity.gg/id/migggal', role: 'Ainda por preencher', photo: 'imagens/2.jpg' },
+        { id: 3, name: 'CØSTA', steamUrl: 'https://steamcommunity.com/profiles/76561199049671771/', trackerUrl: 'https://steamcommunity.gg/profiles/76561199049671771/', role: 'Ainda por preencher', photo: 'imagens/3.jpg' },
+        { id: 4, name: 'FurryFeetLover_69', steamUrl: 'https://steamcommunity.com/id/freezapqvcmatouokuririn', trackerUrl: 'https://steamcommunity.gg/id/freezapqvcmatouokuririn', role: 'Ainda por preencher', photo: 'imagens/4.jpg' },
+        { id: 5, name: 'mr.albuquecas', steamUrl: 'https://steamcommunity.com/profiles/76561198843083161/', trackerUrl: 'https://steamcommunity.gg/profiles/76561198843083161/', role: 'Ainda por preencher', photo: 'imagens/5.jpg' },
+        { id: 6, name: 'Mr.Pigeon', steamUrl: 'https://steamcommunity.com/profiles/76561199132612024/', trackerUrl: 'https://steamcommunity.gg/profiles/76561199132612024/', role: 'Ainda por preencher', photo: 'imagens/6.jpg' },
+        { id: 7, name: 'Neto', steamUrl: 'https://steamcommunity.com/profiles/76561199053161311/', trackerUrl: 'https://steamcommunity.gg/profiles/76561199053161311/', role: 'Ainda por preencher', photo: 'imagens/7.jpg' },
+        { id: 8, name: 'Optrista_CG', steamUrl: 'https://steamcommunity.com/profiles/76561199082165295/', trackerUrl: 'https://steamcommunity.gg/profiles/76561199082165295/', role: 'Ainda por preencher', photo: 'imagens/8.jpg' },
+        { id: 9, name: 'Tutury', steamUrl: 'https://steamcommunity.com/profiles/76561198183764933/', trackerUrl: 'https://steamcommunity.gg/profiles/76561198183764933/', role: 'Ainda por preencher', photo: 'imagens/9.jpg' },
+        { id: 10, name: 't6maj', steamUrl: 'https://steamcommunity.com/id/tomas1437', trackerUrl: 'https://steamcommunity.gg/id/tomas1437', role: 'Ainda por preencher', photo: 'imagens/10.jpg' },
+        { id: 11, name: 'SIDST', steamUrl: 'https://steamcommunity.com/profiles/76561199207194374/', trackerUrl: 'https://steamcommunity.gg/profiles/76561199207194374/', role: 'Ainda por preencher', photo: 'imagens/11.jpg' },
+        { id: 12, name: 'paulo minoso-', steamUrl: 'https://steamcommunity.com/id/narcigod', trackerUrl: 'https://steamcommunity.gg/id/narcigod', role: 'Ainda por preencher', photo: 'imagens/12.jpg' }
     ],
     clashRoyale: [
         { id: 1, name: 'mr.white', tag: '#28G9G2P9Y', role: 'Líder', trophies: '+10k' },
@@ -205,7 +205,7 @@ function initCS2Page() {
                         
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg);">
                             <a href="${trackerUrl}" target="_blank" style="padding: var(--spacing-md); border: 1px solid var(--color-accent); background: var(--color-surface); color: var(--color-text); text-decoration: none; text-align: center; transition: all 0.2s; font-size: 0.9rem;" onmouseover="this.style.background='var(--color-accent)'; this.style.color='var(--color-bg)';" onmouseout="this.style.background='var(--color-surface)'; this.style.color='var(--color-text)';">
-                                → Tracker.gg
+                                → Estatísticas
                             </a>
                             <a href="${steamUrl}" target="_blank" style="padding: var(--spacing-md); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); text-decoration: none; text-align: center; transition: all 0.2s; font-size: 0.9rem;" onmouseover="this.style.borderColor='var(--color-accent)';" onmouseout="this.style.borderColor='var(--color-border)';">
                                 → Steam Profile
@@ -262,7 +262,7 @@ function openPlayerProfile(playerName) {
                 <div class="external-links">
                     <a href="${trackerUrl}" target="_blank" class="external-link">
                         <span class="link-icon">📊</span>
-                        <span>Tracker.gg</span>
+                        <span>Estatísticas</span>
                     </a>
                     <a href="${steamUrl}" target="_blank" class="external-link">
                         <span class="link-icon">🎮</span>
