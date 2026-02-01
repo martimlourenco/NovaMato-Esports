@@ -8,9 +8,6 @@ const CONFIG = {
     cacheExpiry: 30 * 60 * 1000 // 30 minutos de cache
 };
 
-// Cache global para dados dos jogadores
-const playerDataCache = new Map();
-
 // Função para obter do localStorage com expiração
 function getCachedData(key) {
     try {
@@ -39,18 +36,18 @@ function setCachedData(key, data) {
 // Mock player data - Replace with real API calls
 const PLAYERS_DATA = {
     cs2: [
-        { id: 1, name: 'White', steamId64: '76561198882548515', role: 'Ainda por preencher' },
-        { id: 2, name: 'Migggal', customUrl: 'migggal', role: 'Ainda por preencher' },
-        { id: 3, name: 'Player3', steamId64: '76561199049671771', role: 'Ainda por preencher' },
-        { id: 4, name: 'Freeza', customUrl: 'freezapqvcmatouokuririn', role: 'Ainda por preencher' },
-        { id: 5, name: 'Player5', steamId64: '76561198843083161', role: 'Ainda por preencher' },
-        { id: 6, name: 'Player6', steamId64: '76561199132612024', role: 'Ainda por preencher' },
-        { id: 7, name: 'Player7', steamId64: '76561199053161311', role: 'Ainda por preencher' },
-        { id: 8, name: 'Player8', steamId64: '76561199082165295', role: 'Ainda por preencher' },
-        { id: 9, name: 'Player9', steamId64: '76561198183764933', role: 'Ainda por preencher' },
-        { id: 10, name: 'Tomas', customUrl: 'tomas1437', role: 'Ainda por preencher' },
-        { id: 11, name: 'Player11', steamId64: '76561199207194374', role: 'Ainda por preencher' },
-        { id: 12, name: 'Narcigod', customUrl: 'narcigod', role: 'Ainda por preencher' }
+        { id: 1, name: 'white', steamUrl: 'https://steamcommunity.com/id/white1209/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/white1209', role: 'Ainda por preencher', photo: 'imagens/1.jpg' },
+        { id: 2, name: 'migga', steamUrl: 'https://steamcommunity.com/id/migggal', trackerUrl: 'https://tracker.gg/cs2/profile/steam/migggal', role: 'Ainda por preencher', photo: 'imagens/2.jpg' },
+        { id: 3, name: 'CØSTA', steamUrl: 'https://steamcommunity.com/profiles/76561199049671771/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199049671771', role: 'Ainda por preencher', photo: 'imagens/3.jpg' },
+        { id: 4, name: 'FurryFeetLover_69', steamUrl: 'https://steamcommunity.com/id/freezapqvcmatouokuririn', trackerUrl: 'https://tracker.gg/cs2/profile/steam/freezapqvcmatouokuririn', role: 'Ainda por preencher', photo: 'imagens/4.jpg' },
+        { id: 5, name: 'mr.albuquecas', steamUrl: 'https://steamcommunity.com/profiles/76561198843083161/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561198843083161', role: 'Ainda por preencher', photo: 'imagens/5.jpg' },
+        { id: 6, name: 'Mr.Pigeon', steamUrl: 'https://steamcommunity.com/profiles/76561199132612024/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199132612024', role: 'Ainda por preencher', photo: 'imagens/6.jpg' },
+        { id: 7, name: 'Neto', steamUrl: 'https://steamcommunity.com/profiles/76561199053161311/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199053161311', role: 'Ainda por preencher', photo: 'imagens/7.jpg' },
+        { id: 8, name: 'Optrista_CG', steamUrl: 'https://steamcommunity.com/profiles/76561199082165295/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199082165295', role: 'Ainda por preencher', photo: 'imagens/8.jpg' },
+        { id: 9, name: 'Tutury', steamUrl: 'https://steamcommunity.com/profiles/76561198183764933/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561198183764933', role: 'Ainda por preencher', photo: 'imagens/9.jpg' },
+        { id: 10, name: 't6maj', steamUrl: 'https://steamcommunity.com/id/tomas1437', trackerUrl: 'https://tracker.gg/cs2/profile/steam/tomas1437', role: 'Ainda por preencher', photo: 'imagens/10.jpg' },
+        { id: 11, name: 'SIDST', steamUrl: 'https://steamcommunity.com/profiles/76561199207194374/', trackerUrl: 'https://tracker.gg/cs2/profile/steam/76561199207194374', role: 'Ainda por preencher', photo: 'imagens/11.jpg' },
+        { id: 12, name: 'paulo minoso-', steamUrl: 'https://steamcommunity.com/id/narcigod', trackerUrl: 'https://tracker.gg/cs2/profile/steam/narcigod', role: 'Ainda por preencher', photo: 'imagens/12.jpg' }
     ],
     clashRoyale: [
         { id: 1, name: 'mr.white', tag: '#28G9G2P9Y', role: 'Líder', trophies: '+10k' },
@@ -82,135 +79,6 @@ function animateCounter(element, target, suffix = '') {
 }
 
 // API Integration Functions
-
-// Lista de proxies CORS para fallback
-const CORS_PROXIES = [
-    'https://corsproxy.io/?',
-    'https://api.allorigins.win/raw?url='
-];
-
-// Função para fetch com fallback de múltiplos proxies
-async function fetchWithCorsProxy(url) {
-    for (let i = 0; i < CORS_PROXIES.length; i++) {
-        const proxy = CORS_PROXIES[i];
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000);
-            
-            const response = await fetch(proxy + encodeURIComponent(url), {
-                signal: controller.signal
-            });
-            
-            clearTimeout(timeoutId);
-            
-            if (response.ok) {
-                return await response.json();
-            }
-        } catch (e) {
-            console.log(`Proxy ${i + 1} falhou, tentando próximo...`);
-            continue;
-        }
-    }
-    throw new Error('Todos os proxies CORS falharam');
-}
-
-// Resolve Steam vanity URL to SteamID64 (com cache)
-async function resolveSteamVanityUrl(vanityUrl) {
-    const cacheKey = `vanity_${vanityUrl}`;
-    const cached = getCachedData(cacheKey);
-    if (cached) return cached;
-    
-    const STEAM_API_KEY = 'BCC8D3D17725838608B428899CFE37B3';
-    
-    try {
-        const apiUrl = `https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${STEAM_API_KEY}&vanityurl=${vanityUrl}`;
-        const data = await fetchWithCorsProxy(apiUrl);
-        
-        if (data.response && data.response.success === 1) {
-            setCachedData(cacheKey, data.response.steamid);
-            return data.response.steamid;
-        }
-        return null;
-    } catch (error) {
-        console.error('Error resolving vanity URL:', error);
-        return null;
-    }
-}
-
-// Steam API (para CS2 stats) - com cache e fallback de proxies
-async function fetchSteamPlayerData(playerId) {
-    // Verificar cache em memória primeiro
-    if (playerDataCache.has(playerId)) {
-        return playerDataCache.get(playerId);
-    }
-    
-    // Verificar cache localStorage
-    const cacheKey = `player_${playerId}`;
-    const cached = getCachedData(cacheKey);
-    if (cached) {
-        playerDataCache.set(playerId, cached);
-        return cached;
-    }
-    
-    const STEAM_API_KEY = 'BCC8D3D17725838608B428899CFE37B3';
-    
-    try {
-        const player = PLAYERS_DATA.cs2.find(p => p.id === playerId);
-        if (!player) return null;
-        
-        // Resolve custom URL se necessário
-        let steamId64 = player.steamId64;
-        if (!steamId64 && player.customUrl) {
-            steamId64 = await resolveSteamVanityUrl(player.customUrl);
-            if (!steamId64) {
-                return player;
-            }
-        }
-        
-        if (!steamId64) return player;
-        
-        // Buscar avatar e nome da Steam usando proxy com fallback
-        const steamApiUrl = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${STEAM_API_KEY}&steamids=${steamId64}`;
-        const steamData = await fetchWithCorsProxy(steamApiUrl);
-        
-        if (steamData.response && steamData.response.players.length > 0) {
-            const steamPlayer = steamData.response.players[0];
-            const result = {
-                ...player,
-                steamId64,
-                name: steamPlayer.personaname,
-                avatar: steamPlayer.avatarfull,
-                steamUrl: steamPlayer.profileurl,
-                trackerUrl: `https://tracker.gg/cs2/profile/steam/${steamId64}/overview?playlist=premier&season=3`
-            };
-            playerDataCache.set(playerId, result);
-            setCachedData(cacheKey, result);
-            return result;
-        }
-        
-        const result = { ...player, steamId64, trackerUrl: `https://tracker.gg/cs2/profile/steam/${steamId64}/overview?playlist=premier&season=3` };
-        playerDataCache.set(playerId, result);
-        return result;
-        
-    } catch (error) {
-        console.error(`Steam API error for player ${playerId}:`, error);
-        const player = PLAYERS_DATA.cs2.find(p => p.id === playerId);
-        const steamId64 = player?.steamId64;
-        const result = player ? { 
-            ...player, 
-            steamId64,
-            trackerUrl: steamId64 ? `https://tracker.gg/cs2/profile/steam/${steamId64}/overview?playlist=premier&season=3` : undefined 
-        } : null;
-        if (result) playerDataCache.set(playerId, result);
-        return result;
-    }
-}
-
-// Pré-carregar todos os jogadores em paralelo
-async function preloadAllPlayers() {
-    const promises = PLAYERS_DATA.cs2.map(player => fetchSteamPlayerData(player.id));
-    await Promise.all(promises);
-}
 
 // Clash Royale API - Usando API oficial com proxy CORS
 async function fetchClashRoyalePlayerData(playerTag) {
@@ -290,7 +158,7 @@ function initHomepage() {
 }
 
 // CS2 Page Functions
-async function initCS2Page() {
+function initCS2Page() {
     const slotsContainer = document.querySelector('[data-player-slots]');
     const modal = document.querySelector('[data-player-modal]');
     const modalBody = document.querySelector('[data-modal-body]');
@@ -298,29 +166,16 @@ async function initCS2Page() {
     
     if (!slotsContainer || !modal || !modalBody) return;
     
-    // Mostrar estado de carregamento inicial
-    slotsContainer.innerHTML = '<div class="loading-players" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--color-text-secondary);">A carregar jogadores...</div>';
-    
-    // Pré-carregar TODOS os jogadores em paralelo (muito mais rápido!)
-    await preloadAllPlayers();
-    
-    // Agora gerar slots com dados já em cache
+    // Gerar slots com fotos locais (sem API)
     slotsContainer.innerHTML = '';
     
     PLAYERS_DATA.cs2.forEach(player => {
-        const cachedData = playerDataCache.get(player.id);
-        const displayName = cachedData?.name || player.name;
-        const avatarStyle = cachedData?.avatar 
-            ? `background-image: url('${cachedData.avatar}'); background-size: cover; background-position: center;`
-            : 'background: var(--color-surface);';
-        const avatarText = cachedData?.avatar ? '' : player.name.charAt(0).toUpperCase();
+        const avatarStyle = `background-image: url('${player.photo}'); background-size: cover; background-position: center;`;
         
         const slotHtml = `
             <div class="player-slot" data-player-id="${player.id}">
-                <div class="player-slot-icon" style="${avatarStyle}">
-                    ${avatarText}
-                </div>
-                <div class="player-slot-name">${displayName}</div>
+                <div class="player-slot-icon" style="${avatarStyle}"></div>
+                <div class="player-slot-name">${player.name}</div>
                 <div class="player-slot-role">${player.role}</div>
                 <div class="player-slot-status">Click for stats</div>
             </div>
@@ -332,22 +187,19 @@ async function initCS2Page() {
     slotsContainer.querySelectorAll('.player-slot').forEach(slot => {
         slot.addEventListener('click', () => {
             const playerId = parseInt(slot.dataset.playerId);
+            const player = PLAYERS_DATA.cs2.find(p => p.id === playerId);
             
-            // Dados já estão em cache - mostra instantaneamente!
-            const playerData = playerDataCache.get(playerId);
-            
-            if (playerData) {
-                const steamUrl = playerData.steamUrl || `https://steamcommunity.com/profiles/${playerData.steamId64}`;
-                const avatarUrl = playerData.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(playerData.name)}&size=200&background=00ff00&color=000`;
-                const trackerUrl = playerData.trackerUrl || `https://tracker.gg/cs2/profile/steam/${playerData.steamId64}/overview?playlist=premier&season=3`;
+            if (player) {
+                const steamUrl = player.steamUrl;
+                const trackerUrl = player.trackerUrl;
                 
                 modalBody.innerHTML = `
                     <div class="player-header">
                         <div style="display: flex; gap: var(--spacing-md); align-items: center; margin-bottom: var(--spacing-lg);">
-                            <img src="${avatarUrl}" alt="${playerData.name}" style="width: 100px; height: 100px; border: 2px solid var(--color-accent); border-radius: 50%;" onerror="this.style.display='none'">
+                            <img src="${player.photo}" alt="${player.name}" style="width: 100px; height: 100px; border: 2px solid var(--color-accent); border-radius: 50%; object-fit: cover;" onerror="this.style.display='none'">
                             <div>
-                                <div class="player-name-large">${playerData.name}</div>
-                                <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: 1.1rem;">${playerData.role}</div>
+                                <div class="player-name-large">${player.name}</div>
+                                <div style="color: var(--color-text-secondary); margin-top: 0.5rem; font-size: 1.1rem;">${player.role}</div>
                             </div>
                         </div>
                         
@@ -398,37 +250,28 @@ function openPlayerProfile(playerName) {
     const player = PLAYERS_DATA.cs2.find(p => p.name.toLowerCase() === playerName.toLowerCase());
     
     if (player) {
-        // Dados já em cache - mostra instantaneamente
-        const playerData = playerDataCache.get(player.id);
+        const steamUrl = player.steamUrl;
+        const trackerUrl = player.trackerUrl;
         
-        if (playerData) {
-            const steamUrl = playerData.steamUrl || `https://steamcommunity.com/profiles/${playerData.steamId64}`;
-            const avatarUrl = playerData.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(playerData.name)}&size=200&background=00ff00&color=000`;
-            const trackerUrl = playerData.trackerUrl || `https://tracker.gg/cs2/profile/steam/${playerData.steamId64}/overview?playlist=premier&season=3`;
-            
-            modalBody.innerHTML = `
-                <div class="player-detail">
-                    <div class="player-avatar-large" style="background-image: url('${avatarUrl}'); background-size: cover; background-position: center;"></div>
-                    <div class="player-name-large">${playerData.name}</div>
-                    <div class="player-role-large">${player.role}</div>
-                    
-                    <div class="external-links">
-                        <a href="${steamUrl}" target="_blank" class="external-link">
-                            <span class="link-icon">🎮</span>
-                            <span>Steam Profile</span>
-                        </a>
-                        <a href="${trackerUrl}" target="_blank" class="external-link">
-                            <span class="link-icon">📊</span>
-                            <span>CS2 Tracker</span>
-                        </a>
-                    </div>
+        modalBody.innerHTML = `
+            <div class="player-detail">
+                <div class="player-avatar-large" style="background-image: url('${player.photo}'); background-size: cover; background-position: center;"></div>
+                <div class="player-name-large">${player.name}</div>
+                <div class="player-role-large">${player.role}</div>
+                
+                <div class="external-links">
+                    <a href="${trackerUrl}" target="_blank" class="external-link">
+                        <span class="link-icon">📊</span>
+                        <span>Tracker.gg</span>
+                    </a>
+                    <a href="${steamUrl}" target="_blank" class="external-link">
+                        <span class="link-icon">🎮</span>
+                        <span>Steam Profile</span>
+                    </a>
                 </div>
-            `;
-            modal.classList.add('active');
-        } else {
-            modalBody.innerHTML = '<div class="error">Failed to load player data</div>';
-            modal.classList.add('active');
-        }
+            </div>
+        `;
+        modal.classList.add('active');
     }
 }
 
