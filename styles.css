@@ -1,4 +1,4 @@
-/* Novamato Esports 2026 — Clean System with Redesigned Impactful Hero */
+/* Novamato Esports 2026 — Ultra-Clean & Simple Centered Hero */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
 
@@ -24,7 +24,7 @@
     --radius-md: 12px;
     --radius-lg: 18px;
     
-    --container-max: 1140px;
+    --container-max: 1000px;
     --transition: 0.2s ease;
 }
 
@@ -74,7 +74,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 72px;
+    height: 70px;
     background: rgba(11, 12, 16, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
@@ -101,17 +101,16 @@ body {
 }
 
 .brand-logo {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 8px;
     object-fit: cover;
-    border: 1px solid var(--accent);
 }
 
 .brand-title {
     font-family: var(--font-heading);
-    font-weight: 900;
-    font-size: 1.25rem;
+    font-weight: 800;
+    font-size: 1.15rem;
     letter-spacing: -0.01em;
 }
 
@@ -145,10 +144,10 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.65rem 1.3rem;
+    padding: 0.6rem 1.2rem;
     font-family: var(--font-heading);
     font-size: 0.88rem;
-    font-weight: 700;
+    font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
@@ -162,7 +161,7 @@ body {
 }
 
 .btn-primary:hover {
-    opacity: 0.92;
+    opacity: 0.9;
     transform: translateY(-1px);
 }
 
@@ -181,8 +180,8 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
@@ -195,163 +194,58 @@ body {
     color: var(--accent);
 }
 
-/* Redesigned Hero Layout */
-.hero {
-    padding-top: 130px;
+/* Ultra-Clean Centered Hero */
+.hero-clean {
+    padding-top: 140px;
     padding-bottom: 4rem;
+    text-align: center;
 }
 
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
-    align-items: center;
+.hero-clean-content {
+    max-width: 640px;
+    margin: 0 auto;
 }
 
-.hero-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.3rem 0.85rem;
+.hero-clean-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
     border-radius: 20px;
     background: var(--accent-bg);
     color: var(--accent);
-    font-size: 0.82rem;
-    font-weight: 700;
+    font-size: 0.8rem;
+    font-weight: 600;
     margin-bottom: 1.25rem;
-    border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
-.live-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--accent);
-    display: inline-block;
-}
-
-.hero-title {
+.hero-clean-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.6rem, 5.5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.05;
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
     letter-spacing: -0.03em;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
-.hero-title span {
+.hero-clean-title span {
     color: var(--accent);
 }
 
-.hero-subtitle {
-    font-size: 1.1rem;
+.hero-clean-sub {
+    font-size: 1.05rem;
     color: var(--text-muted);
     margin-bottom: 2rem;
-    line-height: 1.6;
 }
 
-.hero-buttons {
+.hero-clean-actions {
     display: flex;
+    justify-content: center;
     gap: 0.75rem;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-}
-
-.hero-stats-row {
-    display: flex;
-    gap: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.h-stat .h-num {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--text-main);
-    line-height: 1;
-}
-
-.h-stat .h-num span {
-    color: var(--accent);
-}
-
-.h-stat .h-label {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-top: 0.25rem;
-}
-
-/* Hero Showcase Card Right Side */
-.hero-card-showcase {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.showcase-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.showcase-logo {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    object-fit: cover;
-    border: 1px solid var(--accent);
-}
-
-.showcase-title {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.1rem;
-}
-
-.showcase-sub {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-.showcase-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 1.5rem;
-}
-
-.showcase-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    background: var(--bg-main);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    font-size: 0.88rem;
-}
-
-.showcase-item-title {
-    font-weight: 600;
-}
-
-.showcase-item-val {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--accent);
 }
 
 /* Section */
 .section {
-    padding: 4rem 0;
+    padding: 3.5rem 0;
     border-top: 1px solid var(--border-color);
 }
 
@@ -359,20 +253,20 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: -0.01em;
 }
 
 .section-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-muted);
     margin-top: 0.2rem;
 }
@@ -385,7 +279,7 @@ body {
 }
 
 .chip {
-    padding: 0.45rem 1rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 20px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -405,7 +299,7 @@ body {
 /* Roster Cards Grid */
 .roster-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1.25rem;
 }
 
@@ -432,8 +326,8 @@ body {
 }
 
 .card-avatar {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: 10px;
     background-size: cover;
     background-position: center;
@@ -443,7 +337,7 @@ body {
 .card-name {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 .card-role {
@@ -473,7 +367,7 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 2rem;
+    padding: 1.75rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -483,7 +377,7 @@ body {
 
 .mc-ip {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--accent);
 }
@@ -514,15 +408,15 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     width: 100%;
-    max-width: 520px;
-    padding: 2rem;
+    max-width: 500px;
+    padding: 1.75rem;
     position: relative;
 }
 
 .modal-close {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 1rem;
+    right: 1rem;
     background: none;
     border: none;
     color: var(--text-muted);
@@ -555,7 +449,7 @@ body {
 
 /* Footer */
 .footer {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
     border-top: 1px solid var(--border-color);
     font-size: 0.88rem;
     color: var(--text-muted);
@@ -567,14 +461,8 @@ body {
     justify-content: space-between;
 }
 
-@media (max-width: 992px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .hero-title { font-size: 2.3rem; }
+    .hero-clean-title { font-size: 2.2rem; }
     .footer .container { flex-direction: column; gap: 1rem; text-align: center; }
 }
