@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Royale — Novamato Esports</title>
+    <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
+    <link rel="stylesheet" href="styles.css?v=3.0">
+</head>
+<body>
+    <!-- Ambient Backdrop Effects -->
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation Header -->
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
+                <span class="brand-text">NOVAMATO</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="cs2.html" class="nav-link">CS2</a></li>
+                <li><a href="clash-royale.html" class="nav-link active">Clash Royale</a></li>
+                <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn btn-icon" id="themeToggleBtn" aria-label="Alternar Tema">🌓</button>
+                <a href="index.html" class="btn btn-secondary">← Voltar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Clash Royale Hero Banner -->
+    <header class="hero" style="padding-bottom: 3rem;">
+        <div class="container">
+            <div class="hero-tag" style="color: var(--accent-cyan); border-color: rgba(0,229,255,0.3); background: rgba(0,229,255,0.08);">
+                <span class="live-dot" style="background-color: var(--accent-cyan);"></span> Elite 10,000+ Trophy Clan
+            </div>
+            <h1 class="hero-title">
+                CLASH ROYALE<br>
+                <span class="gradient-text" style="background: linear-gradient(135deg, #00e5ff 0%, #9d4edd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LADDER KINGS</span>
+            </h1>
+            <p class="hero-description">
+                Elenco de elite constituído por jogadores com mais de 10.000 troféus na ladder global. Dominância e estratégia de topo.
+            </p>
+        </div>
+    </header>
+
+    <!-- Clan Roster Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title-wrap">
+                <div class="section-sub">Membros do Clan</div>
+                <h2 class="section-heading">Elite Players & Leaders</h2>
+            </div>
+
+            <div class="players-grid" id="crRosterGrid">
+                <!-- Dynamically loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Player Details Modal -->
+    <div class="modal" id="playerModal">
+        <div class="modal-dialog">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body" id="playerModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <span>© 2026 Novamato Esports — Clash Royale Division.</span>
+                <a href="index.html" style="color: var(--accent-cyan); text-decoration: none;">← Regressar à Página Inicial</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=3.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const crGrid = document.getElementById('crRosterGrid');
+            if (crGrid) {
+                crGrid.innerHTML = '';
+                PLAYERS_DATA.clashRoyale.forEach(player => {
+                    const card = document.createElement('div');
+                    card.className = 'player-card';
+                    card.innerHTML = `
+                        <div class="player-card-img-wrap" style="display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 900; font-size: 2.5rem; color: var(--accent-cyan); background: rgba(0,229,255,0.05);">
+                            CR
+                            <span class="player-game-badge" style="color: var(--accent-cyan);">10k+ TROPHIES</span>
+                        </div>
+                        <div class="player-card-info">
+                            <h3 class="player-card-name">${player.name}</h3>
+                            <p class="player-card-role">${player.role} · ${player.tag}</p>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => openPlayerModal({ ...player, game: 'Clash Royale', type: 'clash' }));
+                    crGrid.appendChild(card);
+                });
+
+                // Mystery Slot
+                const mysteryCard = document.createElement('div');
+                mysteryCard.className = 'player-card';
+                mysteryCard.style.opacity = '0.6';
+                mysteryCard.innerHTML = `
+                    <div class="player-card-img-wrap" style="display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 900; font-size: 3rem; color: var(--text-muted); background: rgba(255,255,255,0.02);">
+                        ?
+                        <span class="player-game-badge" style="color: var(--text-muted);">RECRUTANDO</span>
+                    </div>
+                    <div class="player-card-info">
+                        <h3 class="player-card-name">Próximo 10k Member?</h3>
+                        <p class="player-card-role">Quem será o próximo a chegar?</p>
+                    </div>
+                `;
+                mysteryCard.addEventListener('click', () => openRecruitmentModal());
+                crGrid.appendChild(mysteryCard);
+            }
+        });
+    </script>
+</body>
+</html>
