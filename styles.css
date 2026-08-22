@@ -1,4 +1,4 @@
-/* Novamato Esports 2026 — Clean System with Identical Floating Pill Header Across All Pages */
+/* Novamato Esports 2026 — Solid, Clean, Non-Breaking Design System */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
 
@@ -24,7 +24,7 @@
     --radius-md: 12px;
     --radius-lg: 18px;
     
-    --container-max: 1000px;
+    --container-max: 1100px;
     --transition: 0.2s ease;
 }
 
@@ -68,85 +68,74 @@ body {
     padding: 0 1.5rem;
 }
 
-/* 100% UNIFORM ARTISTIC FLOATING PILL HEADER */
-.header-wrapper {
+/* ROCK-SOLID FULL-WIDTH HEADER */
+.header {
     position: fixed;
-    top: 18px;
+    top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    pointer-events: none;
-}
-
-.header {
-    pointer-events: auto;
-    max-width: 880px;
-    margin: 0 auto;
-    height: 56px;
-    background: rgba(19, 21, 29, 0.88);
+    height: 70px;
+    background: rgba(11, 12, 16, 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(16, 185, 129, 0.25);
-    border-radius: 999px;
-    padding: 0 0.85rem;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 15px rgba(16, 185, 129, 0.08);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+    z-index: 1000;
 }
 
 [data-theme="light"] .header {
-    background: rgba(255, 255, 255, 0.88);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 0 15px rgba(5, 150, 105, 0.08);
+    background: rgba(248, 250, 252, 0.92);
+    border-bottom: 1px solid rgba(5, 150, 105, 0.2);
 }
 
-.header .header-inner {
+.header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    gap: 1rem;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.75rem;
     text-decoration: none;
     color: var(--text-main);
-    padding-left: 0.4rem;
+    flex-shrink: 0;
 }
 
 .brand-logo {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
     object-fit: cover;
     border: 1.5px solid var(--accent);
 }
 
 .brand-title {
     font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.05rem;
+    font-weight: 900;
+    font-size: 1.2rem;
     letter-spacing: -0.01em;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.5rem;
     list-style: none;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 0.25rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-color);
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
 }
 
 .nav-link {
-    display: inline-block;
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    padding: 0.35rem 0.9rem;
-    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
     transition: all var(--transition);
 }
 
@@ -155,10 +144,16 @@ body {
     background: rgba(16, 185, 129, 0.15);
 }
 
+[data-theme="light"] .nav-link:hover {
+    color: #0f172a;
+    background: rgba(5, 150, 105, 0.12);
+}
+
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 /* Buttons */
@@ -167,15 +162,16 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.55rem 1.1rem;
+    padding: 0.55rem 1.2rem;
     font-family: var(--font-heading);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 700;
-    border-radius: 999px;
+    border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
     transition: all var(--transition);
     border: 1px solid transparent;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -187,7 +183,6 @@ body {
 .btn-primary:hover {
     opacity: 0.92;
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
 }
 
 .btn-secondary {
@@ -205,15 +200,16 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     transition: all var(--transition);
+    flex-shrink: 0;
 }
 
 .theme-btn:hover {
@@ -223,7 +219,7 @@ body {
 
 /* Hero Section (Uniform Top Spacing on Every Page) */
 .hero-clean {
-    padding-top: 140px;
+    padding-top: 130px;
     padding-bottom: 3.5rem;
     text-align: center;
 }
@@ -235,12 +231,12 @@ body {
 
 .hero-clean-pill {
     display: inline-block;
-    padding: 0.25rem 0.8rem;
+    padding: 0.25rem 0.85rem;
     border-radius: 20px;
     background: var(--accent-bg);
     color: var(--accent);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 700;
     margin-bottom: 1.25rem;
     border: 1px solid rgba(16, 185, 129, 0.2);
 }
@@ -248,7 +244,7 @@ body {
 .hero-clean-title {
     font-family: var(--font-heading);
     font-size: clamp(2.5rem, 5vw, 3.8rem);
-    font-weight: 800;
+    font-weight: 900;
     line-height: 1.1;
     letter-spacing: -0.03em;
     margin-bottom: 1rem;
@@ -490,8 +486,16 @@ body {
 }
 
 @media (max-width: 768px) {
-    .header { max-width: calc(100% - 2rem); }
-    .nav-links { display: none; }
+    .nav-links {
+        display: flex;
+        gap: 0.25rem;
+        overflow-x: auto;
+    }
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+    }
+    .brand-title { font-size: 1rem; }
     .hero-clean-title { font-size: 2.2rem; }
     .footer .container { flex-direction: column; gap: 1rem; text-align: center; }
 }
