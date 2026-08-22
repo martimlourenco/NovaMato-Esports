@@ -1,4 +1,4 @@
-/* Novamato Esports 2026 — Clean System with Artistic Floating Pill Header */
+/* Novamato Esports 2026 — Clean System with Identical Floating Pill Header Across All Pages */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
 
@@ -25,7 +25,7 @@
     --radius-lg: 18px;
     
     --container-max: 1000px;
-    --transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition: 0.2s ease;
 }
 
 /* Light Theme Variables */
@@ -68,7 +68,7 @@ body {
     padding: 0 1.5rem;
 }
 
-/* ARTISTIC FLOATING PILL HEADER */
+/* 100% UNIFORM ARTISTIC FLOATING PILL HEADER */
 .header-wrapper {
     position: fixed;
     top: 18px;
@@ -83,18 +83,17 @@ body {
     max-width: 880px;
     margin: 0 auto;
     height: 56px;
-    background: rgba(19, 21, 29, 0.82);
+    background: rgba(19, 21, 29, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(16, 185, 129, 0.25);
     border-radius: 999px;
     padding: 0 0.85rem;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 15px rgba(16, 185, 129, 0.08);
-    transition: transform var(--transition), border-color var(--transition);
 }
 
 [data-theme="light"] .header {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.88);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 0 15px rgba(5, 150, 105, 0.08);
 }
 
@@ -120,7 +119,6 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 1.5px solid var(--accent);
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
 }
 
 .brand-title {
@@ -153,13 +151,8 @@ body {
 }
 
 .nav-link:hover {
-    color: var(--text-main);
-}
-
-.nav-link.active {
-    background: var(--accent);
     color: #ffffff;
-    box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.15);
 }
 
 .nav-actions {
@@ -228,10 +221,10 @@ body {
     color: var(--accent);
 }
 
-/* Ultra-Clean Centered Hero */
+/* Hero Section (Uniform Top Spacing on Every Page) */
 .hero-clean {
-    padding-top: 150px;
-    padding-bottom: 4rem;
+    padding-top: 140px;
+    padding-bottom: 3.5rem;
     text-align: center;
 }
 
