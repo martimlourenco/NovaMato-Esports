@@ -1,4 +1,4 @@
-// Novamato Esports 2026 — Simple & Clean Script with Uniform Header Engine
+// Novamato Esports 2026 — Simple & Clean Script
 
 const ROSTER_DATA = {
     cs2: [
@@ -30,22 +30,6 @@ const ROSTER_DATA = {
         { id: 3, name: 'Optrista_CG', role: 'Adventure Map Designer', builds: 'Dungeon Boss Arena' }
     ]
 };
-
-// Uniform Nav Highlighting
-function highlightActiveNav() {
-    const path = window.location.pathname;
-    let filename = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
-    if (filename === '') filename = 'index.html';
-    
-    document.querySelectorAll('.nav-link').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === filename) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
 
 // Theme Management
 function initTheme() {
@@ -226,7 +210,6 @@ function initModals() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    highlightActiveNav();
     initTheme();
     renderGrid('all');
     initChips();
