@@ -1,21 +1,22 @@
-/* Novamato Esports 2026 — Clean, Simple & Beautiful System */
+/* Novamato Esports 2026 — Clean System with Customizable Color Accents */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 :root {
-    /* Color Palette - Slate Dark (Default) */
-    --bg-main: #0f172a;
-    --bg-card: #1e293b;
-    --bg-card-hover: #334155;
+    /* Base Obsidian Palette */
+    --bg-main: #0b0c10;
+    --bg-card: #13151d;
+    --bg-card-hover: #1c1f2b;
     
     --border-color: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(16, 185, 129, 0.4);
+    --border-hover: rgba(56, 189, 248, 0.4);
     
-    --text-main: #f8fafc;
+    --text-main: #ffffff;
     --text-muted: #94a3b8;
     
-    --accent: #10b981;
-    --accent-bg: rgba(16, 185, 129, 0.1);
+    /* Default Accent Color: Electric Sky Blue */
+    --accent: #38bdf8;
+    --accent-bg: rgba(56, 189, 248, 0.1);
     
     --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
     --font-body: 'Inter', -apple-system, sans-serif;
@@ -27,6 +28,37 @@
     --transition: 0.2s ease;
 }
 
+/* Color Accent Presets */
+[data-accent="blue"] {
+    --accent: #38bdf8;
+    --accent-bg: rgba(56, 189, 248, 0.12);
+    --border-hover: rgba(56, 189, 248, 0.4);
+}
+
+[data-accent="emerald"] {
+    --accent: #10b981;
+    --accent-bg: rgba(16, 185, 129, 0.12);
+    --border-hover: rgba(16, 185, 129, 0.4);
+}
+
+[data-accent="purple"] {
+    --accent: #a855f7;
+    --accent-bg: rgba(168, 85, 247, 0.12);
+    --border-hover: rgba(168, 85, 247, 0.4);
+}
+
+[data-accent="red"] {
+    --accent: #f43f5e;
+    --accent-bg: rgba(244, 63, 94, 0.12);
+    --border-hover: rgba(244, 63, 94, 0.4);
+}
+
+[data-accent="mono"] {
+    --accent: #ffffff;
+    --accent-bg: rgba(255, 255, 255, 0.12);
+    --border-hover: rgba(255, 255, 255, 0.4);
+}
+
 /* Light Theme Variables */
 [data-theme="light"] {
     --bg-main: #f8fafc;
@@ -34,13 +66,8 @@
     --bg-card-hover: #f1f5f9;
     
     --border-color: rgba(0, 0, 0, 0.08);
-    --border-hover: rgba(16, 185, 129, 0.5);
-    
     --text-main: #0f172a;
     --text-muted: #64748b;
-    
-    --accent: #059669;
-    --accent-bg: rgba(5, 150, 105, 0.08);
 }
 
 /* Base Reset */
@@ -75,8 +102,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background: rgba(15, 23, 42, 0.85);
+    height: 72px;
+    background: rgba(11, 12, 16, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
@@ -139,7 +166,37 @@ body {
     gap: 0.75rem;
 }
 
-/* Simple Buttons */
+/* Color Accent Picker Dots */
+.accent-picker {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--bg-card);
+    padding: 0.3rem 0.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.accent-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform var(--transition);
+}
+
+.accent-dot:hover, .accent-dot.active {
+    transform: scale(1.25);
+    box-shadow: 0 0 8px currentColor;
+}
+
+.dot-blue { background-color: #38bdf8; color: #38bdf8; }
+.dot-emerald { background-color: #10b981; color: #10b981; }
+.dot-purple { background-color: #a855f7; color: #a855f7; }
+.dot-red { background-color: #f43f5e; color: #f43f5e; }
+.dot-mono { background-color: #ffffff; color: #ffffff; }
+
+/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -158,7 +215,11 @@ body {
 
 .btn-primary {
     background: var(--accent);
-    color: #ffffff;
+    color: #000000;
+}
+
+[data-accent="mono"] .btn-primary {
+    color: #000000;
 }
 
 .btn-primary:hover {
@@ -287,7 +348,7 @@ body {
 
 .chip:hover, .chip.active {
     background: var(--accent);
-    color: #ffffff;
+    color: #000000;
     border-color: var(--accent);
 }
 
@@ -381,7 +442,7 @@ body {
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.75);
+    background: rgba(11, 12, 16, 0.8);
     backdrop-filter: blur(8px);
     z-index: 2000;
     display: flex;

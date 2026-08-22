@@ -1,4 +1,4 @@
-// Novamato Esports 2026 — Simple & Clean Script
+// Novamato Esports 2026 — Simple & Clean Script with Accent Color Switcher
 
 const ROSTER_DATA = {
     cs2: [
@@ -31,21 +31,39 @@ const ROSTER_DATA = {
     ]
 };
 
-// Theme Management
-function initTheme() {
-    const saved = localStorage.getItem('novamato_clean_simple_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', saved);
+// Theme & Accent Color Management
+function initThemeAndAccent() {
+    const savedTheme = localStorage.getItem('novamato_clean_theme') || 'dark';
+    const savedAccent = localStorage.getItem('novamato_clean_accent') || 'blue';
     
-    const btn = document.getElementById('themeBtn');
-    if (btn) {
-        btn.addEventListener('click', () => {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute('data-accent', savedAccent);
+    
+    const themeBtn = document.getElementById('themeBtn');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('data-theme');
             const target = current === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', target);
-            localStorage.setItem('novamato_clean_simple_theme', target);
+            localStorage.setItem('novamato_clean_theme', target);
             showToast(`Modo ${target === 'light' ? 'Claro' : 'Escuro'} ativado`);
         });
     }
+    
+    // Accent Dots Click Listener
+    const dots = document.querySelectorAll('.accent-dot');
+    dots.forEach(dot => {
+        if (dot.dataset.accent === savedAccent) dot.classList.add('active');
+        
+        dot.addEventListener('click', () => {
+            dots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+            const targetAccent = dot.dataset.accent;
+            document.documentElement.setAttribute('data-accent', targetAccent);
+            localStorage.setItem('novamato_clean_accent', targetAccent);
+            showToast(`Cor de destaque alterada! ✨`);
+        });
+    });
 }
 
 // Toast System
@@ -70,7 +88,7 @@ function showToast(msg) {
     }, 2200);
 }
 
-// Copy Helper
+// Copy IP Helper
 function copyText(text, label = 'Copiado!') {
     navigator.clipboard.writeText(text).then(() => {
         showToast(`✓ ${label}`);
@@ -79,7 +97,7 @@ function copyText(text, label = 'Copiado!') {
     });
 }
 
-// Render Roster Cards Grid (If no photo, only display the name)
+// Render Roster Cards Grid (Only render avatar if photo exists)
 function renderGrid(filter = 'all') {
     const grid = document.getElementById('rosterGrid');
     if (!grid) return;
@@ -137,7 +155,7 @@ function initChips() {
     });
 }
 
-// Player Modal (If no photo, only display the name)
+// Player Modal
 function openModal(p) {
     const modal = document.getElementById('playerModal');
     const body = document.getElementById('modalBody');
@@ -210,7 +228,7 @@ function initModals() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
+    initThemeAndAccent();
     renderGrid('all');
     initChips();
     initModals();
