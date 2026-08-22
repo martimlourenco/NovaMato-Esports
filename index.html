@@ -3,63 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novamato Esports</title>
+    <title>Novamato Esports — Professional Esport Team</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=6000">
+    <link rel="stylesheet" href="styles.css?v=8000">
 </head>
 <body>
-    <!-- Uniform Solid Header -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="index.html" class="brand">
-                <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-title">NOVAMATO</span>
-            </a>
 
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Início</a></li>
-                <li><a href="cs2.html" class="nav-link">CS2</a></li>
-                <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
-                <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
-            </ul>
+    <!-- Left Vertical Social Bar -->
+    <div class="vertical-social-bar">
+        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="v-social-link">Discord</a>
+        <a href="https://www.youtube.com/@novamato3393" target="_blank" class="v-social-link">YouTube</a>
+        <a href="https://steamcommunity.com/id/white1209/" target="_blank" class="v-social-link">Steam</a>
+    </div>
 
-            <div class="nav-actions">
-                <button class="theme-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
-                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-primary">Discord</a>
-            </div>
+    <!-- Centered Logo Top Navigation -->
+    <header class="main-header">
+        <div class="container" style="width: 100%;">
+            <nav class="nav-grid">
+                <ul class="nav-group">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="cs2.html" class="nav-link">CS2</a></li>
+                    <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
+                </ul>
+
+                <a href="index.html" class="nav-center-logo">
+                    <img src="imagens/favicon2.jpeg" alt="Novamato Logo" class="center-logo-img" onerror="this.style.display='none'">
+                </a>
+
+                <ul class="nav-group">
+                    <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="nav-link">Discord</a></li>
+                </ul>
+
+                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+            </nav>
         </div>
     </header>
 
-    <!-- Ultra-Clean Centered Hero -->
-    <section class="hero-clean">
+    <!-- Esports Hero Section -->
+    <section class="esports-hero">
+        <div class="hero-vignette"></div>
         <div class="container">
-            <div class="hero-clean-content">
-                <div class="hero-clean-pill">Competitive Gaming · Est. 2018</div>
-                <h1 class="hero-clean-title">NOVAMATO <span>ESPORTS</span></h1>
-                <p class="hero-clean-sub">
-                    Equipa competitiva portuguesa em Counter-Strike 2, Clash Royale e Servidor Dedicado de Minecraft.
-                </p>
-                <div class="hero-clean-actions">
-                    <a href="#roster" class="btn btn-primary">Ver Atletas →</a>
+            <div class="hero-content">
+                <div class="hero-kicker">Welcome Novamato Esport</div>
+                <h1 class="hero-main-title">Professional Esport<br>Global Team</h1>
+                <a href="#about" class="hero-btn">Learn More</a>
+            </div>
+        </div>
+
+        <a href="#about" class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-dot"></div>
+        </a>
+    </section>
+
+    <!-- About Section with Geometric Video Card -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text-col">
+                    <div class="section-tag-line"></div>
+                    <h2 class="about-title">
+                        About The <span class="highlight-green">Novamato</span><br>Esports Team
+                    </h2>
+                    <p class="about-desc">
+                        Organização competitiva portuguesa fundada em 2018. Competição ao mais alto nível no Counter-Strike 2, clã de elite no Clash Royale e um ecossistema dedicado de Minecraft para toda a comunidade.
+                    </p>
+                    <a href="#roster" class="btn-outline">Meet The Team</a>
+                </div>
+
+                <div class="about-media-col">
+                    <div class="about-media-wrapper">
+                        <div class="media-backdrop-shape"></div>
+                        <div class="media-video-card">
+                            <video controls autoplay muted loop>
+                                <source src="imagens/videocs2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Clean Roster Section -->
-    <section class="section" id="roster">
+    <!-- Squads & Line-ups Section -->
+    <section class="about-section" id="roster" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
         <div class="container">
-            <div class="section-header">
-                <div>
-                    <h2 class="section-title">Line-up Oficial</h2>
-                    <p class="section-subtitle">Atletas e membros ativos da organização.</p>
-                </div>
-                <div class="tab-chips">
-                    <button class="chip active" data-filter="all">Todos</button>
-                    <button class="chip" data-filter="cs2">CS2</button>
-                    <button class="chip" data-filter="clash">Clash Royale</button>
-                    <button class="chip" data-filter="minecraft">Minecraft</button>
-                </div>
+            <div class="section-center-heading">
+                <h2 class="heading-title">Active <span class="highlight-green">Squads</span> & Roster</h2>
+                <div class="heading-line"></div>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all">All Squads</button>
+                <button class="tab-btn" data-filter="cs2">Counter-Strike 2</button>
+                <button class="tab-btn" data-filter="clash">Clash Royale</button>
+                <button class="tab-btn" data-filter="minecraft">Minecraft</button>
             </div>
 
             <div class="roster-grid" id="rosterGrid">
@@ -68,38 +108,40 @@
         </div>
     </section>
 
-    <!-- Minecraft Quick Server Box -->
-    <section class="section">
+    <!-- Minecraft Server Match Banner -->
+    <section class="about-section">
         <div class="container">
-            <div class="mc-card">
+            <div class="mc-banner-card">
                 <div>
-                    <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">SERVIDOR MINECRAFT DEDICADO</div>
-                    <div class="mc-ip">46.224.145.80:25565</div>
+                    <div class="mc-label-tag">Servidor Oficial Dedicado</div>
+                    <div class="mc-ip-display">46.224.145.80:25565</div>
                 </div>
-                <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
+                <button class="hero-btn" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
             </div>
         </div>
     </section>
 
     <!-- Player Details Modal -->
     <div class="modal" id="playerModal">
-        <div class="modal-dialog">
-            <button class="modal-close">&times;</button>
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
             <div id="modalBody"></div>
         </div>
     </div>
 
-    <!-- Clean Footer -->
-    <footer class="footer">
-        <div class="container">
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container footer-flex">
             <span>© 2026 Novamato Esports. Todos os direitos reservados.</span>
-            <div>
-                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" style="color: var(--text-muted); margin-right: 1.2rem; text-decoration: none;">Discord</a>
-                <a href="https://www.youtube.com/@novamato3393" target="_blank" style="color: var(--text-muted); text-decoration: none;">YouTube</a>
+            <div class="footer-links">
+                <a href="cs2.html" class="footer-link">CS2</a>
+                <a href="clash-royale.html" class="footer-link">Clash Royale</a>
+                <a href="minecraft.html" class="footer-link">Minecraft</a>
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="footer-link">Discord</a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js?v=6000"></script>
+    <script src="script.js?v=8000"></script>
 </body>
 </html>

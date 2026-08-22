@@ -5,79 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Server — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=6000">
+    <link rel="stylesheet" href="styles.css?v=8000">
 </head>
 <body>
-    <!-- Uniform Solid Header -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="index.html" class="brand">
-                <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-title">NOVAMATO</span>
-            </a>
 
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Início</a></li>
-                <li><a href="cs2.html" class="nav-link">CS2</a></li>
-                <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
-                <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
-            </ul>
+    <!-- Left Vertical Social Bar -->
+    <div class="vertical-social-bar">
+        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="v-social-link">Discord</a>
+        <a href="https://www.youtube.com/@novamato3393" target="_blank" class="v-social-link">YouTube</a>
+        <a href="https://steamcommunity.com/id/white1209/" target="_blank" class="v-social-link">Steam</a>
+    </div>
 
-            <div class="nav-actions">
-                <button class="theme-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
-                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-primary">Discord</a>
-            </div>
+    <!-- Centered Logo Top Navigation -->
+    <header class="main-header">
+        <div class="container" style="width: 100%;">
+            <nav class="nav-grid">
+                <ul class="nav-group">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="cs2.html" class="nav-link">CS2</a></li>
+                    <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
+                </ul>
+
+                <a href="index.html" class="nav-center-logo">
+                    <img src="imagens/favicon2.jpeg" alt="Novamato Logo" class="center-logo-img" onerror="this.style.display='none'">
+                </a>
+
+                <ul class="nav-group">
+                    <li><a href="minecraft.html" class="nav-link active">Minecraft</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="nav-link">Discord</a></li>
+                </ul>
+
+                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+            </nav>
         </div>
     </header>
 
-    <!-- MC Hero -->
-    <section class="hero-clean">
+    <!-- Page Hero -->
+    <section class="esports-hero" style="min-height: 60vh; padding-top: 140px;">
+        <div class="hero-vignette"></div>
         <div class="container">
-            <div class="hero-clean-content">
-                <div class="hero-clean-pill">Dedicated Server & Dynmap</div>
-                <h1 class="hero-clean-title">MINECRAFT <span>SERVER</span></h1>
-                <p class="hero-clean-sub">Conecta-te ao servidor oficial da Novamato e explora o mapa interativo Dynmap.</p>
+            <div class="hero-content">
+                <div class="hero-kicker">Dedicated Minecraft Server & Dynmap</div>
+                <h1 class="hero-main-title">Minecraft<br><span style="color: var(--neon-green);">Community Server</span></h1>
             </div>
         </div>
     </section>
 
     <!-- IP Box -->
-    <section class="section">
+    <section class="about-section">
         <div class="container">
-            <div class="mc-card">
+            <div class="mc-banner-card">
                 <div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">SERVIDOR MINECRAFT DEDICADO</div>
-                    <div class="mc-ip">46.224.145.80:25565</div>
+                    <div class="mc-label-tag">Servidor Oficial Dedicado</div>
+                    <div class="mc-ip-display">46.224.145.80:25565</div>
                 </div>
-                <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
+                <button class="hero-btn" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
             </div>
         </div>
     </section>
 
     <!-- Dynmap Embed Frame -->
-    <section class="section">
+    <section class="about-section" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
         <div class="container">
-            <div class="section-header">
-                <div>
-                    <h2 class="section-title">Mapa Interativo ao Vivo</h2>
-                    <p class="section-subtitle">Visualizador 3D do mundo em tempo real.</p>
-                </div>
+            <div class="section-center-heading">
+                <h2 class="heading-title">Live Interactive <span class="highlight-green">Dynmap</span></h2>
+                <div class="heading-line"></div>
             </div>
 
-            <div style="width: 100%; height: 580px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden;">
+            <div style="width: 100%; height: 600px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);">
                 <iframe src="http://46.224.145.80:8123" style="width: 100%; height: 100%; border: none;" title="Minecraft Dynmap"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container footer-flex">
             <span>© 2026 Novamato Esports — Minecraft Division.</span>
-            <a href="index.html" style="color: var(--accent); text-decoration: none;">← Página Inicial</a>
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="cs2.html" class="footer-link">CS2</a>
+                <a href="clash-royale.html" class="footer-link">Clash Royale</a>
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="footer-link">Discord</a>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js?v=6000"></script>
+    <script src="script.js?v=8000"></script>
 </body>
 </html>
