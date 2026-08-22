@@ -1,6 +1,6 @@
-/* Novamato Esports 2026 — Clean System with Emerald Green Theme */
+/* Novamato Esports 2026 — Clean System with Redesigned Impactful Hero */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
 
 :root {
     /* Base Obsidian Palette */
@@ -24,7 +24,7 @@
     --radius-md: 12px;
     --radius-lg: 18px;
     
-    --container-max: 1100px;
+    --container-max: 1140px;
     --transition: 0.2s ease;
 }
 
@@ -101,16 +101,17 @@ body {
 }
 
 .brand-logo {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
     object-fit: cover;
+    border: 1px solid var(--accent);
 }
 
 .brand-title {
     font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.2rem;
+    font-weight: 900;
+    font-size: 1.25rem;
     letter-spacing: -0.01em;
 }
 
@@ -144,10 +145,10 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
+    padding: 0.65rem 1.3rem;
     font-family: var(--font-heading);
     font-size: 0.88rem;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
@@ -161,7 +162,7 @@ body {
 }
 
 .btn-primary:hover {
-    opacity: 0.9;
+    opacity: 0.92;
     transform: translateY(-1px);
 }
 
@@ -180,8 +181,8 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
@@ -194,30 +195,48 @@ body {
     color: var(--accent);
 }
 
-/* Simple Hero */
+/* Redesigned Hero Layout */
 .hero {
     padding-top: 130px;
     padding-bottom: 4rem;
 }
 
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+}
+
 .hero-pill {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.85rem;
     border-radius: 20px;
     background: var(--accent-bg);
     color: var(--accent);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 700;
     margin-bottom: 1.25rem;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    display: inline-block;
 }
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
+    font-size: clamp(2.6rem, 5.5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
 }
 
 .hero-title span {
@@ -228,13 +247,106 @@ body {
     font-size: 1.1rem;
     color: var(--text-muted);
     margin-bottom: 2rem;
-    max-width: 580px;
+    line-height: 1.6;
 }
 
 .hero-buttons {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.hero-stats-row {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.h-stat .h-num {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.h-stat .h-num span {
+    color: var(--accent);
+}
+
+.h-stat .h-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+/* Hero Showcase Card Right Side */
+.hero-card-showcase {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.showcase-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.showcase-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid var(--accent);
+}
+
+.showcase-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.showcase-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.showcase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.showcase-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--bg-main);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 0.88rem;
+}
+
+.showcase-item-title {
+    font-weight: 600;
+}
+
+.showcase-item-val {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--accent);
 }
 
 /* Section */
@@ -455,8 +567,14 @@ body {
     justify-content: space-between;
 }
 
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .hero-title { font-size: 2.2rem; }
+    .hero-title { font-size: 2.3rem; }
     .footer .container { flex-direction: column; gap: 1rem; text-align: center; }
 }
