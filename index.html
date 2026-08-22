@@ -3,257 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novamato Esports — Competitive Gaming</title>
+    <title>Novamato Esports — Technical Gaming Portal</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="styles.css?v=4.0">
 </head>
 <body>
-    <!-- Ambient Backdrop Effects -->
-    <div class="ambient-bg">
-        <div class="ambient-orb orb-1"></div>
-        <div class="ambient-orb orb-2"></div>
-    </div>
-    <div class="grid-overlay"></div>
+    <div class="bg-grid"></div>
 
-    <!-- Navigation Header -->
+    <!-- Minimal Header -->
     <nav class="nav">
         <div class="container">
-            <a href="index.html" class="nav-brand">
+            <a href="index.html" class="brand">
                 <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-text">NOVAMATO</span>
+                <span class="brand-title">NOVAMATO</span>
             </a>
-            
+
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">Início</a></li>
+                <li><a href="index.html" class="nav-link active">Visão Geral</a></li>
                 <li><a href="cs2.html" class="nav-link">CS2</a></li>
                 <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
                 <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
-                <li><a href="#trophies" class="nav-link">Troféus</a></li>
-                <li><a href="#merch" class="nav-link">Merch</a></li>
+                <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
             </ul>
 
             <div class="nav-actions">
-                <button class="btn btn-icon" id="themeToggleBtn" aria-label="Alternar Tema">
-                    🌓
-                </button>
-                <button class="btn btn-primary" onclick="openRecruitmentModal()">
-                    Junta-te a Nós
-                </button>
+                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+                <button class="btn btn-primary" onclick="openRecruitModal()">Candidatar-se</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Match Center Ticker -->
+    <!-- Clean Technical Hero -->
     <header class="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <div class="hero-tag">
-                        <span class="live-dot"></span> Organization Founded in 2018
-                    </div>
-                    <h1 class="hero-title">
-                        COMPETE.<br>
-                        <span class="gradient-text">DOMINATE.</span><br>
-                        WIN.
-                    </h1>
-                    <p class="hero-description">
-                        Organização portuguesa de Esports competitivos de alto nível. Dominamos no Counter-Strike 2, Clash Royale Elite e Servidores Custom de Minecraft.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#roster" class="btn btn-primary">Ver Roster da Equipa →</a>
-                        <a href="cs2.html#highlight" class="btn btn-secondary">⚡ Assistir Highlights</a>
-                    </div>
-                    
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-num">8<span>+</span></div>
-                            <div class="stat-label">Anos de História</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-num">14<span>+</span></div>
-                            <div class="stat-label">Atletas Pro</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-num">10k<span>+</span></div>
-                            <div class="stat-label">Troféus Clan CR</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Match Center Widget -->
-                <div class="hero-widget">
-                    <div class="match-ticker-card">
-                        <div class="ticker-header">
-                            <span class="ticker-title">🎮 Próxima Partida Oficial</span>
-                            <span class="live-badge"><span class="live-dot"></span> EM BREVE</span>
-                        </div>
-
-                        <div class="match-versus">
-                            <div class="team-box">
-                                <div class="team-logo-placeholder">NVM</div>
-                                <div class="team-name">Novamato</div>
-                            </div>
-                            <div class="vs-badge">VS</div>
-                            <div class="team-box">
-                                <div class="team-logo-placeholder" style="color: var(--accent-cyan); border-color: var(--accent-cyan);">EST</div>
-                                <div class="team-name">Estoril</div>
-                            </div>
-                        </div>
-
-                        <div class="match-info-footer">
-                            <div>
-                                <strong style="color: var(--text-primary);">Liga Portuguesa CS2</strong><br>
-                                Qualificadores Finais · Bo3
-                            </div>
-                            <div id="matchCountdown" style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-green);">
-                                A Carregar...
-                            </div>
-                        </div>
-                    </div>
+            <div class="hero-content">
+                <div class="hero-pill">Est. 2018 · Portuguese Competitive Esports</div>
+                <h1 class="hero-title">PRECISÃO. <span>DESEMPENHO.</span> DOMÍNIO.</h1>
+                <p class="hero-subtitle">
+                    Organização técnica de Esports focada na alta competição em CS2, Clash Royale Elite e Minecraft dedicado.
+                </p>
+                <div class="hero-actions">
+                    <a href="#roster" class="btn btn-primary">Line-up Oficial →</a>
+                    <a href="cs2.html" class="btn btn-secondary">Divisão CS2</a>
+                    <a href="minecraft.html" class="btn btn-secondary">Servidor Minecraft</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Game Division Cards -->
+    <!-- Scoreboard & Match Ticker -->
+    <section class="scoreboard-section">
+        <div class="container">
+            <div class="ticker-grid">
+                <div class="ticker-card">
+                    <div>
+                        <div class="ticker-status">CS2 · Resultado Recente</div>
+                        <div class="ticker-team">NOVAMATO <span class="ticker-score">2 - 0</span> ESTORIL</div>
+                    </div>
+                    <span style="color: var(--accent-green); font-size: 0.8rem; font-weight: 700;">VITÓRIA</span>
+                </div>
+
+                <div class="ticker-card">
+                    <div>
+                        <div class="ticker-status">Clash Royale · Ladder</div>
+                        <div class="ticker-team">NOVAMATO <span class="ticker-score">3 - 1</span> SAW</div>
+                    </div>
+                    <span style="color: var(--accent-green); font-size: 0.8rem; font-weight: 700;">VITÓRIA</span>
+                </div>
+
+                <div class="ticker-card">
+                    <div>
+                        <div class="ticker-status">Próximo Jogo Oficial</div>
+                        <div class="ticker-team">NOVAMATO vs FTW</div>
+                    </div>
+                    <span style="color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); font-weight: 700;">3d 04h 12m</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roster Grid -->
+    <section class="section" id="roster">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Line-up Oficial</h2>
+                    <p class="section-desc">Atletas inscritos nas nossas modalidades competitivas.</p>
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-chip active" data-filter="all">Todos</button>
+                    <button class="filter-chip" data-filter="cs2">CS2</button>
+                    <button class="filter-chip" data-filter="clash">Clash Royale</button>
+                    <button class="filter-chip" data-filter="minecraft">Minecraft</button>
+                </div>
+            </div>
+
+            <div class="roster-grid" id="rosterGrid">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Leaderboard Table -->
+    <section class="section" id="leaderboard">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Leaderboard Interna CS2</h2>
+                    <p class="section-desc">Ranking de estatísticas dos atletas da Novamato.</p>
+                </div>
+            </div>
+
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Atleta</th>
+                        <th>Função</th>
+                        <th>HLTV Rating</th>
+                        <th>K/D</th>
+                        <th>Headshot %</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboardBody">
+                    <!-- Loaded via JS -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Minecraft Quick Server Box -->
     <section class="section">
         <div class="container">
-            <div class="section-title-wrap">
-                <div class="section-sub">Modalidades</div>
-                <h2 class="section-heading">Divisões de Competição</h2>
-            </div>
-
-            <div class="games-grid">
-                <a href="cs2.html" class="game-card">
-                    <div>
-                        <div class="game-card-icon">CS2</div>
-                        <h3 class="game-card-title">Counter-Strike 2</h3>
-                        <p class="game-card-desc">Roster competitivo de 5v5 tático em torneios e ligas nacionais.</p>
-                    </div>
-                    <div class="game-card-meta">
-                        <span>12 Atletas Inscritos</span>
-                        <span>Ver Modalidade →</span>
-                    </div>
-                </a>
-
-                <a href="clash-royale.html" class="game-card">
-                    <div>
-                        <div class="game-card-icon" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.1); border-color: var(--accent-cyan);">CR</div>
-                        <h3 class="game-card-title">Clash Royale</h3>
-                        <p class="game-card-desc">Clan de elite com membros de +10.000 troféus e tops de ladder.</p>
-                    </div>
-                    <div class="game-card-meta" style="color: var(--accent-cyan);">
-                        <span>7 Jogadores Top</span>
-                        <span>Ver Clan →</span>
-                    </div>
-                </a>
-
-                <a href="minecraft.html" class="game-card">
-                    <div>
-                        <div class="game-card-icon" style="color: var(--accent-purple); background: rgba(157, 78, 221, 0.1); border-color: var(--accent-purple);">MC</div>
-                        <h3 class="game-card-title">Minecraft</h3>
-                        <p class="game-card-desc">Servidor dedicado com mapa interativo ao vivo Dynmap e mapas de aventura.</p>
-                    </div>
-                    <div class="game-card-meta" style="color: var(--accent-purple);">
-                        <span>Servidor Ativo Online</span>
-                        <span>Entrar no Server →</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Roster Showcase -->
-    <section class="section" id="roster" style="background: rgba(0,0,0,0.2);">
-        <div class="container">
-            <div class="section-title-wrap">
-                <div class="section-sub">Line-up Oficial</div>
-                <h2 class="section-heading">Conhece os Nossos Atletas</h2>
-            </div>
-
-            <div class="roster-filters">
-                <button class="filter-btn active" data-filter="all">Todos os Membros</button>
-                <button class="filter-btn" data-filter="cs2">CS2 Roster</button>
-                <button class="filter-btn" data-filter="clash">Clash Royale</button>
-                <button class="filter-btn" data-filter="minecraft">Minecraft Team</button>
-            </div>
-
-            <div class="players-grid" id="rosterGrid">
-                <!-- Loaded via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Trophy Cabinet / Hall of Fame -->
-    <section class="section" id="trophies">
-        <div class="container">
-            <div class="section-title-wrap">
-                <div class="section-sub">Conquistas & História</div>
-                <h2 class="section-heading">Sala de Troféus</h2>
-            </div>
-
-            <div class="trophy-grid">
-                <div class="trophy-card">
-                    <div class="trophy-icon">🏆</div>
-                    <div>
-                        <h3 class="trophy-title">Top 10k Clan Trofeus</h3>
-                        <p class="trophy-desc">Clash Royale — Elite Clan Ladder Milestone</p>
-                    </div>
+            <div class="mc-server-box">
+                <div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">SERVIDOR DEDICADO MINECRAFT</div>
+                    <div class="mc-ip-code">46.224.145.80:25565</div>
                 </div>
-
-                <div class="trophy-card">
-                    <div class="trophy-icon">🥇</div>
-                    <div>
-                        <h3 class="trophy-title">Vencedores CS2 Community Cup</h3>
-                        <p class="trophy-desc">Counter-Strike 2 — 1º Lugar 2025</p>
-                    </div>
-                </div>
-
-                <div class="trophy-card">
-                    <div class="trophy-icon">⭐</div>
-                    <div>
-                        <h3 class="trophy-title">8 Anos de Competitivo</h3>
-                        <p class="trophy-desc">Fundada em 2018 com dedicação contínua aos esports</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Merch Section -->
-    <section class="section" id="merch" style="background: rgba(0,0,0,0.2);">
-        <div class="container">
-            <div class="section-title-wrap">
-                <div class="section-sub">Official Gear</div>
-                <h2 class="section-heading">Novamato Merch 2026</h2>
-            </div>
-
-            <div class="merch-grid">
-                <div class="merch-card">
-                    <div class="merch-img-box">👕</div>
-                    <div class="merch-content">
-                        <h3 class="merch-title">Jersey Pro Official 2026</h3>
-                        <div class="merch-price">€49.99</div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="showToast('Pré-venda brevemente disponível no Discord!')">Pré-Encomenda</button>
-                    </div>
-                </div>
-
-                <div class="merch-card">
-                    <div class="merch-img-box">🧥</div>
-                    <div class="merch-content">
-                        <h3 class="merch-title">Hoodie Novamato Cyber Black</h3>
-                        <div class="merch-price">€59.99</div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="showToast('Pré-venda brevemente disponível no Discord!')">Pré-Encomenda</button>
-                    </div>
-                </div>
-
-                <div class="merch-card">
-                    <div class="merch-img-box">🖱️</div>
-                    <div class="merch-content">
-                        <h3 class="merch-title">Pro Speed Mousepad XL</h3>
-                        <div class="merch-price">€24.99</div>
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="showToast('Pré-venda brevemente disponível no Discord!')">Pré-Encomenda</button>
-                    </div>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
+                    <button class="btn btn-secondary" onclick="copyText('/connect 46.224.145.80:25565', 'Comando de Consola copiado!')">💻 Copiar Comando</button>
                 </div>
             </div>
         </div>
@@ -261,95 +150,56 @@
 
     <!-- Player Details Modal -->
     <div class="modal" id="playerModal">
-        <div class="modal-dialog">
+        <div class="modal-content">
             <button class="modal-close">&times;</button>
-            <div class="modal-body" id="playerModalBody">
-                <!-- Modal content dynamically injected -->
-            </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
     <!-- Recruitment Modal -->
     <div class="modal" id="recruitModal">
-        <div class="modal-dialog">
+        <div class="modal-content">
             <button class="modal-close">&times;</button>
-            <div class="modal-body">
-                <h2 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">Junta-te à Novamato 🚀</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Preenche o formulário para fazer tryout ou integrar a equipa como criador de conteúdo.</p>
-                
-                <form id="recruitForm">
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">NOME / NICKNAME</label>
-                        <input type="text" required placeholder="ex: PlayerOne" style="width: 100%; padding: 0.8rem; border-radius: var(--radius-md); background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; outline: none;">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">DISCORD TAG</label>
-                        <input type="text" required placeholder="ex: playerone#1234" style="width: 100%; padding: 0.8rem; border-radius: var(--radius-md); background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; outline: none;">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">MODALIDADE</label>
-                        <select style="width: 100%; padding: 0.8rem; border-radius: var(--radius-md); background: rgba(255,255,255,0.08); border: 1px solid var(--border-color); color: #fff; outline: none;">
-                            <option value="cs2" style="background: #0f172a;">Counter-Strike 2</option>
-                            <option value="cr" style="background: #0f172a;">Clash Royale</option>
-                            <option value="mc" style="background: #0f172a;">Minecraft Builder/PvP</option>
-                            <option value="creator" style="background: #0f172a;">Content Creator / Streamer</option>
-                        </select>
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">LINK DO TEU PERFIL / PORTFÓLIO</label>
-                        <input type="url" placeholder="https://steamcommunity.com/..." style="width: 100%; padding: 0.8rem; border-radius: var(--radius-md); background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; outline: none;">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Candidatura</button>
-                </form>
-            </div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.4rem;">Candidatura / Tryout 🚀</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">Submete os teus dados para seres avaliado pela equipa técnica.</p>
+            
+            <form id="recruitForm">
+                <div style="margin-bottom: 0.9rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">NICKNAME</label>
+                    <input type="text" required placeholder="ex: PlayerOne" style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                </div>
+                <div style="margin-bottom: 0.9rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">DISCORD TAG</label>
+                    <input type="text" required placeholder="ex: playerone#1234" style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                </div>
+                <div style="margin-bottom: 0.9rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">MODALIDADE</label>
+                    <select style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                        <option value="cs2">Counter-Strike 2 (Roster)</option>
+                        <option value="cr">Clash Royale (10k+ Ladder)</option>
+                        <option value="mc">Minecraft (Architect/PvP)</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">LINK STEAM / STATS</label>
+                    <input type="url" placeholder="https://steamcommunity.com/..." style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Candidatura</button>
+            </form>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="nav-brand">
-                        <span class="brand-text">NOVAMATO</span>
-                    </a>
-                    <p>Organização de Esports focada na excelência competitiva, inovação e comunidade gamer em Portugal.</p>
-                </div>
-
-                <div>
-                    <h4 class="footer-col-title">Modalidades</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="cs2.html">Counter-Strike 2</a></li>
-                        <li><a href="clash-royale.html">Clash Royale</a></li>
-                        <li><a href="minecraft.html">Minecraft Server</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="footer-col-title">Organização</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="#roster">Line-up Oficial</a></li>
-                        <li><a href="#trophies">Troféus</a></li>
-                        <li><a href="#merch">Merchandise</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="footer-col-title">Comunidade</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="https://discord.gg/Yk3yHaqqCX" target="_blank">Discord Oficial</a></li>
-                        <li><a href="https://www.youtube.com/@novamato3393" target="_blank">YouTube Channel</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <span>© 2026 Novamato Esports. Todos os direitos reservados.</span>
-                <span>Powered by Antigravity Design System</span>
+            <span>© 2026 Novamato Esports. Todos os direitos reservados.</span>
+            <div>
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" style="color: var(--text-muted); margin-right: 1rem; text-decoration: none;">Discord</a>
+                <a href="https://www.youtube.com/@novamato3393" target="_blank" style="color: var(--text-muted); text-decoration: none;">YouTube</a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js?v=3.0"></script>
+    <script src="script.js?v=4.0"></script>
 </body>
 </html>
