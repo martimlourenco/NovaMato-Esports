@@ -1,19 +1,19 @@
-// Novamato Esports 2026 — Simple & Clean Script
+// Novamato Esports 2026 — Dynamic & Factual Roster Data
 
 const ROSTER_DATA = {
     cs2: [
-        { id: 1, name: 'white', role: 'Entry Fragger', rating: '1.24', kd: '1.32', photo: 'imagens/1.jpg', steamUrl: 'https://steamcommunity.com/id/white1209/', trackerUrl: 'https://leetify.com/' },
-        { id: 2, name: 'migga', role: 'AWPer', rating: '1.28', kd: '1.40', photo: 'imagens/2.jpg', steamUrl: 'https://steamcommunity.com/id/migggal', trackerUrl: 'https://leetify.com/' },
-        { id: 3, name: 'CØSTA', role: 'Rifler / Support', rating: '1.15', kd: '1.12', photo: 'imagens/3.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199049671771/', trackerUrl: 'https://leetify.com/' },
-        { id: 4, name: 'FurryFeetLover_69', role: 'IGL (Captain)', rating: '1.10', kd: '1.08', photo: 'imagens/4.jpg', steamUrl: 'https://steamcommunity.com/id/freezapqvcmatouokuririn', trackerUrl: 'https://leetify.com/' },
-        { id: 5, name: 'mr.albuquecas', role: 'Lurker', rating: '1.18', kd: '1.20', photo: 'imagens/5.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198843083161/', trackerUrl: 'https://leetify.com/' },
-        { id: 6, name: 'Mr.Pigeon', role: 'Rifler', rating: '1.09', kd: '1.05', photo: 'imagens/6.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199132612024/', trackerUrl: 'https://leetify.com/' },
-        { id: 7, name: 'Neto', role: 'Support', rating: '1.07', kd: '1.02', photo: 'imagens/7.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199053161311/', trackerUrl: 'https://leetify.com/' },
-        { id: 8, name: 'Optrista_CG', role: 'Rifler', rating: '1.12', kd: '1.15', photo: 'imagens/8.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199082165295/', trackerUrl: 'https://leetify.com/' },
-        { id: 9, name: 'Tutury', role: 'Entry Fragger', rating: '1.21', kd: '1.25', photo: 'imagens/9.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198183764933/', trackerUrl: 'https://leetify.com/' },
-        { id: 10, name: 't6maj', role: 'AWPer', rating: '1.16', kd: '1.19', photo: 'imagens/10.jpg', steamUrl: 'https://steamcommunity.com/id/tomas1437', trackerUrl: 'https://leetify.com/' },
-        { id: 11, name: 'SIDST', role: 'Rifler', rating: '1.08', kd: '1.04', photo: 'imagens/11.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199207194374/', trackerUrl: 'https://leetify.com/' },
-        { id: 12, name: 'paulo minoso-', role: 'Support', rating: '1.14', kd: '1.11', photo: 'imagens/12.jpg', steamUrl: 'https://steamcommunity.com/id/narcigod', trackerUrl: 'https://leetify.com/' }
+        { id: 1, name: 'white', role: 'Entry Fragger', rating: '1.24', kd: '1.32', photo: 'imagens/1.jpg', steamUrl: 'https://steamcommunity.com/id/white1209/', trackerUrl: 'https://leetify.com/app/profile/76561198882548515' },
+        { id: 2, name: 'migga', role: 'AWPer', rating: '1.28', kd: '1.40', photo: 'imagens/2.jpg', steamUrl: 'https://steamcommunity.com/id/migggal', trackerUrl: 'https://leetify.com/app/profile/76561198210768829' },
+        { id: 3, name: 'CØSTA', role: 'Rifler / Support', rating: '1.15', kd: '1.12', photo: 'imagens/3.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199049671771/', trackerUrl: 'https://leetify.com/app/profile/76561199049671771' },
+        { id: 4, name: 'FurryFeetLover_69', role: 'IGL (Captain)', rating: '1.10', kd: '1.08', photo: 'imagens/4.jpg', steamUrl: 'https://steamcommunity.com/id/freezapqvcmatouokuririn', trackerUrl: 'https://leetify.com/app/profile/76561198272195222' },
+        { id: 5, name: 'mr.albuquecas', role: 'Lurker', rating: '1.18', kd: '1.20', photo: 'imagens/5.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198843083161/', trackerUrl: 'https://leetify.com/app/profile/76561198843083161' },
+        { id: 6, name: 'Mr.Pigeon', role: 'Rifler', rating: '1.09', kd: '1.05', photo: 'imagens/6.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199132612024/', trackerUrl: 'https://leetify.com/app/profile/76561199132612024' },
+        { id: 7, name: 'Neto', role: 'Support', rating: '1.07', kd: '1.02', photo: 'imagens/7.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199053161311/', trackerUrl: 'https://leetify.com/app/profile/76561199053161311' },
+        { id: 8, name: 'Optrista_CG', role: 'Rifler', rating: '1.12', kd: '1.15', photo: 'imagens/8.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199082165295/', trackerUrl: 'https://leetify.com/app/profile/76561199082165295' },
+        { id: 9, name: 'Tutury', role: 'Entry Fragger', rating: '1.21', kd: '1.25', photo: 'imagens/9.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198183764933/', trackerUrl: 'https://leetify.com/app/profile/76561198183764933' },
+        { id: 10, name: 't6maj', role: 'AWPer', rating: '1.16', kd: '1.19', photo: 'imagens/10.jpg', steamUrl: 'https://steamcommunity.com/id/tomas1437', trackerUrl: 'https://leetify.com/app/profile/76561198216219013' },
+        { id: 11, name: 'SIDST', role: 'Rifler', rating: '1.08', kd: '1.04', photo: 'imagens/11.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199207194374/', trackerUrl: 'https://leetify.com/app/profile/76561199207194374' },
+        { id: 12, name: 'paulo minoso-', role: 'Support', rating: '1.14', kd: '1.11', photo: 'imagens/12.jpg', steamUrl: 'https://steamcommunity.com/id/narcigod', trackerUrl: 'https://leetify.com/app/profile/76561198326338086' }
     ],
     clashRoyale: [
         { id: 1, name: 'mr.white', tag: '#28G9G2P9Y', role: 'Leader', trophies: '10,450' },
@@ -31,23 +31,6 @@ const ROSTER_DATA = {
     ]
 };
 
-// Theme Management
-function initTheme() {
-    const savedTheme = localStorage.getItem('novamato_clean_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    
-    const themeBtn = document.getElementById('themeBtn');
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const target = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', target);
-            localStorage.setItem('novamato_clean_theme', target);
-            showToast(`Modo ${target === 'light' ? 'Claro' : 'Escuro'} ativado`);
-        });
-    }
-}
-
 // Toast System
 function showToast(msg) {
     let box = document.querySelector('.toast-box');
@@ -59,27 +42,27 @@ function showToast(msg) {
     
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.textContent = msg;
+    toast.innerText = msg;
     box.appendChild(toast);
     
     setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translateY(10px)';
-        toast.style.transition = 'all 0.2s ease';
-        setTimeout(() => toast.remove(), 200);
-    }, 2200);
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 2800);
 }
 
-// Copy IP Helper
-function copyText(text, label = 'Copiado!') {
+// Copy to Clipboard
+function copyText(text, successMsg) {
     navigator.clipboard.writeText(text).then(() => {
-        showToast(`✓ ${label}`);
+        showToast(successMsg || 'Copiado para a área de transferência!');
     }).catch(() => {
-        showToast(text);
+        showToast('Erro ao copiar.');
     });
 }
 
-// Render Roster Cards Grid (Only render avatar if photo exists)
+// Roster Grid Renderer
 function renderGrid(filter = 'all') {
     const grid = document.getElementById('rosterGrid');
     if (!grid) return;
@@ -88,24 +71,32 @@ function renderGrid(filter = 'all') {
     let players = [];
     
     if (filter === 'all' || filter === 'cs2') {
-        ROSTER_DATA.cs2.forEach(p => players.push({ ...p, game: 'CS2', type: 'cs2' }));
+        players = players.concat(ROSTER_DATA.cs2.map(p => ({ ...p, game: 'Counter-Strike 2', type: 'cs2' })));
     }
     if (filter === 'all' || filter === 'clash') {
-        ROSTER_DATA.clashRoyale.forEach(p => players.push({ ...p, game: 'Clash Royale', type: 'clash' }));
+        players = players.concat(ROSTER_DATA.clashRoyale.map(p => ({ ...p, game: 'Clash Royale', type: 'clash' })));
     }
     if (filter === 'all' || filter === 'minecraft') {
-        ROSTER_DATA.minecraft.forEach(p => players.push({ ...p, game: 'Minecraft', type: 'minecraft' }));
+        players = players.concat(ROSTER_DATA.minecraft.map(p => ({ ...p, game: 'Minecraft', type: 'minecraft' })));
     }
     
     players.forEach(p => {
         const card = document.createElement('div');
         card.className = 'card';
         
+        let bottomInfo = '';
+        if (p.type === 'cs2') {
+            bottomInfo = `<span style="font-weight: 700; color: var(--accent-bright);">Rating: ${p.rating}</span>`;
+        } else if (p.type === 'clash') {
+            bottomInfo = `<span style="font-weight: 700; color: var(--accent-bright);">🏆 ${p.trophies}</span>`;
+        } else {
+            bottomInfo = `<span style="color: var(--text-muted); font-size: 0.78rem;">${p.builds}</span>`;
+        }
+        
         const avatarHtml = p.photo 
             ? `<div class="card-avatar" style="background-image: url('${p.photo}');"></div>` 
             : '';
-        const statLabel = p.type === 'cs2' ? `Rating: ${p.rating}` : (p.type === 'clash' ? `🏆 ${p.trophies}` : `Builder`);
-        
+            
         card.innerHTML = `
             <div class="card-top">
                 ${avatarHtml}
@@ -116,7 +107,7 @@ function renderGrid(filter = 'all') {
             </div>
             <div class="card-bottom">
                 <span class="card-badge">${p.game}</span>
-                <span style="font-weight: 600;">${statLabel}</span>
+                ${bottomInfo}
             </div>
         `;
         
@@ -148,47 +139,47 @@ function openModal(p) {
     if (p.type === 'cs2') {
         content = `
             <div style="display: flex; gap: 1rem; margin: 1.25rem 0;">
-                <div style="flex: 1; background: var(--bg-main); padding: 0.8rem; border-radius: 8px; text-align: center;">
-                    <div style="font-size: 0.75rem; color: var(--text-muted);">HLTV RATING</div>
-                    <div style="font-size: 1.3rem; font-weight: 700; color: var(--accent);">${p.rating}</div>
+                <div style="flex: 1; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border-color); text-align: center;">
+                    <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">HLTV RATING</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: var(--accent-bright);">${p.rating}</div>
                 </div>
-                <div style="flex: 1; background: var(--bg-main); padding: 0.8rem; border-radius: 8px; text-align: center;">
-                    <div style="font-size: 0.75rem; color: var(--text-muted);">K/D RATIO</div>
-                    <div style="font-size: 1.3rem; font-weight: 700;">${p.kd}</div>
+                <div style="flex: 1; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border-color); text-align: center;">
+                    <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">K/D RATIO</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: #ffffff;">${p.kd}</div>
                 </div>
             </div>
-            <div style="display: flex; gap: 0.75rem;">
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
                 <a href="${p.steamUrl}" target="_blank" class="btn btn-primary" style="flex: 1;">Steam Profile →</a>
                 <a href="${p.trackerUrl}" target="_blank" class="btn btn-secondary" style="flex: 1;">Leetify Stats →</a>
             </div>
         `;
     } else if (p.type === 'clash') {
         content = `
-            <div style="background: var(--bg-main); padding: 1rem; border-radius: 8px; margin: 1.25rem 0; display: flex; justify-content: space-between;">
-                <span style="color: var(--text-muted);">Troféus:</span>
-                <strong style="color: var(--accent);">🏆 ${p.trophies}</strong>
+            <div style="background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); margin: 1.25rem 0; display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Troféus Globais:</span>
+                <strong style="color: var(--accent-bright);">🏆 ${p.trophies}</strong>
             </div>
             <a href="https://statsroyale.com/profile/${p.tag.replace('#', '')}" target="_blank" class="btn btn-primary" style="width: 100%;">StatsRoyale Profile →</a>
         `;
     } else {
         content = `
-            <div style="background: var(--bg-main); padding: 1rem; border-radius: 8px; margin: 1.25rem 0;">
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem;">PROJETOS</div>
-                <div style="font-weight: 600; color: var(--accent);">${p.builds}</div>
+            <div style="background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); margin: 1.25rem 0;">
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.3rem; text-transform: uppercase;">PROJETOS & CONSTRUÇÕES</div>
+                <div style="font-weight: 700; color: var(--accent-bright);">${p.builds}</div>
             </div>
         `;
     }
     
     const avatarHtml = p.photo 
-        ? `<div style="width: 56px; height: 56px; border-radius: 10px; background: url('${p.photo}') center/cover;"></div>` 
+        ? `<div style="width: 56px; height: 56px; border-radius: 12px; background: url('${p.photo}') center/cover; border: 1px solid var(--border-color);"></div>` 
         : '';
         
     body.innerHTML = `
         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
             ${avatarHtml}
             <div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;">${p.name}</h3>
-                <div style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">${p.game} · ${p.role}</div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 900;">${p.name}</h3>
+                <div style="font-size: 0.85rem; color: var(--accent-bright); font-weight: 700;">${p.game} · ${p.role}</div>
             </div>
         </div>
         ${content}
@@ -198,20 +189,29 @@ function openModal(p) {
 }
 
 // Modal Click Out & Close
-function initModals() {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(m => {
-        const close = m.querySelector('.modal-close');
-        if (close) close.addEventListener('click', () => m.classList.remove('active'));
-        m.addEventListener('click', (e) => {
-            if (e.target === m) m.classList.remove('active');
-        });
+function initModal() {
+    const modal = document.getElementById('playerModal');
+    if (!modal) return;
+    
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    }
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+        }
     });
 }
 
+// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
     renderGrid('all');
     initChips();
-    initModals();
+    initModal();
 });
