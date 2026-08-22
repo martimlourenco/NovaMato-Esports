@@ -5,28 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Counter-Strike 2 — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="styles.css?v=5.0">
 </head>
 <body>
-    <div class="bg-grid"></div>
+    <div class="art-bg"></div>
 
-    <!-- Header -->
+    <!-- Navigation Header -->
     <nav class="nav">
         <div class="container">
             <a href="index.html" class="brand">
                 <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-title">NOVAMATO</span>
+                <span class="brand-name">NOVAMATO</span>
             </a>
 
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Visão Geral</a></li>
+                <li><a href="index.html" class="nav-link">Início</a></li>
                 <li><a href="cs2.html" class="nav-link active">CS2</a></li>
                 <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
                 <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
             </ul>
 
             <div class="nav-actions">
-                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+                <button class="btn-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
                 <a href="index.html" class="btn btn-secondary">← Voltar</a>
             </div>
         </div>
@@ -35,11 +35,14 @@
     <!-- CS2 Hero -->
     <header class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-pill">Tactical 5v5 Division</div>
-                <h1 class="hero-title">COUNTER-STRIKE 2 <span>ROSTER</span></h1>
-                <p class="hero-subtitle">Line-up oficial constituída por 12 atletas competitivos com configurações técnicas e miras disponíveis.</p>
-            </div>
+            <div class="hero-tag">Tactical 5v5 Division</div>
+            <h1 class="hero-title">
+                COUNTER-STRIKE 2<br>
+                <span>LINE-UP & MIRAS</span>
+            </h1>
+            <p class="hero-desc">
+                Conhece os 12 atletas da equipa de CS2, as suas sensibilidades, DPI, resoluções e códigos de crosshair copiáveis.
+            </p>
         </div>
     </header>
 
@@ -48,36 +51,36 @@
         <div class="container">
             <div class="section-header">
                 <div>
-                    <h2 class="section-title">Destaque de Jogo</h2>
-                    <p class="section-desc">Ace & Clutch gravado em torneio oficial.</p>
+                    <div class="section-subtitle">Highlights em Vídeo</div>
+                    <h2 class="section-title">Best Play & Ace Clutch</h2>
                 </div>
             </div>
 
-            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden;">
-                <video controls autoplay muted loop style="width: 100%; max-height: 480px; display: block; object-fit: cover;">
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 255, 117, 0.15);">
+                <video controls autoplay muted loop style="width: 100%; max-height: 500px; display: block; object-fit: cover;">
                     <source src="imagens/videocs2.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
     </section>
 
-    <!-- CS2 Players Grid -->
+    <!-- Trading Cards CS2 Grid -->
     <section class="section">
         <div class="container">
             <div class="section-header">
                 <div>
+                    <div class="section-subtitle">Line-up Completa</div>
                     <h2 class="section-title">12 CS2 Players</h2>
-                    <p class="section-desc">Clica num jogador para ver a sensibilidade, DPI e código de crosshair.</p>
                 </div>
             </div>
 
-            <div class="roster-grid" id="cs2Grid"></div>
+            <div class="trading-grid" id="cs2Grid"></div>
         </div>
     </section>
 
     <!-- Modal -->
     <div class="modal" id="playerModal">
-        <div class="modal-content">
+        <div class="modal-dialog">
             <button class="modal-close">&times;</button>
             <div id="modalBody"></div>
         </div>
@@ -91,29 +94,29 @@
         </div>
     </footer>
 
-    <script src="script.js?v=4.0"></script>
+    <script src="script.js?v=5.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('cs2Grid');
             if (grid) {
                 grid.innerHTML = '';
-                DATABASE.cs2.forEach(p => {
+                PLAYERS_DATABASE.cs2.forEach(p => {
                     const card = document.createElement('div');
-                    card.className = 'roster-card';
+                    card.className = 'trading-card';
                     card.innerHTML = `
-                        <div class="roster-header">
-                            <div class="roster-avatar" style="background-image: url('${p.photo}');"></div>
-                            <div>
-                                <div class="roster-name">${p.name}</div>
-                                <div class="roster-role">${p.role}</div>
+                        <div class="card-image-box" style="background-image: url('${p.photo}');">
+                            <span class="card-game-badge">CS2 PRO</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-name">${p.name}</h3>
+                            <div class="card-role">${p.role}</div>
+                            <div class="card-footer-stats">
+                                <span style="color: var(--text-muted);">HLTV Rating</span>
+                                <span class="val">${p.rating}</span>
                             </div>
                         </div>
-                        <div class="roster-stats-summary">
-                            <span class="stat-label">HLTV Rating</span>
-                            <span class="stat-val">${p.rating}</span>
-                        </div>
                     `;
-                    card.addEventListener('click', () => openPlayerModal({ ...p, game: 'CS2', type: 'cs2' }));
+                    card.addEventListener('click', () => openTradingModal({ ...p, game: 'CS2', type: 'cs2' }));
                     grid.appendChild(card);
                 });
             }

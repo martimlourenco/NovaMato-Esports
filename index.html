@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novamato Esports — Technical Gaming Portal</title>
+    <title>Novamato Esports — Artistic Gaming Portal</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="styles.css?v=5.0">
 </head>
 <body>
-    <div class="bg-grid"></div>
+    <div class="art-bg"></div>
 
-    <!-- Minimal Header -->
+    <!-- Navigation Header -->
     <nav class="nav">
         <div class="container">
             <a href="index.html" class="brand">
                 <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-title">NOVAMATO</span>
+                <span class="brand-name">NOVAMATO</span>
             </a>
 
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">Visão Geral</a></li>
+                <li><a href="index.html" class="nav-link active">Início</a></li>
                 <li><a href="cs2.html" class="nav-link">CS2</a></li>
                 <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
                 <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
@@ -27,120 +27,123 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
-                <button class="btn btn-primary" onclick="openRecruitModal()">Candidatar-se</button>
+                <button class="btn-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+                <button class="btn btn-primary" onclick="openRecruitModal()">Junta-te a Nós</button>
             </div>
         </div>
     </nav>
 
-    <!-- Clean Technical Hero -->
+    <!-- Artistic Hero Poster Section -->
     <header class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-pill">Est. 2018 · Portuguese Competitive Esports</div>
-                <h1 class="hero-title">PRECISÃO. <span>DESEMPENHO.</span> DOMÍNIO.</h1>
-                <p class="hero-subtitle">
-                    Organização técnica de Esports focada na alta competição em CS2, Clash Royale Elite e Minecraft dedicado.
-                </p>
-                <div class="hero-actions">
-                    <a href="#roster" class="btn btn-primary">Line-up Oficial →</a>
-                    <a href="cs2.html" class="btn btn-secondary">Divisão CS2</a>
-                    <a href="minecraft.html" class="btn btn-secondary">Servidor Minecraft</a>
+            <div class="hero-tag">Est. 2018 · Competitive Gaming & Art</div>
+            <h1 class="hero-title">
+                COMPETE. <i>DOMINATE.</i><br>
+                <span>WIN THE FUTURE.</span>
+            </h1>
+            <p class="hero-desc">
+                Organização competitiva de elite nos esports em Portugal. Dominamos no Counter-Strike 2, Clash Royale Elite e Servidores Customizados de Minecraft.
+            </p>
+            <div class="hero-buttons">
+                <a href="#roster" class="btn btn-primary">Atletas & Miras →</a>
+                <a href="cs2.html" class="btn btn-secondary">Divisão CS2</a>
+                <a href="minecraft.html" class="btn btn-secondary">Servidor Minecraft</a>
+            </div>
+
+            <!-- Poster Match Ticker -->
+            <div class="match-poster-card">
+                <div class="match-header">
+                    <span class="match-title">🎮 Match Center & Resultados</span>
+                    <span style="color: var(--accent-green); font-size: 0.85rem; font-weight: 800;">SEASON 2026</span>
+                </div>
+                <div class="match-scores-grid">
+                    <div class="score-box">
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">CS2 · LIGA PORTUGUESA</div>
+                            <div class="score-team">NOVAMATO vs ESTORIL</div>
+                        </div>
+                        <div class="score-val">2 - 0</div>
+                    </div>
+
+                    <div class="score-box">
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">CLASH ROYALE · LADDER</div>
+                            <div class="score-team">NOVAMATO vs SAW</div>
+                        </div>
+                        <div class="score-val">3 - 1</div>
+                    </div>
+
+                    <div class="score-box">
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">PRÓXIMO JOGO</div>
+                            <div class="score-team">NOVAMATO vs FTW</div>
+                        </div>
+                        <div style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan);">3d 04h</div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Scoreboard & Match Ticker -->
-    <section class="scoreboard-section">
-        <div class="container">
-            <div class="ticker-grid">
-                <div class="ticker-card">
-                    <div>
-                        <div class="ticker-status">CS2 · Resultado Recente</div>
-                        <div class="ticker-team">NOVAMATO <span class="ticker-score">2 - 0</span> ESTORIL</div>
-                    </div>
-                    <span style="color: var(--accent-green); font-size: 0.8rem; font-weight: 700;">VITÓRIA</span>
-                </div>
-
-                <div class="ticker-card">
-                    <div>
-                        <div class="ticker-status">Clash Royale · Ladder</div>
-                        <div class="ticker-team">NOVAMATO <span class="ticker-score">3 - 1</span> SAW</div>
-                    </div>
-                    <span style="color: var(--accent-green); font-size: 0.8rem; font-weight: 700;">VITÓRIA</span>
-                </div>
-
-                <div class="ticker-card">
-                    <div>
-                        <div class="ticker-status">Próximo Jogo Oficial</div>
-                        <div class="ticker-team">NOVAMATO vs FTW</div>
-                    </div>
-                    <span style="color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); font-weight: 700;">3d 04h 12m</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Roster Grid -->
+    <!-- Trading Cards Roster -->
     <section class="section" id="roster">
         <div class="container">
             <div class="section-header">
                 <div>
-                    <h2 class="section-title">Line-up Oficial</h2>
-                    <p class="section-desc">Atletas inscritos nas nossas modalidades competitivas.</p>
+                    <div class="section-subtitle">Digital Trading Cards</div>
+                    <h2 class="section-title">Coleção de Atletas</h2>
                 </div>
                 <div class="filter-bar">
                     <button class="filter-chip active" data-filter="all">Todos</button>
-                    <button class="filter-chip" data-filter="cs2">CS2</button>
+                    <button class="filter-chip" data-filter="cs2">CS2 Roster</button>
                     <button class="filter-chip" data-filter="clash">Clash Royale</button>
                     <button class="filter-chip" data-filter="minecraft">Minecraft</button>
                 </div>
             </div>
 
-            <div class="roster-grid" id="rosterGrid">
-                <!-- Dynamically loaded -->
+            <div class="trading-grid" id="tradingGrid">
+                <!-- Dynamically loaded via JS -->
             </div>
         </div>
     </section>
 
-    <!-- Technical Leaderboard Table -->
+    <!-- Artistic Leaderboard Table -->
     <section class="section" id="leaderboard">
         <div class="container">
             <div class="section-header">
                 <div>
-                    <h2 class="section-title">Leaderboard Interna CS2</h2>
-                    <p class="section-desc">Ranking de estatísticas dos atletas da Novamato.</p>
+                    <div class="section-subtitle">Performance Index</div>
+                    <h2 class="section-title">Leaderboard CS2</h2>
                 </div>
             </div>
 
-            <table class="leaderboard-table">
+            <table class="art-table">
                 <thead>
                     <tr>
                         <th>Rank</th>
                         <th>Atleta</th>
                         <th>Função</th>
                         <th>HLTV Rating</th>
-                        <th>K/D</th>
+                        <th>K/D Ratio</th>
                         <th>Headshot %</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboardBody">
-                    <!-- Loaded via JS -->
+                    <!-- Dynamically loaded via JS -->
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- Minecraft Quick Server Box -->
+    <!-- Minecraft Quick Control Card -->
     <section class="section">
         <div class="container">
-            <div class="mc-server-box">
+            <div class="mc-box">
                 <div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">SERVIDOR DEDICADO MINECRAFT</div>
-                    <div class="mc-ip-code">46.224.145.80:25565</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase;">SERVIDOR MINECRAFT OFICIAL</div>
+                    <div class="mc-ip">46.224.145.80:25565</div>
                 </div>
-                <div style="display: flex; gap: 0.75rem;">
+                <div style="display: flex; gap: 0.8rem;">
                     <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
                     <button class="btn btn-secondary" onclick="copyText('/connect 46.224.145.80:25565', 'Comando de Consola copiado!')">💻 Copiar Comando</button>
                 </div>
@@ -150,7 +153,7 @@
 
     <!-- Player Details Modal -->
     <div class="modal" id="playerModal">
-        <div class="modal-content">
+        <div class="modal-dialog">
             <button class="modal-close">&times;</button>
             <div id="modalBody"></div>
         </div>
@@ -158,31 +161,31 @@
 
     <!-- Recruitment Modal -->
     <div class="modal" id="recruitModal">
-        <div class="modal-content">
+        <div class="modal-dialog">
             <button class="modal-close">&times;</button>
-            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.4rem;">Candidatura / Tryout 🚀</h3>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">Submete os teus dados para seres avaliado pela equipa técnica.</p>
-            
+            <h2 style="font-family: var(--font-art); font-size: 2rem; font-weight: 900; margin-bottom: 0.5rem;">Candidatura / Tryouts 🚀</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Preenche a tua candidatura para ser avaliado pela equipa técnica.</p>
+
             <form id="recruitForm">
-                <div style="margin-bottom: 0.9rem;">
-                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">NICKNAME</label>
-                    <input type="text" required placeholder="ex: PlayerOne" style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">NICKNAME</label>
+                    <input type="text" required placeholder="ex: PlayerOne" style="width: 100%; padding: 0.8rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 8px; outline: none;">
                 </div>
-                <div style="margin-bottom: 0.9rem;">
-                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">DISCORD TAG</label>
-                    <input type="text" required placeholder="ex: playerone#1234" style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">DISCORD TAG</label>
+                    <input type="text" required placeholder="ex: playerone#1234" style="width: 100%; padding: 0.8rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 8px; outline: none;">
                 </div>
-                <div style="margin-bottom: 0.9rem;">
-                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">MODALIDADE</label>
-                    <select style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">MODALIDADE</label>
+                    <select style="width: 100%; padding: 0.8rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 8px; outline: none;">
                         <option value="cs2">Counter-Strike 2 (Roster)</option>
                         <option value="cr">Clash Royale (10k+ Ladder)</option>
                         <option value="mc">Minecraft (Architect/PvP)</option>
                     </select>
                 </div>
-                <div style="margin-bottom: 1.25rem;">
-                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">LINK STEAM / STATS</label>
-                    <input type="url" placeholder="https://steamcommunity.com/..." style="width: 100%; padding: 0.7rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">LINK STEAM / STATS</label>
+                    <input type="url" placeholder="https://steamcommunity.com/..." style="width: 100%; padding: 0.8rem; background: var(--bg-dark); border: 1px solid var(--border-color); color: #fff; border-radius: 8px; outline: none;">
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Candidatura</button>
             </form>
@@ -194,12 +197,12 @@
         <div class="container">
             <span>© 2026 Novamato Esports. Todos os direitos reservados.</span>
             <div>
-                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" style="color: var(--text-muted); margin-right: 1rem; text-decoration: none;">Discord</a>
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" style="color: var(--text-muted); margin-right: 1.2rem; text-decoration: none;">Discord</a>
                 <a href="https://www.youtube.com/@novamato3393" target="_blank" style="color: var(--text-muted); text-decoration: none;">YouTube</a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js?v=4.0"></script>
+    <script src="script.js?v=5.0"></script>
 </body>
 </html>
