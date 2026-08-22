@@ -5,53 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Server — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon.png">
-    <link rel="stylesheet" href="styles.css?v=7000">
+    <link rel="stylesheet" href="styles.css?v=8000">
 </head>
 <body>
-    <!-- Left Vertical Social Sidebar -->
+    <!-- Left Vertical Social Dock -->
     <aside class="social-sidebar">
         <a href="https://discord.gg/Yk3yHaqqCX" target="_blank">Discord</a>
         <a href="https://www.youtube.com/@novamato3393" target="_blank">YouTube</a>
         <div class="social-line"></div>
     </aside>
 
-    <!-- Top Header Navigation with Centered PNG Logo -->
+    <!-- Top Header Navigation -->
     <header class="header">
-        <div class="container" style="width: 100%;">
-            <nav class="header-nav">
-                <!-- Left Nav Links -->
-                <div class="nav-side">
-                    <a href="index.html" class="nav-link">Início</a>
-                    <a href="index.html#about" class="nav-link">Sobre</a>
-                    <a href="index.html#roster" class="nav-link">Line-up</a>
-                </div>
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <img src="imagens/favicon.png" alt="Novamato" class="brand-logo">
+                <span class="brand-text">NOVAMATO <span>ESPORTS</span></span>
+            </a>
 
-                <!-- Centered Brand Logo (Transparent PNG) -->
-                <a href="index.html" class="brand-center">
-                    <img src="imagens/favicon.png" alt="Novamato Esports" class="brand-logo-png">
-                </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="cs2.html" class="nav-link">CS2</a></li>
+                <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
+                <li><a href="minecraft.html" class="nav-link active">Minecraft</a></li>
+            </ul>
 
-                <!-- Right Nav Links -->
-                <div class="nav-side">
-                    <a href="cs2.html" class="nav-link">CS2</a>
-                    <a href="clash-royale.html" class="nav-link">Clash Royale</a>
-                    <a href="minecraft.html" class="nav-link active">Minecraft</a>
-                    <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-lime" style="padding: 0.45rem 1.1rem; font-size: 0.8rem;">Discord</a>
-                </div>
-            </nav>
+            <div class="nav-actions">
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-primary">Entrar no Discord →</a>
+            </div>
         </div>
     </header>
 
     <!-- MC Hero -->
-    <section class="hero-tactical" style="min-height: 60vh;">
-        <div class="container hero-content">
-            <div class="hero-tag">// DEDICATED SURVIVAL & BUILD SERVER</div>
-            <h1 class="hero-title-big">
+    <section class="hero">
+        <div class="container">
+            <div class="hero-pill">
+                <span class="pulse-dot"></span> SERVIDOR SURVIVAL & BUILD DE ALTA PERFORMANCE
+            </div>
+            <h1 class="hero-title">
                 MINECRAFT<br>
-                <span>COMMUNITY SERVER</span>
+                <span>DEDICATED SERVER</span>
             </h1>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem auto;">
-                Servidor dedicado de alta performance para a comunidade Novamato Esports.
+            <p class="hero-subtitle">
+                Explora o servidor dedicado da Novamato Esports e visualiza o mundo em 3D com o mapa interativo Dynmap.
             </p>
         </div>
     </section>
@@ -61,10 +57,10 @@
         <div class="container">
             <div class="mc-card">
                 <div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem;">IP DO SERVIDOR OFICIAL</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem;">IP DO SERVIDOR OFICIAL</div>
                     <div class="mc-ip">46.224.145.80:25565</div>
                 </div>
-                <button class="btn btn-lime" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
+                <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado com sucesso!')">📋 Copiar IP</button>
             </div>
         </div>
     </section>
@@ -72,12 +68,14 @@
     <!-- Dynmap Embed Frame -->
     <section class="section">
         <div class="container">
-            <div class="section-head-center">
-                <h2 class="section-title-big">MAPA <span>DYNMAP 3D</span></h2>
-                <p class="section-subtitle-clean">Visualizador interativo do mundo em tempo real.</p>
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">MAPA INTERATIVO <span>DYNMAP 3D</span></h2>
+                    <p class="section-subtitle">Visualizador do mundo e construções em tempo real.</p>
+                </div>
             </div>
 
-            <div style="width: 100%; height: 600px; background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: var(--radius); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);">
+            <div style="width: 100%; height: 600px; background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);">
                 <iframe src="http://46.224.145.80:8123" style="width: 100%; height: 100%; border: none;" title="Minecraft Dynmap"></iframe>
             </div>
         </div>
@@ -93,6 +91,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=7000"></script>
+    <script src="script.js?v=8000"></script>
 </body>
 </html>

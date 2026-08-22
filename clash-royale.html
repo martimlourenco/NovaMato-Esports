@@ -5,53 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Royale — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon.png">
-    <link rel="stylesheet" href="styles.css?v=7000">
+    <link rel="stylesheet" href="styles.css?v=8000">
 </head>
 <body>
-    <!-- Left Vertical Social Sidebar -->
+    <!-- Left Vertical Social Dock -->
     <aside class="social-sidebar">
         <a href="https://discord.gg/Yk3yHaqqCX" target="_blank">Discord</a>
         <a href="https://www.youtube.com/@novamato3393" target="_blank">YouTube</a>
         <div class="social-line"></div>
     </aside>
 
-    <!-- Top Header Navigation with Centered PNG Logo -->
+    <!-- Top Header Navigation -->
     <header class="header">
-        <div class="container" style="width: 100%;">
-            <nav class="header-nav">
-                <!-- Left Nav Links -->
-                <div class="nav-side">
-                    <a href="index.html" class="nav-link">Início</a>
-                    <a href="index.html#about" class="nav-link">Sobre</a>
-                    <a href="index.html#roster" class="nav-link">Line-up</a>
-                </div>
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <img src="imagens/favicon.png" alt="Novamato" class="brand-logo">
+                <span class="brand-text">NOVAMATO <span>ESPORTS</span></span>
+            </a>
 
-                <!-- Centered Brand Logo (Transparent PNG) -->
-                <a href="index.html" class="brand-center">
-                    <img src="imagens/favicon.png" alt="Novamato Esports" class="brand-logo-png">
-                </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="cs2.html" class="nav-link">CS2</a></li>
+                <li><a href="clash-royale.html" class="nav-link active">Clash Royale</a></li>
+                <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
+            </ul>
 
-                <!-- Right Nav Links -->
-                <div class="nav-side">
-                    <a href="cs2.html" class="nav-link">CS2</a>
-                    <a href="clash-royale.html" class="nav-link active">Clash Royale</a>
-                    <a href="minecraft.html" class="nav-link">Minecraft</a>
-                    <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-lime" style="padding: 0.45rem 1.1rem; font-size: 0.8rem;">Discord</a>
-                </div>
-            </nav>
+            <div class="nav-actions">
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-primary">Entrar no Discord →</a>
+            </div>
         </div>
     </header>
 
     <!-- CR Hero -->
-    <section class="hero-tactical" style="min-height: 60vh;">
-        <div class="container hero-content">
-            <div class="hero-tag">// ELITE 10,000+ TROPHIES CLAN</div>
-            <h1 class="hero-title-big">
+    <section class="hero">
+        <div class="container">
+            <div class="hero-pill">
+                <span class="pulse-dot"></span> TOP LADDER CLAN · 10,000+ TROFÉUS
+            </div>
+            <h1 class="hero-title">
                 CLASH ROYALE<br>
-                <span>TOP DIVISION</span>
+                <span>ELITE DIVISION</span>
             </h1>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem auto;">
-                Atletas competitivos da Novamato Esports com mais de 10.000 troféus na ladder global.
+            <p class="hero-subtitle">
+                Membros e líderes de topo da ladder com mais de 10.000 troféus globais.
             </p>
         </div>
     </section>
@@ -59,9 +55,11 @@
     <!-- CR Roster Grid -->
     <section class="section">
         <div class="container">
-            <div class="section-head-center">
-                <h2 class="section-title-big">CLAN <span>MEMBERS</span></h2>
-                <p class="section-subtitle-clean">Line-up oficial da divisão de Clash Royale.</p>
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">CLAN <span>MEMBERS</span></h2>
+                    <p class="section-subtitle">Line-up oficial da divisão de Clash Royale.</p>
+                </div>
             </div>
 
             <div class="roster-grid" id="crGrid"></div>
@@ -86,7 +84,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=7000"></script>
+    <script src="script.js?v=8000"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('crGrid');
@@ -104,7 +102,7 @@
                         </div>
                         <div class="card-bottom">
                             <span class="card-badge">Clash Royale</span>
-                            <span style="font-weight: 700; color: var(--accent);">🏆 ${p.trophies}</span>
+                            <span style="font-weight: 700; color: var(--accent-bright);">🏆 ${p.trophies}</span>
                         </div>
                     `;
                     card.addEventListener('click', () => openModal({ ...p, game: 'Clash Royale', type: 'clash' }));
