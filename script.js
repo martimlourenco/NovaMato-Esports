@@ -1,4 +1,4 @@
-// Novamato Esports 2026 — Simple & Clean Script with Emerald Default Accent
+// Novamato Esports 2026 — Simple & Clean Script with Emerald Green Palette
 
 const ROSTER_DATA = {
     cs2: [
@@ -31,13 +31,10 @@ const ROSTER_DATA = {
     ]
 };
 
-// Theme & Accent Color Management (Emerald Default)
-function initThemeAndAccent() {
+// Theme Management
+function initTheme() {
     const savedTheme = localStorage.getItem('novamato_clean_theme') || 'dark';
-    const savedAccent = localStorage.getItem('novamato_clean_accent') || 'emerald';
-    
     document.documentElement.setAttribute('data-theme', savedTheme);
-    document.documentElement.setAttribute('data-accent', savedAccent);
     
     const themeBtn = document.getElementById('themeBtn');
     if (themeBtn) {
@@ -49,21 +46,6 @@ function initThemeAndAccent() {
             showToast(`Modo ${target === 'light' ? 'Claro' : 'Escuro'} ativado`);
         });
     }
-    
-    // Accent Dots Click Listener
-    const dots = document.querySelectorAll('.accent-dot');
-    dots.forEach(dot => {
-        if (dot.dataset.accent === savedAccent) dot.classList.add('active');
-        
-        dot.addEventListener('click', () => {
-            dots.forEach(d => d.classList.remove('active'));
-            dot.classList.add('active');
-            const targetAccent = dot.dataset.accent;
-            document.documentElement.setAttribute('data-accent', targetAccent);
-            localStorage.setItem('novamato_clean_accent', targetAccent);
-            showToast(`Cor de destaque alterada! ✨`);
-        });
-    });
 }
 
 // Toast System
@@ -228,7 +210,7 @@ function initModals() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    initThemeAndAccent();
+    initTheme();
     renderGrid('all');
     initChips();
     initModals();

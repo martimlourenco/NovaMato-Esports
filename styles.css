@@ -1,4 +1,4 @@
-/* Novamato Esports 2026 — Clean System with Emerald Green Default */
+/* Novamato Esports 2026 — Clean System with Emerald Green Theme */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
@@ -14,7 +14,7 @@
     --text-main: #ffffff;
     --text-muted: #94a3b8;
     
-    /* Default Accent Color: Emerald Green */
+    /* Emerald Green Accent */
     --accent: #10b981;
     --accent-bg: rgba(16, 185, 129, 0.12);
     
@@ -28,37 +28,6 @@
     --transition: 0.2s ease;
 }
 
-/* Color Accent Presets */
-[data-accent="emerald"] {
-    --accent: #10b981;
-    --accent-bg: rgba(16, 185, 129, 0.12);
-    --border-hover: rgba(16, 185, 129, 0.4);
-}
-
-[data-accent="blue"] {
-    --accent: #38bdf8;
-    --accent-bg: rgba(56, 189, 248, 0.12);
-    --border-hover: rgba(56, 189, 248, 0.4);
-}
-
-[data-accent="purple"] {
-    --accent: #a855f7;
-    --accent-bg: rgba(168, 85, 247, 0.12);
-    --border-hover: rgba(168, 85, 247, 0.4);
-}
-
-[data-accent="red"] {
-    --accent: #f43f5e;
-    --accent-bg: rgba(244, 63, 94, 0.12);
-    --border-hover: rgba(244, 63, 94, 0.4);
-}
-
-[data-accent="mono"] {
-    --accent: #ffffff;
-    --accent-bg: rgba(255, 255, 255, 0.12);
-    --border-hover: rgba(255, 255, 255, 0.4);
-}
-
 /* Light Theme Variables */
 [data-theme="light"] {
     --bg-main: #f8fafc;
@@ -68,6 +37,9 @@
     --border-color: rgba(0, 0, 0, 0.08);
     --text-main: #0f172a;
     --text-muted: #64748b;
+    
+    --accent: #059669;
+    --accent-bg: rgba(5, 150, 105, 0.08);
 }
 
 /* Base Reset */
@@ -166,36 +138,6 @@ body {
     gap: 0.75rem;
 }
 
-/* Color Accent Picker Dots */
-.accent-picker {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    background: var(--bg-card);
-    padding: 0.3rem 0.5rem;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-}
-
-.accent-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform var(--transition);
-}
-
-.accent-dot:hover, .accent-dot.active {
-    transform: scale(1.25);
-    box-shadow: 0 0 8px currentColor;
-}
-
-.dot-emerald { background-color: #10b981; color: #10b981; }
-.dot-blue { background-color: #38bdf8; color: #38bdf8; }
-.dot-purple { background-color: #a855f7; color: #a855f7; }
-.dot-red { background-color: #f43f5e; color: #f43f5e; }
-.dot-mono { background-color: #ffffff; color: #ffffff; }
-
 /* Buttons */
 .btn {
     display: inline-flex;
@@ -216,10 +158,6 @@ body {
 .btn-primary {
     background: var(--accent);
     color: #ffffff;
-}
-
-[data-accent="mono"] .btn-primary {
-    color: #000000;
 }
 
 .btn-primary:hover {
