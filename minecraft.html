@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Server — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=5.0">
+    <link rel="stylesheet" href="styles.css?v=7.0">
 </head>
 <body>
-    <div class="art-bg"></div>
-
-    <!-- Navigation Header -->
-    <nav class="nav">
+    <!-- Clean Header -->
+    <header class="header">
         <div class="container">
             <a href="index.html" class="brand">
                 <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-name">NOVAMATO</span>
+                <span class="brand-title">NOVAMATO</span>
             </a>
 
             <ul class="nav-links">
@@ -26,38 +24,30 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="btn-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+                <button class="theme-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
                 <a href="index.html" class="btn btn-secondary">← Voltar</a>
             </div>
         </div>
-    </nav>
-
-    <!-- MC Hero -->
-    <header class="hero">
-        <div class="container">
-            <div class="hero-tag">Dedicated Server & Dynmap</div>
-            <h1 class="hero-title">
-                MINECRAFT<br>
-                <span>LIVE SERVER</span>
-            </h1>
-            <p class="hero-desc">
-                Explora o nosso mundo em tempo real no Dynmap e conecta-te com a nossa comunidade.
-            </p>
-        </div>
     </header>
 
-    <!-- Control Box -->
+    <!-- MC Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-pill">Dedicated Server & Dynmap</div>
+            <h1 class="hero-title">MINECRAFT <span>SERVER</span></h1>
+            <p class="hero-subtitle">Conecta-te ao servidor oficial da Novamato e explora o mapa interativo Dynmap.</p>
+        </div>
+    </section>
+
+    <!-- IP Box -->
     <section class="section">
         <div class="container">
-            <div class="mc-box">
+            <div class="mc-card">
                 <div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase;">IP DO SERVIDOR MINECRAFT</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">SERVIDOR MINECRAFT DEDICADO</div>
                     <div class="mc-ip">46.224.145.80:25565</div>
                 </div>
-                <div style="display: flex; gap: 0.8rem;">
-                    <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
-                    <button class="btn btn-secondary" onclick="copyText('/connect 46.224.145.80:25565', 'Comando de Consola copiado!')">💻 Copiar Comando</button>
-                </div>
+                <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
             </div>
         </div>
     </section>
@@ -67,12 +57,12 @@
         <div class="container">
             <div class="section-header">
                 <div>
-                    <div class="section-subtitle">Visualizador 3D</div>
-                    <h2 class="section-title">Dynmap ao Vivo</h2>
+                    <h2 class="section-title">Mapa Interativo ao Vivo</h2>
+                    <p class="section-subtitle">Visualizador 3D do mundo em tempo real.</p>
                 </div>
             </div>
 
-            <div style="width: 100%; height: 600px; background: var(--bg-surface); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden;">
+            <div style="width: 100%; height: 580px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden;">
                 <iframe src="http://46.224.145.80:8123" style="width: 100%; height: 100%; border: none;" title="Minecraft Dynmap"></iframe>
             </div>
         </div>
@@ -82,10 +72,10 @@
     <footer class="footer">
         <div class="container">
             <span>© 2026 Novamato Esports — Minecraft Division.</span>
-            <a href="index.html" style="color: var(--accent-green); text-decoration: none;">← Voltar à Página Inicial</a>
+            <a href="index.html" style="color: var(--accent); text-decoration: none;">← Página Inicial</a>
         </div>
     </footer>
 
-    <script src="script.js?v=5.0"></script>
+    <script src="script.js?v=7.0"></script>
 </body>
 </html>

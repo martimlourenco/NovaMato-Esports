@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Royale — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=5.0">
+    <link rel="stylesheet" href="styles.css?v=7.0">
 </head>
 <body>
-    <div class="art-bg"></div>
-
-    <!-- Navigation Header -->
-    <nav class="nav">
+    <!-- Clean Header -->
+    <header class="header">
         <div class="container">
             <a href="index.html" class="brand">
                 <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-name">NOVAMATO</span>
+                <span class="brand-title">NOVAMATO</span>
             </a>
 
             <ul class="nav-links">
@@ -26,37 +24,32 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="btn-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+                <button class="theme-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
                 <a href="index.html" class="btn btn-secondary">← Voltar</a>
             </div>
         </div>
-    </nav>
-
-    <!-- CR Hero -->
-    <header class="hero">
-        <div class="container">
-            <div class="hero-tag">Elite 10,000+ Trophies</div>
-            <h1 class="hero-title">
-                CLASH ROYALE<br>
-                <span>ELITE CLAN</span>
-            </h1>
-            <p class="hero-desc">
-                Conhece os membros do Clan com mais de 10.000 troféus e tops de ladder global.
-            </p>
-        </div>
     </header>
 
-    <!-- Trading Cards CR Grid -->
+    <!-- CR Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-pill">Elite 10,000+ Trophies</div>
+            <h1 class="hero-title">CLASH ROYALE <span>CLAN</span></h1>
+            <p class="hero-subtitle">Membros de topo da ladder com mais de 10.000 troféus.</p>
+        </div>
+    </section>
+
+    <!-- CR Roster Grid -->
     <section class="section">
         <div class="container">
             <div class="section-header">
                 <div>
-                    <div class="section-subtitle">Ladder Kings</div>
                     <h2 class="section-title">Membros do Clan</h2>
+                    <p class="section-subtitle">Atletas da divisão de Clash Royale.</p>
                 </div>
             </div>
 
-            <div class="trading-grid" id="crGrid"></div>
+            <div class="roster-grid" id="crGrid"></div>
         </div>
     </section>
 
@@ -72,34 +65,33 @@
     <footer class="footer">
         <div class="container">
             <span>© 2026 Novamato Esports — Clash Royale Division.</span>
-            <a href="index.html" style="color: var(--accent-green); text-decoration: none;">← Voltar à Página Inicial</a>
+            <a href="index.html" style="color: var(--accent); text-decoration: none;">← Página Inicial</a>
         </div>
     </footer>
 
-    <script src="script.js?v=5.0"></script>
+    <script src="script.js?v=7.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('crGrid');
             if (grid) {
                 grid.innerHTML = '';
-                PLAYERS_DATABASE.clashRoyale.forEach(p => {
+                ROSTER_DATA.clashRoyale.forEach(p => {
                     const card = document.createElement('div');
-                    card.className = 'trading-card';
+                    card.className = 'card';
                     card.innerHTML = `
-                        <div class="card-image-box" style="display: flex; align-items: center; justify-content: center; font-family: var(--font-art); font-weight: 900; font-size: 3rem; color: var(--accent-cyan); background: var(--bg-surface-hover);">
-                            CR
-                            <span class="card-game-badge" style="color: var(--accent-cyan);">10K+</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-name">${p.name}</h3>
-                            <div class="card-role">${p.role} · ${p.tag}</div>
-                            <div class="card-footer-stats">
-                                <span style="color: var(--text-muted);">Troféus</span>
-                                <span class="val" style="color: var(--accent-gold);">🏆 ${p.trophies}</span>
+                        <div class="card-top">
+                            <div class="card-avatar" style="display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--accent);">CR</div>
+                            <div>
+                                <div class="card-name">${p.name}</div>
+                                <div class="card-role">${p.role} · ${p.tag}</div>
                             </div>
                         </div>
+                        <div class="card-bottom">
+                            <span class="card-badge">Clash Royale</span>
+                            <span style="font-weight: 600;">🏆 ${p.trophies}</span>
+                        </div>
                     `;
-                    card.addEventListener('click', () => openTradingModal({ ...p, game: 'Clash Royale', type: 'clash' }));
+                    card.addEventListener('click', () => openModal({ ...p, game: 'Clash Royale', type: 'clash' }));
                     grid.appendChild(card);
                 });
             }

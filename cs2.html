@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Counter-Strike 2 — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=5.0">
+    <link rel="stylesheet" href="styles.css?v=7.0">
 </head>
 <body>
-    <div class="art-bg"></div>
-
-    <!-- Navigation Header -->
-    <nav class="nav">
+    <!-- Clean Header -->
+    <header class="header">
         <div class="container">
             <a href="index.html" class="brand">
                 <img src="imagens/favicon2.jpeg" alt="Novamato" class="brand-logo" onerror="this.style.display='none'">
-                <span class="brand-name">NOVAMATO</span>
+                <span class="brand-title">NOVAMATO</span>
             </a>
 
             <ul class="nav-links">
@@ -26,55 +24,50 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="btn-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+                <button class="theme-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
                 <a href="index.html" class="btn btn-secondary">← Voltar</a>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- CS2 Hero -->
-    <header class="hero">
+    <section class="hero">
         <div class="container">
-            <div class="hero-tag">Tactical 5v5 Division</div>
-            <h1 class="hero-title">
-                COUNTER-STRIKE 2<br>
-                <span>LINE-UP & MIRAS</span>
-            </h1>
-            <p class="hero-desc">
-                Conhece os 12 atletas da equipa de CS2, as suas sensibilidades, DPI, resoluções e códigos de crosshair copiáveis.
-            </p>
+            <div class="hero-pill">Tactical 5v5 Division</div>
+            <h1 class="hero-title">COUNTER-STRIKE 2 <span>ROSTER</span></h1>
+            <p class="hero-subtitle">Line-up de 12 atletas da divisão de Counter-Strike 2.</p>
         </div>
-    </header>
+    </section>
 
     <!-- Video Clutch Highlight -->
     <section class="section">
         <div class="container">
             <div class="section-header">
                 <div>
-                    <div class="section-subtitle">Highlights em Vídeo</div>
-                    <h2 class="section-title">Best Play & Ace Clutch</h2>
+                    <h2 class="section-title">Highlight de Jogo</h2>
+                    <p class="section-subtitle">Momento em destaque da equipa.</p>
                 </div>
             </div>
 
-            <div style="background: var(--bg-surface); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 255, 117, 0.15);">
-                <video controls autoplay muted loop style="width: 100%; max-height: 500px; display: block; object-fit: cover;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden;">
+                <video controls autoplay muted loop style="width: 100%; max-height: 480px; display: block; object-fit: cover;">
                     <source src="imagens/videocs2.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
     </section>
 
-    <!-- Trading Cards CS2 Grid -->
+    <!-- CS2 Players Grid -->
     <section class="section">
         <div class="container">
             <div class="section-header">
                 <div>
-                    <div class="section-subtitle">Line-up Completa</div>
                     <h2 class="section-title">12 CS2 Players</h2>
+                    <p class="section-subtitle">Clica num atleta para consultar estatísticas.</p>
                 </div>
             </div>
 
-            <div class="trading-grid" id="cs2Grid"></div>
+            <div class="roster-grid" id="cs2Grid"></div>
         </div>
     </section>
 
@@ -90,33 +83,33 @@
     <footer class="footer">
         <div class="container">
             <span>© 2026 Novamato Esports — Counter-Strike 2 Division.</span>
-            <a href="index.html" style="color: var(--accent-green); text-decoration: none;">← Voltar à Página Inicial</a>
+            <a href="index.html" style="color: var(--accent); text-decoration: none;">← Página Inicial</a>
         </div>
     </footer>
 
-    <script src="script.js?v=5.0"></script>
+    <script src="script.js?v=7.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('cs2Grid');
             if (grid) {
                 grid.innerHTML = '';
-                PLAYERS_DATABASE.cs2.forEach(p => {
+                ROSTER_DATA.cs2.forEach(p => {
                     const card = document.createElement('div');
-                    card.className = 'trading-card';
+                    card.className = 'card';
                     card.innerHTML = `
-                        <div class="card-image-box" style="background-image: url('${p.photo}');">
-                            <span class="card-game-badge">CS2 PRO</span>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-name">${p.name}</h3>
-                            <div class="card-role">${p.role}</div>
-                            <div class="card-footer-stats">
-                                <span style="color: var(--text-muted);">HLTV Rating</span>
-                                <span class="val">${p.rating}</span>
+                        <div class="card-top">
+                            <div class="card-avatar" style="background-image: url('${p.photo}');"></div>
+                            <div>
+                                <div class="card-name">${p.name}</div>
+                                <div class="card-role">${p.role}</div>
                             </div>
                         </div>
+                        <div class="card-bottom">
+                            <span class="card-badge">CS2</span>
+                            <span style="font-weight: 600;">Rating: ${p.rating}</span>
+                        </div>
                     `;
-                    card.addEventListener('click', () => openTradingModal({ ...p, game: 'CS2', type: 'cs2' }));
+                    card.addEventListener('click', () => openModal({ ...p, game: 'CS2', type: 'cs2' }));
                     grid.appendChild(card);
                 });
             }
