@@ -2,18 +2,18 @@
 
 const ROSTER_DATA = {
     cs2: [
-        { id: 1, name: 'white', role: 'Entry Fragger', rating: '1.24', kd: '1.32', photo: 'imagens/1.jpg', steamUrl: 'https://steamcommunity.com/id/white1209/', trackerUrl: 'https://leetify.com/public/profile/76561198882548515', csstatsUrl: 'https://csstats.gg/player/76561198882548515' },
-        { id: 2, name: 'migga', role: 'AWPer', rating: '1.28', kd: '1.40', photo: 'imagens/2.jpg', steamUrl: 'https://steamcommunity.com/id/migggal', trackerUrl: 'https://leetify.com/public/profile/76561198210768829', csstatsUrl: 'https://csstats.gg/player/76561198210768829' },
-        { id: 3, name: 'CØSTA', role: 'Rifler / Support', rating: '1.15', kd: '1.12', photo: 'imagens/3.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199049671771/', trackerUrl: 'https://leetify.com/public/profile/76561199049671771', csstatsUrl: 'https://csstats.gg/player/76561199049671771' },
-        { id: 4, name: 'FurryFeetLover_69', role: 'IGL (Captain)', rating: '1.10', kd: '1.08', photo: 'imagens/4.jpg', steamUrl: 'https://steamcommunity.com/id/freezapqvcmatouokuririn', trackerUrl: 'https://leetify.com/public/profile/76561198272195222', csstatsUrl: 'https://csstats.gg/player/76561198272195222' },
-        { id: 5, name: 'mr.albuquecas', role: 'Lurker', rating: '1.18', kd: '1.20', photo: 'imagens/5.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198843083161/', trackerUrl: 'https://leetify.com/public/profile/76561198843083161', csstatsUrl: 'https://csstats.gg/player/76561198843083161' },
-        { id: 6, name: 'Mr.Pigeon', role: 'Rifler', rating: '1.09', kd: '1.05', photo: 'imagens/6.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199132612024/', trackerUrl: 'https://leetify.com/public/profile/76561199132612024', csstatsUrl: 'https://csstats.gg/player/76561199132612024' },
-        { id: 7, name: 'Neto', role: 'Support', rating: '1.07', kd: '1.02', photo: 'imagens/7.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199053161311/', trackerUrl: 'https://leetify.com/public/profile/76561199053161311', csstatsUrl: 'https://csstats.gg/player/76561199053161311' },
-        { id: 8, name: 'Optrista_CG', role: 'Rifler', rating: '1.12', kd: '1.15', photo: 'imagens/8.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199082165295/', trackerUrl: 'https://leetify.com/public/profile/76561199082165295', csstatsUrl: 'https://csstats.gg/player/76561199082165295' },
-        { id: 9, name: 'Tutury', role: 'Entry Fragger', rating: '1.21', kd: '1.25', photo: 'imagens/9.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198183764933/', trackerUrl: 'https://leetify.com/public/profile/76561198183764933', csstatsUrl: 'https://csstats.gg/player/76561198183764933' },
-        { id: 10, name: 't6maj', role: 'AWPer', rating: '1.16', kd: '1.19', photo: 'imagens/10.jpg', steamUrl: 'https://steamcommunity.com/id/tomas1437', trackerUrl: 'https://leetify.com/public/profile/76561198216219013', csstatsUrl: 'https://csstats.gg/player/76561198216219013' },
-        { id: 11, name: 'SIDST', role: 'Rifler', rating: '1.08', kd: '1.04', photo: 'imagens/11.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199207194374/', trackerUrl: 'https://leetify.com/public/profile/76561199207194374', csstatsUrl: 'https://csstats.gg/player/76561199207194374' },
-        { id: 12, name: 'paulo minoso-', role: 'Support', rating: '1.14', kd: '1.11', photo: 'imagens/12.jpg', steamUrl: 'https://steamcommunity.com/id/narcigod', trackerUrl: 'https://leetify.com/public/profile/76561198326338086', csstatsUrl: 'https://csstats.gg/player/76561198326338086' }
+        { id: 1, name: 'white', role: 'Entry Fragger', rating: '1.24', kd: '1.32', photo: 'imagens/1.jpg', steamUrl: 'https://steamcommunity.com/id/white1209/', trackerUrl: 'https://leetify.com/app/profile/76561198882548515', csstatsUrl: 'https://csstats.gg/player/76561198882548515' },
+        { id: 2, name: 'migga', role: 'AWPer', rating: '1.28', kd: '1.40', photo: 'imagens/2.jpg', steamUrl: 'https://steamcommunity.com/id/migggal', trackerUrl: 'https://leetify.com/app/profile/76561198210768829', csstatsUrl: 'https://csstats.gg/player/76561198210768829' },
+        { id: 3, name: 'CØSTA', role: 'Rifler / Support', rating: '1.15', kd: '1.12', photo: 'imagens/3.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199049671771/', trackerUrl: 'https://leetify.com/app/profile/76561199049671771', csstatsUrl: 'https://csstats.gg/player/76561199049671771' },
+        { id: 4, name: 'FurryFeetLover_69', role: 'IGL (Captain)', rating: '1.10', kd: '1.08', photo: 'imagens/4.jpg', steamUrl: 'https://steamcommunity.com/id/freezapqvcmatouokuririn', trackerUrl: 'https://leetify.com/app/profile/76561198272195222', csstatsUrl: 'https://csstats.gg/player/76561198272195222' },
+        { id: 5, name: 'mr.albuquecas', role: 'Lurker', rating: '1.18', kd: '1.20', photo: 'imagens/5.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198843083161/', trackerUrl: 'https://leetify.com/app/profile/76561198843083161', csstatsUrl: 'https://csstats.gg/player/76561198843083161' },
+        { id: 6, name: 'Mr.Pigeon', role: 'Rifler', rating: '1.09', kd: '1.05', photo: 'imagens/6.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199132612024/', trackerUrl: 'https://leetify.com/app/profile/76561199132612024', csstatsUrl: 'https://csstats.gg/player/76561199132612024' },
+        { id: 7, name: 'Neto', role: 'Support', rating: '1.07', kd: '1.02', photo: 'imagens/7.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199053161311/', trackerUrl: 'https://leetify.com/app/profile/76561199053161311', csstatsUrl: 'https://csstats.gg/player/76561199053161311' },
+        { id: 8, name: 'Optrista_CG', role: 'Rifler', rating: '1.12', kd: '1.15', photo: 'imagens/8.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199082165295/', trackerUrl: 'https://leetify.com/app/profile/76561199082165295', csstatsUrl: 'https://csstats.gg/player/76561199082165295' },
+        { id: 9, name: 'Tutury', role: 'Entry Fragger', rating: '1.21', kd: '1.25', photo: 'imagens/9.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561198183764933/', trackerUrl: 'https://leetify.com/app/profile/76561198183764933', csstatsUrl: 'https://csstats.gg/player/76561198183764933' },
+        { id: 10, name: 't6maj', role: 'AWPer', rating: '1.16', kd: '1.19', photo: 'imagens/10.jpg', steamUrl: 'https://steamcommunity.com/id/tomas1437', trackerUrl: 'https://leetify.com/app/profile/76561198216219013', csstatsUrl: 'https://csstats.gg/player/76561198216219013' },
+        { id: 11, name: 'SIDST', role: 'Rifler', rating: '1.08', kd: '1.04', photo: 'imagens/11.jpg', steamUrl: 'https://steamcommunity.com/profiles/76561199207194374/', trackerUrl: 'https://leetify.com/app/profile/76561199207194374', csstatsUrl: 'https://csstats.gg/player/76561199207194374' },
+        { id: 12, name: 'paulo minoso-', role: 'Support', rating: '1.14', kd: '1.11', photo: 'imagens/12.jpg', steamUrl: 'https://steamcommunity.com/id/narcigod', trackerUrl: 'https://leetify.com/app/profile/76561198326338086', csstatsUrl: 'https://csstats.gg/player/76561198326338086' }
     ],
     clashRoyale: [
         { id: 1, name: 'mr.white', tag: '#28G9G2P9Y', role: 'Leader', trophies: '10,450' },
@@ -150,8 +150,7 @@ function openModal(p) {
             </div>
             <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
                 <a href="${p.steamUrl}" target="_blank" class="btn btn-primary" style="flex: 1;">Steam →</a>
-                <a href="${p.trackerUrl}" target="_blank" class="btn btn-secondary" style="flex: 1;">Leetify Public →</a>
-                <a href="${p.csstatsUrl}" target="_blank" class="btn btn-secondary" style="flex: 1;">CSStats.gg →</a>
+                <a href="${p.trackerUrl}" target="_blank" class="btn btn-secondary" style="flex: 1;">Leetify →</a>
             </div>
         `;
     } else if (p.type === 'clash') {
