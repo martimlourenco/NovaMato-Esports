@@ -5,62 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Royale — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=8000">
+    <link rel="stylesheet" href="styles.css?v=9000">
 </head>
 <body>
 
-    <!-- Left Vertical Social Bar -->
-    <div class="vertical-social-bar">
-        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="v-social-link">Discord</a>
-        <a href="https://www.youtube.com/@novamato3393" target="_blank" class="v-social-link">YouTube</a>
-        <a href="https://steamcommunity.com/id/white1209/" target="_blank" class="v-social-link">Steam</a>
-    </div>
+    <!-- Top Header Navigation -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="header-brand">
+                <span class="brand-badge">CS2</span>
+                <span class="brand-name">NOVAMATO</span>
+            </a>
 
-    <!-- Centered Logo Top Navigation -->
-    <header class="main-header">
-        <div class="container" style="width: 100%;">
-            <nav class="nav-grid">
-                <ul class="nav-group">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="cs2.html" class="nav-link">CS2</a></li>
-                    <li><a href="clash-royale.html" class="nav-link active">Clash Royale</a></li>
-                </ul>
+            <ul class="main-nav">
+                <li><a href="index.html" class="nav-item-link">Home</a></li>
+                <li><a href="cs2.html" class="nav-item-link">CS2</a></li>
+                <li><a href="clash-royale.html" class="nav-item-link active">Clash Royale</a></li>
+                <li><a href="minecraft.html" class="nav-item-link">Minecraft</a></li>
+            </ul>
 
-                <a href="index.html" class="nav-center-logo">
-                    <img src="imagens/favicon2.jpeg" alt="Novamato Logo" class="center-logo-img" onerror="this.style.display='none'">
-                </a>
-
-                <ul class="nav-group">
-                    <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
-                    <li><a href="index.html#about" class="nav-link">About</a></li>
-                    <li><a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="nav-link">Discord</a></li>
-                </ul>
-
-                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
-            </nav>
+            <div class="header-right-actions">
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn-header-signin">Discord</a>
+                <button class="btn-header-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+            </div>
         </div>
     </header>
 
     <!-- Page Hero -->
-    <section class="esports-hero" style="min-height: 60vh; padding-top: 140px;">
+    <section class="hero-dominate" style="min-height: 55vh; padding-top: 130px; justify-content: center;">
+        <div class="giant-bg-text" style="top: 50%;">ROYALE</div>
         <div class="hero-vignette"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-kicker">Elite 10,000+ Trophies Clan</div>
-                <h1 class="hero-main-title">Clash Royale<br><span style="color: var(--neon-green);">Clan Roster</span></h1>
-            </div>
+
+        <div class="container" style="position: relative; z-index: 10; text-align: center;">
+            <div class="hero-cs2-pill">Elite 10,000+ Trophies Clan</div>
+            <h1 style="font-family: var(--font-heading); font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 900; text-transform: uppercase;">
+                Clash Royale <span style="color: var(--accent-red);">Clan Roster</span>
+            </h1>
         </div>
     </section>
 
     <!-- Clan Members Grid -->
-    <section class="about-section" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
+    <section class="section-dominate" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
         <div class="container">
-            <div class="section-center-heading">
-                <h2 class="heading-title">Clan <span class="highlight-green">Members</span></h2>
-                <div class="heading-line"></div>
+            <div class="section-title-wrap">
+                <div class="sec-kicker">Elite Squad</div>
+                <h2 class="sec-heading">Clan <span>Members</span></h2>
             </div>
 
-            <div class="roster-grid" id="crGrid"></div>
+            <div class="roster-grid-dominate" id="crGrid"></div>
         </div>
     </section>
 
@@ -85,7 +77,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=8000"></script>
+    <script src="script.js?v=9000"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('crGrid');
@@ -93,23 +85,23 @@
                 grid.innerHTML = '';
                 ROSTER_DATA.clashRoyale.forEach(p => {
                     const card = document.createElement('div');
-                    card.className = 'squad-card';
+                    card.className = 'card-dominate';
                     
                     const avatarHtml = p.photo 
-                        ? `<div class="player-avatar-box" style="background-image: url('${p.photo}');"></div>` 
+                        ? `<div class="card-dominate-avatar" style="background-image: url('${p.photo}');"></div>` 
                         : '';
                         
                     card.innerHTML = `
-                        <div class="card-header-flex">
+                        <div class="card-dominate-top">
                             ${avatarHtml}
                             <div>
-                                <div class="player-info-title">${p.name}</div>
-                                <div class="player-info-role">${p.role} · ${p.tag}</div>
+                                <div class="card-dominate-name">${p.name}</div>
+                                <div class="card-dominate-role">${p.role} · ${p.tag}</div>
                             </div>
                         </div>
-                        <div class="card-footer-flex">
-                            <span class="squad-badge">Clash Royale</span>
-                            <span class="squad-stat">🏆 ${p.trophies}</span>
+                        <div class="card-dominate-bottom">
+                            <span class="badge-dominate">Clash Royale</span>
+                            <span class="stat-dominate">🏆 ${p.trophies}</span>
                         </div>
                     `;
                     card.addEventListener('click', () => openModal({ ...p, game: 'Clash Royale', type: 'clash' }));

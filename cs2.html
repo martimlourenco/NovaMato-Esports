@@ -5,81 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS2 Division — Novamato Esports</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=8000">
+    <link rel="stylesheet" href="styles.css?v=9000">
 </head>
 <body>
 
-    <!-- Left Vertical Social Bar -->
-    <div class="vertical-social-bar">
-        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="v-social-link">Discord</a>
-        <a href="https://www.youtube.com/@novamato3393" target="_blank" class="v-social-link">YouTube</a>
-        <a href="https://steamcommunity.com/id/white1209/" target="_blank" class="v-social-link">Steam</a>
-    </div>
+    <!-- Top Header Navigation -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="header-brand">
+                <span class="brand-badge">CS2</span>
+                <span class="brand-name">NOVAMATO</span>
+            </a>
 
-    <!-- Centered Logo Top Navigation -->
-    <header class="main-header">
-        <div class="container" style="width: 100%;">
-            <nav class="nav-grid">
-                <ul class="nav-group">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="cs2.html" class="nav-link active">CS2</a></li>
-                    <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
-                </ul>
+            <ul class="main-nav">
+                <li><a href="index.html" class="nav-item-link">Home</a></li>
+                <li><a href="cs2.html" class="nav-item-link active">CS2</a></li>
+                <li><a href="clash-royale.html" class="nav-item-link">Clash Royale</a></li>
+                <li><a href="minecraft.html" class="nav-item-link">Minecraft</a></li>
+            </ul>
 
-                <a href="index.html" class="nav-center-logo">
-                    <img src="imagens/favicon2.jpeg" alt="Novamato Logo" class="center-logo-img" onerror="this.style.display='none'">
-                </a>
-
-                <ul class="nav-group">
-                    <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
-                    <li><a href="index.html#about" class="nav-link">About</a></li>
-                    <li><a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="nav-link">Discord</a></li>
-                </ul>
-
-                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
-            </nav>
+            <div class="header-right-actions">
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn-header-signin">Discord</a>
+                <button class="btn-header-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+            </div>
         </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="esports-hero" style="min-height: 60vh; padding-top: 140px;">
+    <!-- CS2 Page Hero -->
+    <section class="hero-dominate" style="min-height: 55vh; padding-top: 130px; justify-content: center;">
+        <div class="giant-bg-text" style="top: 50%;">CS2</div>
         <div class="hero-vignette"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-kicker">Tactical 5v5 FPS Division</div>
-                <h1 class="hero-main-title">Counter-Strike 2<br><span style="color: var(--neon-green);">Official Roster</span></h1>
-            </div>
+
+        <div class="container" style="position: relative; z-index: 10; text-align: center;">
+            <div class="hero-cs2-pill">Tactical 5v5 FPS Division</div>
+            <h1 style="font-family: var(--font-heading); font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 900; text-transform: uppercase;">
+                Counter-Strike 2 <span style="color: var(--accent-red);">Roster</span>
+            </h1>
         </div>
     </section>
 
-    <!-- Highlight Video Section -->
-    <section class="about-section">
+    <!-- Video Clutch Section -->
+    <section class="section-dominate">
         <div class="container">
-            <div class="section-center-heading">
-                <h2 class="heading-title">Team <span class="highlight-green">Highlight</span></h2>
-                <div class="heading-line"></div>
+            <div class="section-title-wrap">
+                <div class="sec-kicker">Highlight de Jogo</div>
+                <h2 class="sec-heading">Team <span>Clutch</span></h2>
             </div>
 
-            <div class="about-media-wrapper" style="max-width: 900px; margin: 0 auto;">
-                <div class="media-backdrop-shape" style="width: 60%;"></div>
-                <div class="media-video-card">
-                    <video controls autoplay muted loop>
-                        <source src="imagens/videocs2.mp4" type="video/mp4">
-                    </video>
-                </div>
+            <div class="video-highlight-wrap" style="max-width: 960px; margin: 0 auto;">
+                <video controls autoplay muted loop>
+                    <source src="imagens/videocs2.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
     </section>
 
     <!-- 12 Players Grid -->
-    <section class="about-section" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
+    <section class="section-dominate" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
         <div class="container">
-            <div class="section-center-heading">
-                <h2 class="heading-title">12 Competitive <span class="highlight-green">Athletes</span></h2>
-                <div class="heading-line"></div>
+            <div class="section-title-wrap">
+                <div class="sec-kicker">12 CS2 Athletes</div>
+                <h2 class="sec-heading">Official <span>Line-up</span></h2>
             </div>
 
-            <div class="roster-grid" id="cs2Grid"></div>
+            <div class="roster-grid-dominate" id="cs2Grid"></div>
         </div>
     </section>
 
@@ -104,7 +93,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=8000"></script>
+    <script src="script.js?v=9000"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('cs2Grid');
@@ -112,18 +101,18 @@
                 grid.innerHTML = '';
                 ROSTER_DATA.cs2.forEach(p => {
                     const card = document.createElement('div');
-                    card.className = 'squad-card';
+                    card.className = 'card-dominate';
                     card.innerHTML = `
-                        <div class="card-header-flex">
-                            <div class="player-avatar-box" style="background-image: url('${p.photo}');"></div>
+                        <div class="card-dominate-top">
+                            <div class="card-dominate-avatar" style="background-image: url('${p.photo}');"></div>
                             <div>
-                                <div class="player-info-title">${p.name}</div>
-                                <div class="player-info-role">${p.role}</div>
+                                <div class="card-dominate-name">${p.name}</div>
+                                <div class="card-dominate-role">${p.role}</div>
                             </div>
                         </div>
-                        <div class="card-footer-flex">
-                            <span class="squad-badge">CS2</span>
-                            <span class="squad-stat">Rating: ${p.rating}</span>
+                        <div class="card-dominate-bottom">
+                            <span class="badge-dominate">CS2</span>
+                            <span class="stat-dominate">Rating: ${p.rating}</span>
                         </div>
                     `;
                     card.addEventListener('click', () => openModal({ ...p, game: 'CS2', type: 'cs2' }));

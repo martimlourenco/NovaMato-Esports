@@ -3,83 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novamato Esports — Professional Esport Team</title>
+    <title>Novamato Esports — Dominate CS2</title>
     <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=8000">
+    <link rel="stylesheet" href="styles.css?v=9000">
 </head>
 <body>
 
-    <!-- Left Vertical Social Bar -->
-    <div class="vertical-social-bar">
-        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="v-social-link">Discord</a>
-        <a href="https://www.youtube.com/@novamato3393" target="_blank" class="v-social-link">YouTube</a>
-        <a href="https://steamcommunity.com/id/white1209/" target="_blank" class="v-social-link">Steam</a>
-    </div>
+    <!-- Top Header Navigation -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="header-brand">
+                <span class="brand-badge">CS2</span>
+                <span class="brand-name">NOVAMATO</span>
+            </a>
 
-    <!-- Centered Logo Top Navigation -->
-    <header class="main-header">
-        <div class="container" style="width: 100%;">
-            <nav class="nav-grid">
-                <ul class="nav-group">
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
-                    <li><a href="cs2.html" class="nav-link">CS2</a></li>
-                    <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
-                </ul>
+            <ul class="main-nav">
+                <li><a href="index.html" class="nav-item-link active">Home</a></li>
+                <li><a href="cs2.html" class="nav-item-link">CS2</a></li>
+                <li><a href="clash-royale.html" class="nav-item-link">Clash Royale</a></li>
+                <li><a href="minecraft.html" class="nav-item-link">Minecraft</a></li>
+            </ul>
 
-                <a href="index.html" class="nav-center-logo">
-                    <img src="imagens/favicon2.jpeg" alt="Novamato Logo" class="center-logo-img" onerror="this.style.display='none'">
-                </a>
-
-                <ul class="nav-group">
-                    <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="nav-link">Discord</a></li>
-                </ul>
-
-                <button class="theme-toggle-btn" id="themeBtn" aria-label="Alternar Tema">🌓</button>
-            </nav>
+            <div class="header-right-actions">
+                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn-header-signin">Discord</a>
+                <button class="btn-header-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
+            </div>
         </div>
     </header>
 
-    <!-- Esports Hero Section -->
-    <section class="esports-hero">
+    <!-- Hero Section — Dominate CS2 Cinematic Theme -->
+    <section class="hero-dominate">
+        <div class="giant-bg-text">DOMINATE</div>
         <div class="hero-vignette"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-kicker">Welcome Novamato Esport</div>
-                <h1 class="hero-main-title">Professional Esport<br>Global Team</h1>
-                <a href="#about" class="hero-btn">Learn More</a>
-            </div>
-        </div>
 
-        <a href="#about" class="scroll-indicator">
-            <span>Scroll Down</span>
-            <div class="scroll-dot"></div>
-        </a>
-    </section>
-
-    <!-- About Section with Geometric Video Card -->
-    <section class="about-section" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text-col">
-                    <div class="section-tag-line"></div>
-                    <h2 class="about-title">
-                        About The <span class="highlight-green">Novamato</span><br>Esports Team
-                    </h2>
-                    <p class="about-desc">
-                        Organização competitiva portuguesa fundada em 2018. Competição ao mais alto nível no Counter-Strike 2, clã de elite no Clash Royale e um ecossistema dedicado de Minecraft para toda a comunidade.
-                    </p>
-                    <a href="#roster" class="btn-outline">Meet The Team</a>
+        <div class="container" style="position: relative; z-index: 10; width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="hero-center-content">
+                <div class="hero-cs2-pill">Competitive Portuguese Esports</div>
+                <div class="hero-actions-row">
+                    <a href="#roster" class="btn-arena-red">Join The Arena</a>
+                    <a href="#video" class="btn-watch-trailer">
+                        <div class="play-icon-circle">▶</div>
+                        <span>Watch Highlight</span>
+                    </a>
                 </div>
+            </div>
 
-                <div class="about-media-col">
-                    <div class="about-media-wrapper">
-                        <div class="media-backdrop-shape"></div>
-                        <div class="media-video-card">
-                            <video controls autoplay muted loop>
-                                <source src="imagens/videocs2.mp4" type="video/mp4">
-                            </video>
+            <!-- Bottom Stats Grid Bar -->
+            <div class="hero-stats-bar">
+                <div class="stats-grid-row">
+                    <div class="stat-box-card">
+                        <div class="stat-icon-badge">🏆</div>
+                        <div>
+                            <div class="stat-info-num">10K+</div>
+                            <div class="stat-info-label">Clash & CS2 Rating</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-box-card">
+                        <div class="stat-icon-badge">🛡️</div>
+                        <div>
+                            <div class="stat-info-num">12</div>
+                            <div class="stat-info-label">CS2 Athletes</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-box-card">
+                        <div class="stat-icon-badge">⚡</div>
+                        <div>
+                            <div class="stat-info-num">24/7</div>
+                            <div class="stat-info-label">Dedicated Server</div>
                         </div>
                     </div>
                 </div>
@@ -87,36 +79,52 @@
         </div>
     </section>
 
-    <!-- Squads & Line-ups Section -->
-    <section class="about-section" id="roster" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
+    <!-- CS2 Clutch Highlight Video Section -->
+    <section class="section-dominate" id="video">
         <div class="container">
-            <div class="section-center-heading">
-                <h2 class="heading-title">Active <span class="highlight-green">Squads</span> & Roster</h2>
-                <div class="heading-line"></div>
+            <div class="section-title-wrap">
+                <div class="sec-kicker">Official Highlight</div>
+                <h2 class="sec-heading">Counter-Strike 2 <span>Clutch</span></h2>
             </div>
 
-            <div class="filter-tabs">
-                <button class="tab-btn active" data-filter="all">All Squads</button>
-                <button class="tab-btn" data-filter="cs2">Counter-Strike 2</button>
-                <button class="tab-btn" data-filter="clash">Clash Royale</button>
-                <button class="tab-btn" data-filter="minecraft">Minecraft</button>
+            <div class="video-highlight-wrap" style="max-width: 960px; margin: 0 auto;">
+                <video controls autoplay muted loop>
+                    <source src="imagens/videocs2.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Line-up & Roster Section -->
+    <section class="section-dominate" id="roster" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-title-wrap">
+                <div class="sec-kicker">Line-up Oficial</div>
+                <h2 class="sec-heading">Official <span>Roster</span></h2>
             </div>
 
-            <div class="roster-grid" id="rosterGrid">
+            <div class="filter-tabs-dominate">
+                <button class="tab-dominate active" data-filter="all">All Squads</button>
+                <button class="tab-dominate" data-filter="cs2">Counter-Strike 2</button>
+                <button class="tab-dominate" data-filter="clash">Clash Royale</button>
+                <button class="tab-dominate" data-filter="minecraft">Minecraft</button>
+            </div>
+
+            <div class="roster-grid-dominate" id="rosterGrid">
                 <!-- Dynamically loaded via JS -->
             </div>
         </div>
     </section>
 
     <!-- Minecraft Server Match Banner -->
-    <section class="about-section">
+    <section class="section-dominate">
         <div class="container">
-            <div class="mc-banner-card">
+            <div class="mc-banner-dominate">
                 <div>
-                    <div class="mc-label-tag">Servidor Oficial Dedicado</div>
-                    <div class="mc-ip-display">46.224.145.80:25565</div>
+                    <div style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 900; letter-spacing: 0.15em; color: var(--accent-red); text-transform: uppercase; margin-bottom: 0.3rem;">Servidor Dedicado Minecraft</div>
+                    <div class="mc-banner-ip">46.224.145.80:25565</div>
                 </div>
-                <button class="hero-btn" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
+                <button class="btn-arena-red" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
             </div>
         </div>
     </section>
@@ -142,6 +150,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=8000"></script>
+    <script src="script.js?v=9000"></script>
 </body>
 </html>
