@@ -1,4 +1,4 @@
-// Novamato Esports 2026 — Simple & Clean Script with Accent Color Switcher
+// Novamato Esports 2026 — Simple & Clean Script with Emerald Default Accent
 
 const ROSTER_DATA = {
     cs2: [
@@ -31,10 +31,10 @@ const ROSTER_DATA = {
     ]
 };
 
-// Theme & Accent Color Management
+// Theme & Accent Color Management (Emerald Default)
 function initThemeAndAccent() {
     const savedTheme = localStorage.getItem('novamato_clean_theme') || 'dark';
-    const savedAccent = localStorage.getItem('novamato_clean_accent') || 'blue';
+    const savedAccent = localStorage.getItem('novamato_clean_accent') || 'emerald';
     
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.documentElement.setAttribute('data-accent', savedAccent);
