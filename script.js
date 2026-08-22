@@ -70,7 +70,7 @@ function showToast(msg) {
     }, 2200);
 }
 
-// Copy IP Helper
+// Copy Helper
 function copyText(text, label = 'Copiado!') {
     navigator.clipboard.writeText(text).then(() => {
         showToast(`✓ ${label}`);
@@ -79,7 +79,7 @@ function copyText(text, label = 'Copiado!') {
     });
 }
 
-// Render Roster Cards Grid
+// Render Roster Cards Grid (If no photo, only display the name)
 function renderGrid(filter = 'all') {
     const grid = document.getElementById('rosterGrid');
     if (!grid) return;
@@ -101,12 +101,14 @@ function renderGrid(filter = 'all') {
         const card = document.createElement('div');
         card.className = 'card';
         
-        const avatarBg = p.photo ? `background-image: url('${p.photo}');` : '';
+        const avatarHtml = p.photo 
+            ? `<div class="card-avatar" style="background-image: url('${p.photo}');"></div>` 
+            : '';
         const statLabel = p.type === 'cs2' ? `Rating: ${p.rating}` : (p.type === 'clash' ? `🏆 ${p.trophies}` : `Builder`);
         
         card.innerHTML = `
             <div class="card-top">
-                <div class="card-avatar" style="${avatarBg}"></div>
+                ${avatarHtml}
                 <div>
                     <div class="card-name">${p.name}</div>
                     <div class="card-role">${p.role}</div>
@@ -135,7 +137,7 @@ function initChips() {
     });
 }
 
-// Player Modal
+// Player Modal (If no photo, only display the name)
 function openModal(p) {
     const modal = document.getElementById('playerModal');
     const body = document.getElementById('modalBody');
@@ -177,9 +179,13 @@ function openModal(p) {
         `;
     }
     
+    const avatarHtml = p.photo 
+        ? `<div style="width: 56px; height: 56px; border-radius: 10px; background: url('${p.photo}') center/cover;"></div>` 
+        : '';
+        
     body.innerHTML = `
         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-            <div style="width: 56px; height: 56px; border-radius: 10px; ${p.photo ? `background: url('${p.photo}') center/cover;` : 'background: var(--accent-bg);'}"></div>
+            ${avatarHtml}
             <div>
                 <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;">${p.name}</h3>
                 <div style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">${p.game} · ${p.role}</div>

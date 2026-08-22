@@ -78,9 +78,14 @@
                 ROSTER_DATA.clashRoyale.forEach(p => {
                     const card = document.createElement('div');
                     card.className = 'card';
+                    
+                    const avatarHtml = p.photo 
+                        ? `<div class="card-avatar" style="background-image: url('${p.photo}');"></div>` 
+                        : '';
+                        
                     card.innerHTML = `
                         <div class="card-top">
-                            <div class="card-avatar" style="display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--accent);">CR</div>
+                            ${avatarHtml}
                             <div>
                                 <div class="card-name">${p.name}</div>
                                 <div class="card-role">${p.role} · ${p.tag}</div>
