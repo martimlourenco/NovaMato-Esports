@@ -1,4 +1,4 @@
-// Novamato Esports 2026 — CS2 "DOMINATE" Script
+// Novamato Esports 2026 — Simple & Clean Script
 
 const ROSTER_DATA = {
     cs2: [
@@ -33,7 +33,7 @@ const ROSTER_DATA = {
 
 // Theme Management
 function initTheme() {
-    const savedTheme = localStorage.getItem('novamato_dominate_theme') || 'dark';
+    const savedTheme = localStorage.getItem('novamato_clean_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     
     const themeBtn = document.getElementById('themeBtn');
@@ -42,18 +42,18 @@ function initTheme() {
             const current = document.documentElement.getAttribute('data-theme');
             const target = current === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', target);
-            localStorage.setItem('novamato_dominate_theme', target);
+            localStorage.setItem('novamato_clean_theme', target);
             showToast(`Modo ${target === 'light' ? 'Claro' : 'Escuro'} ativado`);
         });
     }
 }
 
-// Toast Alert
+// Toast System
 function showToast(msg) {
-    let box = document.querySelector('.toast-container');
+    let box = document.querySelector('.toast-box');
     if (!box) {
         box = document.createElement('div');
-        box.className = 'toast-container';
+        box.className = 'toast-box';
         document.body.appendChild(box);
     }
     
@@ -67,10 +67,10 @@ function showToast(msg) {
         toast.style.transform = 'translateY(10px)';
         toast.style.transition = 'all 0.2s ease';
         setTimeout(() => toast.remove(), 200);
-    }, 2400);
+    }, 2200);
 }
 
-// Copy Helper
+// Copy IP Helper
 function copyText(text, label = 'Copiado!') {
     navigator.clipboard.writeText(text).then(() => {
         showToast(`✓ ${label}`);
@@ -79,7 +79,7 @@ function copyText(text, label = 'Copiado!') {
     });
 }
 
-// Render Roster Grid (If no photo, only name is rendered)
+// Render Roster Cards Grid (Only render avatar if photo exists)
 function renderGrid(filter = 'all') {
     const grid = document.getElementById('rosterGrid');
     if (!grid) return;
@@ -99,24 +99,24 @@ function renderGrid(filter = 'all') {
     
     players.forEach(p => {
         const card = document.createElement('div');
-        card.className = 'card-dominate';
+        card.className = 'card';
         
         const avatarHtml = p.photo 
-            ? `<div class="card-dominate-avatar" style="background-image: url('${p.photo}');"></div>` 
+            ? `<div class="card-avatar" style="background-image: url('${p.photo}');"></div>` 
             : '';
         const statLabel = p.type === 'cs2' ? `Rating: ${p.rating}` : (p.type === 'clash' ? `🏆 ${p.trophies}` : `Builder`);
         
         card.innerHTML = `
-            <div class="card-dominate-top">
+            <div class="card-top">
                 ${avatarHtml}
                 <div>
-                    <div class="card-dominate-name">${p.name}</div>
-                    <div class="card-dominate-role">${p.role}</div>
+                    <div class="card-name">${p.name}</div>
+                    <div class="card-role">${p.role}</div>
                 </div>
             </div>
-            <div class="card-dominate-bottom">
-                <span class="badge-dominate">${p.game}</span>
-                <span class="stat-dominate">${statLabel}</span>
+            <div class="card-bottom">
+                <span class="card-badge">${p.game}</span>
+                <span style="font-weight: 600;">${statLabel}</span>
             </div>
         `;
         
@@ -125,14 +125,14 @@ function renderGrid(filter = 'all') {
     });
 }
 
-// Tab Filter Buttons
-function initTabs() {
-    const tabs = document.querySelectorAll('.tab-dominate');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            renderGrid(tab.dataset.filter);
+// Tab Filter Chips
+function initChips() {
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            renderGrid(chip.dataset.filter);
         });
     });
 }
@@ -148,47 +148,47 @@ function openModal(p) {
     if (p.type === 'cs2') {
         content = `
             <div style="display: flex; gap: 1rem; margin: 1.25rem 0;">
-                <div style="flex: 1; background: var(--bg-dark); padding: 0.8rem; border-radius: 4px; text-align: center; border: 1px solid var(--border-color);">
-                    <div style="font-family: var(--font-heading); font-size: 0.7rem; color: var(--text-gray); font-weight: 800;">HLTV RATING</div>
-                    <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; color: var(--accent-red);">${p.rating}</div>
+                <div style="flex: 1; background: var(--bg-main); padding: 0.8rem; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">HLTV RATING</div>
+                    <div style="font-size: 1.3rem; font-weight: 700; color: var(--accent);">${p.rating}</div>
                 </div>
-                <div style="flex: 1; background: var(--bg-dark); padding: 0.8rem; border-radius: 4px; text-align: center; border: 1px solid var(--border-color);">
-                    <div style="font-family: var(--font-heading); font-size: 0.7rem; color: var(--text-gray); font-weight: 800;">K/D RATIO</div>
-                    <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; color: var(--text-white);">${p.kd}</div>
+                <div style="flex: 1; background: var(--bg-main); padding: 0.8rem; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">K/D RATIO</div>
+                    <div style="font-size: 1.3rem; font-weight: 700;">${p.kd}</div>
                 </div>
             </div>
             <div style="display: flex; gap: 0.75rem;">
-                <a href="${p.steamUrl}" target="_blank" class="btn-arena-red" style="flex: 1; text-align: center; padding: 0.7rem;">Steam Profile →</a>
-                <a href="${p.trackerUrl}" target="_blank" class="btn-header-signin" style="flex: 1; text-align: center;">Leetify Stats</a>
+                <a href="${p.steamUrl}" target="_blank" class="btn btn-primary" style="flex: 1;">Steam Profile →</a>
+                <a href="${p.trackerUrl}" target="_blank" class="btn btn-secondary" style="flex: 1;">Leetify Stats →</a>
             </div>
         `;
     } else if (p.type === 'clash') {
         content = `
-            <div style="background: var(--bg-dark); padding: 1rem; border-radius: 4px; margin: 1.25rem 0; display: flex; justify-content: space-between; border: 1px solid var(--border-color);">
-                <span style="color: var(--text-gray); font-family: var(--font-heading); font-weight: 800;">TROFÉUS:</span>
-                <strong style="color: var(--accent-red); font-family: var(--font-heading); font-size: 1.2rem;">🏆 ${p.trophies}</strong>
+            <div style="background: var(--bg-main); padding: 1rem; border-radius: 8px; margin: 1.25rem 0; display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Troféus:</span>
+                <strong style="color: var(--accent);">🏆 ${p.trophies}</strong>
             </div>
-            <a href="https://statsroyale.com/profile/${p.tag.replace('#', '')}" target="_blank" class="btn-arena-red" style="width: 100%; text-align: center; display: block; padding: 0.7rem;">StatsRoyale Profile →</a>
+            <a href="https://statsroyale.com/profile/${p.tag.replace('#', '')}" target="_blank" class="btn btn-primary" style="width: 100%;">StatsRoyale Profile →</a>
         `;
     } else {
         content = `
-            <div style="background: var(--bg-dark); padding: 1rem; border-radius: 4px; margin: 1.25rem 0; border: 1px solid var(--border-color);">
-                <div style="font-family: var(--font-heading); font-size: 0.72rem; color: var(--text-gray); font-weight: 800; margin-bottom: 0.3rem;">PROJETOS EM DESTAQUE</div>
-                <div style="font-family: var(--font-heading); font-weight: 900; color: var(--accent-red);">${p.builds}</div>
+            <div style="background: var(--bg-main); padding: 1rem; border-radius: 8px; margin: 1.25rem 0;">
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem;">PROJETOS</div>
+                <div style="font-weight: 600; color: var(--accent);">${p.builds}</div>
             </div>
         `;
     }
     
     const avatarHtml = p.photo 
-        ? `<div style="width: 56px; height: 56px; border-radius: 4px; background: url('${p.photo}') center/cover; border: 1.5px solid var(--accent-red);"></div>` 
+        ? `<div style="width: 56px; height: 56px; border-radius: 10px; background: url('${p.photo}') center/cover;"></div>` 
         : '';
         
     body.innerHTML = `
         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
             ${avatarHtml}
             <div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 900; text-transform: uppercase;">${p.name}</h3>
-                <div style="font-family: var(--font-heading); font-size: 0.82rem; color: var(--accent-red); font-weight: 800;">${p.game} · ${p.role}</div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;">${p.name}</h3>
+                <div style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">${p.game} · ${p.role}</div>
             </div>
         </div>
         ${content}
@@ -197,11 +197,11 @@ function openModal(p) {
     modal.classList.add('active');
 }
 
-// Modal Close
+// Modal Click Out & Close
 function initModals() {
     const modals = document.querySelectorAll('.modal');
     modals.forEach(m => {
-        const close = m.querySelector('.modal-close-btn');
+        const close = m.querySelector('.modal-close');
         if (close) close.addEventListener('click', () => m.classList.remove('active'));
         m.addEventListener('click', (e) => {
             if (e.target === m) m.classList.remove('active');
@@ -212,6 +212,6 @@ function initModals() {
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     renderGrid('all');
-    initTabs();
+    initChips();
     initModals();
 });

@@ -4,86 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Server — Novamato Esports</title>
-    <link rel="icon" type="image/png" href="imagens/favicon2.jpeg">
-    <link rel="stylesheet" href="styles.css?v=9000">
+    <link rel="icon" type="image/png" href="imagens/favicon.png">
+    <link rel="stylesheet" href="styles.css?v=7000">
 </head>
 <body>
+    <!-- Left Vertical Social Sidebar -->
+    <aside class="social-sidebar">
+        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank">Discord</a>
+        <a href="https://www.youtube.com/@novamato3393" target="_blank">YouTube</a>
+        <div class="social-line"></div>
+    </aside>
 
-    <!-- Top Header Navigation -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="index.html" class="header-brand">
-                <span class="brand-badge">CS2</span>
-                <span class="brand-name">NOVAMATO</span>
-            </a>
+    <!-- Top Header Navigation with Centered PNG Logo -->
+    <header class="header">
+        <div class="container" style="width: 100%;">
+            <nav class="header-nav">
+                <!-- Left Nav Links -->
+                <div class="nav-side">
+                    <a href="index.html" class="nav-link">Início</a>
+                    <a href="index.html#about" class="nav-link">Sobre</a>
+                    <a href="index.html#roster" class="nav-link">Line-up</a>
+                </div>
 
-            <ul class="main-nav">
-                <li><a href="index.html" class="nav-item-link">Home</a></li>
-                <li><a href="cs2.html" class="nav-item-link">CS2</a></li>
-                <li><a href="clash-royale.html" class="nav-item-link">Clash Royale</a></li>
-                <li><a href="minecraft.html" class="nav-item-link active">Minecraft</a></li>
-            </ul>
+                <!-- Centered Brand Logo (Transparent PNG) -->
+                <a href="index.html" class="brand-center">
+                    <img src="imagens/favicon.png" alt="Novamato Esports" class="brand-logo-png">
+                </a>
 
-            <div class="header-right-actions">
-                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn-header-signin">Discord</a>
-                <button class="btn-header-icon" id="themeBtn" aria-label="Alternar Tema">🌓</button>
-            </div>
+                <!-- Right Nav Links -->
+                <div class="nav-side">
+                    <a href="cs2.html" class="nav-link">CS2</a>
+                    <a href="clash-royale.html" class="nav-link">Clash Royale</a>
+                    <a href="minecraft.html" class="nav-link active">Minecraft</a>
+                    <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-lime" style="padding: 0.45rem 1.1rem; font-size: 0.8rem;">Discord</a>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="hero-dominate" style="min-height: 55vh; padding-top: 130px; justify-content: center;">
-        <div class="giant-bg-text" style="top: 50%;">CRAFT</div>
-        <div class="hero-vignette"></div>
-
-        <div class="container" style="position: relative; z-index: 10; text-align: center;">
-            <div class="hero-cs2-pill">Dedicated Minecraft Server & Dynmap</div>
-            <h1 style="font-family: var(--font-heading); font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 900; text-transform: uppercase;">
-                Minecraft <span style="color: var(--accent-red);">Server</span>
+    <!-- MC Hero -->
+    <section class="hero-tactical" style="min-height: 60vh;">
+        <div class="container hero-content">
+            <div class="hero-tag">// DEDICATED SURVIVAL & BUILD SERVER</div>
+            <h1 class="hero-title-big">
+                MINECRAFT<br>
+                <span>COMMUNITY SERVER</span>
             </h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem auto;">
+                Servidor dedicado de alta performance para a comunidade Novamato Esports.
+            </p>
         </div>
     </section>
 
     <!-- IP Box -->
-    <section class="section-dominate">
+    <section class="section">
         <div class="container">
-            <div class="mc-banner-dominate">
+            <div class="mc-card">
                 <div>
-                    <div style="font-family: var(--font-heading); font-size: 0.8rem; font-weight: 900; letter-spacing: 0.15em; color: var(--accent-red); text-transform: uppercase; margin-bottom: 0.3rem;">Servidor Dedicado Minecraft</div>
-                    <div class="mc-banner-ip">46.224.145.80:25565</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem;">IP DO SERVIDOR OFICIAL</div>
+                    <div class="mc-ip">46.224.145.80:25565</div>
                 </div>
-                <button class="btn-arena-red" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
+                <button class="btn btn-lime" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado!')">📋 Copiar IP</button>
             </div>
         </div>
     </section>
 
     <!-- Dynmap Embed Frame -->
-    <section class="section-dominate" style="background: var(--bg-darker); border-top: 1px solid var(--border-color);">
+    <section class="section">
         <div class="container">
-            <div class="section-title-wrap">
-                <div class="sec-kicker">Live 3D World</div>
-                <h2 class="sec-heading">Interactive <span>Dynmap</span></h2>
+            <div class="section-head-center">
+                <h2 class="section-title-big">MAPA <span>DYNMAP 3D</span></h2>
+                <p class="section-subtitle-clean">Visualizador interativo do mundo em tempo real.</p>
             </div>
 
-            <div style="width: 100%; height: 600px; background: var(--bg-card); border: 1px solid var(--border-red); border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);">
+            <div style="width: 100%; height: 600px; background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: var(--radius); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);">
                 <iframe src="http://46.224.145.80:8123" style="width: 100%; height: 100%; border: none;" title="Minecraft Dynmap"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Site Footer -->
-    <footer class="site-footer">
-        <div class="container footer-flex">
-            <span>© 2026 Novamato Esports — Minecraft Division.</span>
-            <div class="footer-links">
-                <a href="index.html" class="footer-link">Home</a>
-                <a href="cs2.html" class="footer-link">CS2</a>
-                <a href="clash-royale.html" class="footer-link">Clash Royale</a>
-                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="footer-link">Discord</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <img src="imagens/favicon.png" alt="Novamato" class="footer-logo">
+            <div class="footer-copy">
+                © 2026 Novamato Esports — Minecraft Division.
             </div>
         </div>
     </footer>
 
-    <script src="script.js?v=9000"></script>
+    <script src="script.js?v=7000"></script>
 </body>
 </html>
