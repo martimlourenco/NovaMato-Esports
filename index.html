@@ -3,148 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novamato Esports — Official Gaming Portal</title>
+    <title>Novamato 95 — Sistema Operativo e Centro de Jogos</title>
     <link rel="icon" type="image/png" href="imagens/favicon.png?v=9999">
     <link rel="stylesheet" href="styles.css?v=9999">
 </head>
 <body>
-    <!-- Left Vertical Social Dock -->
-    <aside class="social-sidebar">
-        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank">Discord</a>
-        <a href="https://www.youtube.com/@novamato3393" target="_blank">YouTube</a>
-        <div class="social-line"></div>
-    </aside>
 
-    <!-- Top Header Navigation -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="index.html" class="brand">
-                <img src="imagens/favicon.png?v=9999" alt="Novamato" class="brand-logo">
-                <span class="brand-text">NOVAMATO <span>ESPORTS</span></span>
-            </a>
+    <!-- 🌌 AMBIENT PARTICLE BACKGROUND CANVAS -->
+    <canvas id="bgCanvas"></canvas>
 
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">Início</a></li>
-                <li><a href="cs2.html" class="nav-link">CS2</a></li>
-                <li><a href="clash-royale.html" class="nav-link">Clash Royale</a></li>
-                <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
-            </ul>
+    <!-- 🖥️ DESKTOP SHORTCUT APPS -->
+    <div id="desktop">
+        <div class="desktop-icon" ondblclick="openWindow('winCS2')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/cs2.svg" class="pixel-icon" alt="CS2"></div>
+            <div class="icon-label">Plantel_CS2.exe</div>
+        </div>
 
-            <div class="nav-actions">
-                <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="btn btn-primary">Entrar no Discord →</a>
+        <div class="desktop-icon" ondblclick="openWindow('winCheckin')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/checkin.svg" class="pixel-icon" alt="Checkin"></div>
+            <div class="icon-label">Presencas_CS2.exe</div>
+        </div>
+
+        <div class="desktop-icon" ondblclick="openWindow('winResults')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/results.svg" class="pixel-icon" alt="Resultados"></div>
+            <div class="icon-label">Resultados_Jogos.log</div>
+        </div>
+
+        <div class="desktop-icon" ondblclick="openWindow('winMinecraft')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/minecraft.svg" class="pixel-icon" alt="Minecraft"></div>
+            <div class="icon-label">Servidor_Minecraft.exe</div>
+        </div>
+
+        <div class="desktop-icon" ondblclick="openWindow('winClash')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/clash.svg" class="pixel-icon" alt="Clash"></div>
+            <div class="icon-label">Clash_Royale.exe</div>
+        </div>
+
+        <div class="desktop-icon" ondblclick="openWindow('winHighlight')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/video.svg" class="pixel-icon" alt="Video"></div>
+            <div class="icon-label">Melhores_Jogadas.mp4</div>
+        </div>
+
+        <div class="desktop-icon" ondblclick="openWindow('winTrading')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/trading.svg" class="pixel-icon" alt="Bolsa"></div>
+            <div class="icon-label">Bolsa_Atletas.exe</div>
+        </div>
+
+        <div class="desktop-icon" ondblclick="openWindow('winAdmin')" onclick="selectIcon(this)">
+            <div class="icon-graphic-box"><img src="icons/admin.svg" class="pixel-icon" alt="Admin"></div>
+            <div class="icon-label">Painel_Admin.exe</div>
+        </div>
+
+        <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="desktop-icon" style="text-decoration: none;">
+            <div class="icon-graphic-box"><img src="icons/discord.svg" class="pixel-icon" alt="Discord"></div>
+            <div class="icon-label">Servidor_Discord.url</div>
+        </a>
+    </div>
+
+    <!-- ====================================================================
+         🪟 WINDOW 1: CS2 DIVISION & MVP MATRIX
+         ==================================================================== -->
+    <div class="win95-window" id="winCS2" style="top: 40px; left: 80px; width: 800px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winCS2')">
+            <div class="titlebar-left">
+                <img src="icons/cs2.svg" class="titlebar-icon" alt="CS2">
+                <span>Plantel_CS2.exe — Divisão de Counter-Strike 2</span>
+            </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winCS2')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winCS2')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winCS2')">✕</button>
             </div>
         </div>
-    </header>
+        <div class="win95-body">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 0.5rem;">[ ESTADO DA EQUIPA: 12 ATLETAS SINCRONIZADOS ]</div>
+            
+            <!-- MVP Spotlight -->
+            <div id="cs2TopPlayer"></div>
 
-    <!-- Dynamic Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-pill">
-                <span class="pulse-dot"></span> ORGANIZAÇÃO COMPETITIVA PORTUGUESA · EST. 2018
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; margin: 1.5rem 0 0.75rem 0;">
+                [ PLANTEL OFICIAL DE ATLETAS ]
             </div>
-            <h1 class="hero-title">
-                NOVAMATO<br>
-                <span>ESPORTS</span>
-            </h1>
-            <p class="hero-subtitle">
-                Atletas dedicados à competição de alto rendimento no Counter-Strike 2, Clash Royale Elite e comunidade ativa de Minecraft.
-            </p>
-            <div class="hero-buttons">
-                <a href="#roster" class="btn btn-primary">Ver Line-up Oficial →</a>
-                <a href="#clutch" class="btn btn-secondary">Highlight de Jogo</a>
-                <a href="#minecraft" class="btn btn-secondary">Servidor Minecraft</a>
-            </div>
-
-            <!-- Stats Grid -->
-            <div class="hero-stats-grid">
-                <div class="hero-stat-box">
-                    <div class="h-val">8+</div>
-                    <div class="h-lbl">Anos de Competição</div>
-                </div>
-                <div class="hero-stat-box">
-                    <div class="h-val">12</div>
-                    <div class="h-lbl">Atletas de CS2</div>
-                </div>
-                <div class="hero-stat-box">
-                    <div class="h-val">10k+</div>
-                    <div class="h-lbl">Troféus Clan CR</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Clutch Video Theater Section -->
-    <section class="section" id="clutch">
-        <div class="container">
-            <div class="section-head">
-                <div>
-                    <h2 class="section-title">HIGHLIGHT <span>CLUTCH CS2</span></h2>
-                    <p class="section-subtitle">Momento de destaque competitivo da equipa de Counter-Strike 2.</p>
-                </div>
-                <a href="cs2.html" class="btn btn-secondary">Ver Divisão CS2 →</a>
-            </div>
-
-            <div class="clutch-theater">
-                <video controls autoplay muted loop playsinline>
-                    <source src="imagens/videocs2.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </section>
-
-    <!-- Roster Line-up Section -->
-    <section class="section" id="roster">
-        <div class="container">
-            <div class="section-head">
-                <div>
-                    <h2 class="section-title">LINE-UP & <span>ROSTER</span></h2>
-                    <p class="section-subtitle">Membros e atletas ativos da Novamato Esports.</p>
-                </div>
-                <div class="tab-chips">
-                    <button class="chip active" data-filter="all">Todos</button>
-                    <button class="chip" data-filter="cs2">Counter-Strike 2</button>
-                    <button class="chip" data-filter="clash">Clash Royale</button>
-                    <button class="chip" data-filter="minecraft">Minecraft</button>
-                </div>
-            </div>
-
-            <div class="roster-grid" id="rosterGrid">
-                <!-- Dynamically loaded by script.js -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Minecraft Server Section -->
-    <section class="section" id="minecraft">
-        <div class="container">
-            <div class="mc-card">
-                <div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem;">SERVIDOR MINECRAFT DEDICADO</div>
-                    <div class="mc-ip">46.224.145.80:25565</div>
-                </div>
-                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                    <button class="btn btn-primary" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado com sucesso!')">📋 Copiar IP</button>
-                    <a href="minecraft.html" class="btn btn-secondary">Explorar Dynmap 3D →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Player Modal Drawer -->
-    <div class="modal" id="playerModal">
-        <div class="modal-dialog">
-            <button class="modal-close">&times;</button>
-            <div id="modalBody"></div>
+            <div class="retro-grid" id="cs2Grid"></div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <img src="imagens/favicon.png?v=9999" alt="Novamato" class="footer-logo">
-            <div class="footer-copy">
-                © 2026 Novamato Esports. Todos os direitos reservados.
+    <!-- ====================================================================
+         🪟 WINDOW 2: SCRIM RSVP & CHECK-IN (LIVE COUNTDOWN)
+         ==================================================================== -->
+    <div class="win95-window" id="winCheckin" style="top: 60px; left: 140px; width: 740px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winCheckin')">
+            <div class="titlebar-left">
+                <img src="icons/checkin.svg" class="titlebar-icon" alt="Checkin">
+                <span>Presencas_CS2.exe — Confirmação de Presenças</span>
             </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winCheckin')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winCheckin')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winCheckin')">✕</button>
+            </div>
+        </div>
+        <div class="win95-body" id="attendanceWidget"></div>
+    </div>
+
+    <!-- ====================================================================
+         🪟 WINDOW 3: MATCH RESULTS & CAPS RECORD BREAKERS
+         ==================================================================== -->
+    <div class="win95-window" id="winResults" style="top: 80px; left: 200px; width: 780px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winResults')">
+            <div class="titlebar-left">
+                <img src="icons/results.svg" class="titlebar-icon" alt="Resultados">
+                <span>Resultados_Jogos.log — Histórico de Partidas e Hall of Fame</span>
+            </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winResults')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winResults')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winResults')">✕</button>
+            </div>
+        </div>
+        <div class="win95-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); margin-bottom: 0.75rem;">[ RESULTADOS RECENTES ]</div>
+                    <div id="matchResultsGrid"></div>
+                </div>
+                <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); margin-bottom: 0.75rem;">[ RECORDISTAS DE PARTIDAS ]</div>
+                    <div id="capsLeaderboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         🪟 WINDOW 4: MINECRAFT NODE & SERVER
+         ==================================================================== -->
+    <div class="win95-window" id="winMinecraft" style="top: 100px; left: 260px; width: 640px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winMinecraft')">
+            <div class="titlebar-left">
+                <img src="icons/minecraft.svg" class="titlebar-icon" alt="Minecraft">
+                <span>Servidor_Minecraft.exe — Servidor Dedicado e Construções</span>
+            </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winMinecraft')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winMinecraft')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winMinecraft')">✕</button>
+            </div>
+        </div>
+        <div class="win95-body">
+            <div style="background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.5rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.25rem;">ENDEREÇO IP DO SERVIDOR:</div>
+                <div style="font-family: var(--font-pixel); font-size: 2.8rem; color: #ffffff;">46.224.145.80:25565</div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="retro-btn retro-btn-accent" onclick="copyText('46.224.145.80:25565', 'IP do Servidor copiado com sucesso!')">📋 Copiar IP</button>
+                <a href="minecraft.html" target="_blank" class="retro-btn">Abrir Mapa 3D Dynmap →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         🪟 WINDOW 5: CLASH ROYALE CLAN
+         ==================================================================== -->
+    <div class="win95-window" id="winClash" style="top: 120px; left: 320px; width: 660px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winClash')">
+            <div class="titlebar-left">
+                <img src="icons/clash.svg" class="titlebar-icon" alt="Clash">
+                <span>Clash_Royale.exe — Clã Novamato Royale</span>
+            </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winClash')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winClash')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winClash')">✕</button>
+            </div>
+        </div>
+        <div class="win95-body">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.3rem;">NOVAMATO ROYALE</h3>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold);">LADDER TOP 10.000+ TROFÉUS 🏆</div>
+                </div>
+                <a href="https://link.clashroyale.com" target="_blank" class="retro-btn retro-btn-accent">Entrar no Clã →</a>
+            </div>
+            <div class="retro-grid" id="clashGrid"></div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         🪟 WINDOW 6: CLUTCH VIDEO THEATER
+         ==================================================================== -->
+    <div class="win95-window" id="winHighlight" style="top: 140px; left: 380px; width: 700px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winHighlight')">
+            <div class="titlebar-left">
+                <img src="icons/video.svg" class="titlebar-icon" alt="Video">
+                <span>Melhores_Jogadas.mp4 — Reprodutor de Vídeo</span>
+            </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winHighlight')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winHighlight')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winHighlight')">✕</button>
+            </div>
+        </div>
+        <div class="win95-body" style="padding: 0.5rem; background: #000;">
+            <div id="clutchVideoContainer"></div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         🪟 WINDOW 7: SECRET ADMIN VAULT
+         ==================================================================== -->
+    <div class="win95-window" id="winAdmin" style="top: 50px; left: 100px; width: 800px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winAdmin')">
+            <div class="titlebar-left">
+                <img src="icons/admin.svg" class="titlebar-icon" alt="Admin">
+                <span>Painel_Admin.exe — Gestão e Controlo</span>
+            </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winAdmin')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winAdmin')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winAdmin')">✕</button>
+            </div>
+        </div>
+        <div class="win95-body" id="adminVaultBody"></div>
+    </div>
+
+    <!-- ====================================================================
+         🪟 WINDOW 8: 📈 WALLSTREET 95 (CS2 ATHLETE STOCK EXCHANGE)
+         ==================================================================== -->
+    <div class="win95-window" id="winTrading" style="top: 65px; left: 130px; width: 880px;">
+        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winTrading')">
+            <div class="titlebar-left">
+                <img src="icons/trading.svg" class="titlebar-icon" alt="Bolsa">
+                <span>Bolsa_Atletas.exe — Mercado de Ações dos Atletas CS2</span>
+            </div>
+            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
+                <button class="win-btn" onclick="minimizeWindow('winTrading')">_</button>
+                <button class="win-btn" onclick="maximizeWindow('winTrading')">□</button>
+                <button class="win-btn close-btn" onclick="closeWindow('winTrading')">✕</button>
+            </div>
+        </div>
+        <div class="win95-body" id="tradingDeskContainer"></div>
+    </div>
+
+    <!-- ====================================================================
+         🎛️ AUTHENTIC WINDOWS 95 START MENU
+         ==================================================================== -->
+    <div id="startMenu">
+        <div class="start-sidebar-banner">
+            <span><strong>NOVAMATO</strong> 95</span>
+        </div>
+        <div class="start-main-container">
+            <div class="start-header-profile">
+                <div class="profile-badge"></div>
+                <div>
+                    <div style="font-weight: 800; font-size: 0.9rem; color: #000000;">NOVAMATO ESPORTS</div>
+                    <div style="font-size: 0.7rem; color: #555555;">Sistema Operativo Novamato 95</div>
+                </div>
+            </div>
+
+            <div class="start-apps-list">
+                <div class="start-app-item" onclick="openWindow('winCS2'); toggleStartMenu();">
+                    <img src="icons/cs2.svg" class="start-app-icon-img" alt="CS2">
+                    <div class="start-app-text">Plantel de CS2</div>
+                </div>
+
+                <div class="start-app-item" onclick="openWindow('winTrading'); toggleStartMenu();">
+                    <img src="icons/trading.svg" class="start-app-icon-img" alt="Bolsa">
+                    <div class="start-app-text">Bolsa de Ações (Trading)</div>
+                </div>
+
+                <div class="start-app-item" onclick="openWindow('winCheckin'); toggleStartMenu();">
+                    <img src="icons/checkin.svg" class="start-app-icon-img" alt="Presenças">
+                    <div class="start-app-text">Presenças de Treinos (RSVP)</div>
+                </div>
+
+                <div class="start-app-item" onclick="openWindow('winResults'); toggleStartMenu();">
+                    <img src="icons/results.svg" class="start-app-icon-img" alt="Resultados">
+                    <div class="start-app-text">Resultados &amp; Hall of Fame</div>
+                </div>
+
+                <div class="start-app-item" onclick="openWindow('winMinecraft'); toggleStartMenu();">
+                    <img src="icons/minecraft.svg" class="start-app-icon-img" alt="Minecraft">
+                    <div class="start-app-text">Servidor de Minecraft</div>
+                </div>
+
+                <div class="start-app-item" onclick="openWindow('winClash'); toggleStartMenu();">
+                    <img src="icons/clash.svg" class="start-app-icon-img" alt="Clash">
+                    <div class="start-app-text">Clã Clash Royale</div>
+                </div>
+
+                <div class="start-app-item" onclick="openWindow('winHighlight'); toggleStartMenu();">
+                    <img src="icons/video.svg" class="start-app-icon-img" alt="Vídeo">
+                    <div class="start-app-text">Vídeo de Melhores Jogadas</div>
+                </div>
+            </div>
+
+            <div class="start-divider"></div>
+
+            <div class="start-footer-bar">
+                <button class="retro-btn" onclick="cycleWallpaper()">
+                    <img src="icons/wallpaper.svg" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;">Mudar Fundo
+                </button>
+                <button class="retro-btn" onclick="openWindow('winAdmin'); toggleStartMenu();">
+                    <img src="icons/admin.svg" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;">Painel Admin
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🏴 TOP-RIGHT HEADER SUITE: LIVE EVENT NOTICE + VNDL BRAND -->
+    <div class="top-header-suite">
+        <!-- 🚨 LIVE EVENT COUNTDOWN BADGE (BESIDE VNDL) -->
+        <div id="liveEventBanner" class="retro-event-banner" onclick="openWindow('winCheckin')" title="Clica para abrir a Convocatória">
+            <div class="event-banner-pulse"></div>
+            <div class="event-banner-content">
+                <div class="event-banner-top-row">
+                    <span class="event-banner-badge">⏱️ PRÓXIMO CONFRONTO</span>
+                    <span class="event-banner-title" id="bannerEventTitle">A carregar...</span>
+                </div>
+                <div class="event-banner-timer" id="bannerEventCountdown">FALTAM: --:--:--</div>
+            </div>
+        </div>
+
+        <!-- 🏴 VNDL BRAND WATERMARK CORNER -->
+        <div id="vndlBrandCorner" class="vndl-brand-badge" title="MARCA VNDL">
+            <div class="vndl-logo-wrap">
+                <span class="vndl-logo-text">VNDL</span>
+                <span class="vndl-subtext">MARCA OFICIAL</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 💾 RETRO TASKBAR -->
+    <footer id="taskbar">
+        <div class="taskbar-left">
+            <button class="start-btn" id="startBtn" onclick="toggleStartMenu()">
+                <img src="icons/win95_logo.svg" style="width: 18px; height: 18px;" alt="Logo">
+                <span>Iniciar</span>
+            </button>
+            <div class="taskbar-tabs" id="taskbarTabs"></div>
+        </div>
+
+        <div class="system-tray">
+            <span class="vndl-tray-tag">VNDL</span>
+            <span style="color: #008000; font-weight: 900;">● ONLINE</span>
+            <span id="systemClock">00:00:00</span>
         </div>
     </footer>
 

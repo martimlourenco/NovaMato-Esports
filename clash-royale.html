@@ -54,14 +54,16 @@
 
     <!-- CR Roster Grid -->
     <section class="section">
-        <div class="section-head">
-            <div>
-                <h2 class="section-title">CLAN <span>MEMBERS</span></h2>
-                <p class="section-subtitle">Line-up oficial da divisão de Clash Royale.</p>
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">CLAN <span>MEMBERS</span></h2>
+                    <p class="section-subtitle">Line-up oficial de 7 atletas da divisão de Clash Royale.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="roster-grid" id="crGrid"></div>
+            <div class="roster-grid" id="crGrid"></div>
+        </div>
     </section>
 
     <!-- Modal -->
@@ -93,14 +95,17 @@
                     card.className = 'card';
                     card.innerHTML = `
                         <div class="card-top">
-                            <div>
-                                <div class="card-name">${p.name}</div>
-                                <div class="card-role">${p.role} · ${p.tag}</div>
+                            <div style="width: 100%;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                                    <span class="card-badge" style="font-size: 0.72rem;">${p.role}</span>
+                                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">${p.tag}</span>
+                                </div>
+                                <div class="card-name" style="font-size: 1.2rem;">${p.name}</div>
                             </div>
                         </div>
                         <div class="card-bottom">
                             <span class="card-badge">Clash Royale</span>
-                            <span style="font-weight: 700; color: var(--accent-bright);">🏆 ${p.trophies}</span>
+                            <span style="font-weight: 800; color: var(--accent-bright);">🏆 ${p.trophies}</span>
                         </div>
                     `;
                     card.addEventListener('click', () => openModal({ ...p, game: 'Clash Royale', type: 'clash' }));

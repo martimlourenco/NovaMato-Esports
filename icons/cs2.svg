@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
+  <!-- CS2 Pixel Art: Iconic Counter-Strike Crosshairs & Defuse Bomb / CT Helmet -->
+  <!-- Background Shield / Box -->
+  <rect x="2" y="2" width="28" height="28" fill="#0f172a" rx="2"/>
+  <rect x="3" y="3" width="26" height="26" fill="#1e293b"/>
+  
+  <!-- CS Orange Badge Header -->
+  <rect x="3" y="3" width="26" height="4" fill="#ff6b00"/>
+  <rect x="5" y="4" width="2" height="2" fill="#ffffff"/>
+  <rect x="8" y="4" width="2" height="2" fill="#ffffff"/>
+  <rect x="11" y="4" width="2" height="2" fill="#ffffff"/>
+  
+  <!-- Tactical Crosshair Outer Ring (Orange & Green) -->
+  <rect x="11" y="10" width="10" height="2" fill="#ff6b00"/>
+  <rect x="11" y="24" width="10" height="2" fill="#ff6b00"/>
+  <rect x="7" y="14" width="2" height="8" fill="#ff6b00"/>
+  <rect x="23" y="14" width="2" height="8" fill="#ff6b00"/>
+  
+  <!-- Crosshair Spikes -->
+  <rect x="15" y="8" width="2" height="4" fill="#00ff66"/>
+  <rect x="15" y="24" width="2" height="4" fill="#00ff66"/>
+  <rect x="5" y="17" width="4" height="2" fill="#00ff66"/>
+  <rect x="23" y="17" width="4" height="2" fill="#00ff66"/>
+  
+  <!-- Center Target Dot & CS2 Silhouette -->
+  <rect x="14" y="16" width="4" height="4" fill="#ffffff"/>
+  <rect x="15" y="17" width="2" height="2" fill="#ff0000"/>
+
+  <!-- "CS2" Text Badge at bottom -->
+  <rect x="4" y="25" width="24" height="3" fill="#000000"/>
+  <!-- C -->
+  <rect x="6" y="25" width="3" height="1" fill="#ffaa00"/>
+  <rect x="6" y="26" width="1" height="1" fill="#ffaa00"/>
+  <rect x="6" y="27" width="3" height="1" fill="#ffaa00"/>
+  <!-- S -->
+  <rect x="10" y="25" width="3" height="1" fill="#ffaa00"/>
+  <rect x="10" y="26" width="2" height="1" fill="#ffaa00"/>
+  <rect x="11" y="27" width="2" height="1" fill="#ffaa00"/>
+  <!-- 2 -->
+  <rect x="14" y="25" width="3" height="1" fill="#00ff66"/>
+  <rect x="16" y="26" width="1" height="1" fill="#00ff66"/>
+  <rect x="14" y="27" width="3" height="1" fill="#00ff66"/>
+  
+  <!-- 3D Bevel Border -->
+  <path d="M2 2h28v1H2z M2 2v28h1V2z" fill="#ffffff"/>
+  <path d="M29 3v27h1V2h-1z M2 29h28v1H2z" fill="#000000"/>
+</svg>

@@ -18,7 +18,7 @@
     <!-- Top Header Navigation -->
     <header class="header">
         <div class="container header-inner">
-            <a href="index.html" class="brand">
+            <a href="index.html" class="brand" title="Clique para início (ou 5 cliques rápidos para Painel de Admin)">
                 <img src="imagens/favicon.png?v=9999" alt="Novamato" class="brand-logo">
                 <span class="brand-text">NOVAMATO <span>ESPORTS</span></span>
             </a>
@@ -52,6 +52,15 @@
         </div>
     </section>
 
+    <!-- Top Rated Player (MVP) Showcase Section -->
+    <section class="top-player-section">
+        <div class="container">
+            <div id="cs2TopPlayer">
+                <!-- Dynamically loaded from CS2_TOP_PLAYER config in script.js -->
+            </div>
+        </div>
+    </section>
+
     <!-- Video Clutch Section -->
     <section class="section">
         <div class="container">
@@ -62,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="clutch-theater">
+            <div class="clutch-theater" id="clutchVideoContainer">
                 <video controls autoplay muted loop playsinline>
                     <source src="imagens/videocs2.mp4" type="video/mp4">
                 </video>
@@ -76,7 +85,7 @@
             <div class="section-head">
                 <div>
                     <h2 class="section-title">12 CS2 <span>PLAYERS</span></h2>
-                    <p class="section-subtitle">Clica no cartão de um atleta para ver as estatísticas e perfil Steam.</p>
+                    <p class="section-subtitle">Clica no cartão de um atleta para ver o perfil Steam e estatísticas reais no Leetify.</p>
                 </div>
             </div>
 
@@ -116,18 +125,39 @@
                             <div class="card-avatar" style="background-image: url('${p.photo}');"></div>
                             <div>
                                 <div class="card-name">${p.name}</div>
-                                <div class="card-role">${p.role}</div>
+                                <div style="font-size: 0.8rem; color: var(--text-dim);">Novamato CS2</div>
                             </div>
                         </div>
                         <div class="card-bottom">
                             <span class="card-badge">CS2</span>
-                            <span style="font-weight: 700; color: var(--accent-bright);">Rating: ${p.rating}</span>
+                            <span style="font-weight: 600; color: var(--accent-bright); font-size: 0.82rem;">Ver Perfil →</span>
                         </div>
                     `;
-                    card.addEventListener('click', () => openModal({ ...p, game: 'CS2', type: 'cs2' }));
+                    card.addEventListener('click', () => {
+                        const modal = document.getElementById('playerModal');
+                        const body = document.getElementById('modalBody');
+                        if (!modal || !body) return;
+                        body.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+                                <div style="width: 56px; height: 56px; border-radius: 12px; background: url('${p.photo}') center/cover; border: 1px solid var(--border-color);"></div>
+                                <div>
+                                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 900;">${p.name}</h3>
+                                    <div style="font-size: 0.85rem; color: var(--accent-bright); font-weight: 700;">Counter-Strike 2 Athlete</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                                <a href="${p.steamUrl}" target="_blank" class="btn btn-primary" style="flex: 1;">Perfil Steam →</a>
+                                <a href="${p.trackerUrl}" target="_blank" class="btn btn-secondary" style="flex: 1;">Leetify Stats →</a>
+                            </div>
+                        `;
+                        modal.classList.add('active');
+                    });
                     grid.appendChild(card);
                 });
             }
+
+            const closeBtn = document.querySelector('#playerModal .modal-close');
+            if (closeBtn) closeBtn.onclick = () => document.getElementById('playerModal').classList.remove('active');
         });
     </script>
 </body>

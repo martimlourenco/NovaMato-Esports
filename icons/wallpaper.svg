@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
+  <!-- Windows Wallpaper: Desktop CRT Monitor with Paint Palette & Mountain Sunset -->
+  <!-- Monitor Casing (Retro Beige / Platinum) -->
+  <rect x="3" y="4" width="26" height="19" fill="#d4d4d8"/>
+  <rect x="4" y="5" width="24" height="17" fill="#e4e4e7"/>
+  
+  <!-- CRT Screen (Dark Cyber Blue) -->
+  <rect x="5" y="6" width="22" height="15" fill="#0369a1"/>
+  
+  <!-- Screen Landscape: Sun & Mountains -->
+  <circle cx="16" cy="11" r="3" fill="#facc15"/>
+  <!-- Mountain 1 (Green) -->
+  <path d="M5 21l6-8 6 8z" fill="#15803d"/>
+  <!-- Mountain 2 (Teal) -->
+  <path d="M14 21l6-6 7 6z" fill="#0f766e"/>
+  
+  <!-- Monitor Stand Base -->
+  <rect x="13" y="23" width="6" height="3" fill="#a1a1aa"/>
+  <rect x="9" y="26" width="14" height="2" fill="#71717a"/>
+  <rect x="10" y="27" width="12" height="1" fill="#52525b"/>
+
+  <!-- 3D Bevel -->
+  <path d="M3 4h26v1H3z M3 4v19h1V4z" fill="#ffffff"/>
+  <path d="M28 5v18h1V4h-1z M3 22h26v1H3z" fill="#71717a"/>
+</svg>

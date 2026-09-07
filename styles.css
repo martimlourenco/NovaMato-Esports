@@ -1,33 +1,47 @@
-/* Novamato Esports 2026 — Super Dynamic & Beautiful Modern Esports System */
+/* Novamato 95 Cyber-OS — High-End Aesthetic Architecture */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&family=Space+Grotesk:wght@600;700;800&family=VT323&display=swap');
 
 :root {
-    --bg-dark: #07080b;
-    --bg-card: rgba(16, 18, 25, 0.75);
-    --bg-card-hover: rgba(24, 27, 38, 0.9);
+    /* Authentic Windows 95 / 98 Retro Palette */
+    --win95-bg: #008080;
+    --win95-gray: #c0c0c0;
+    --win95-light: #ffffff;
+    --win95-shadow: #808080;
+    --win95-dark: #000000;
     
-    --accent: #10b981;
-    --accent-bright: #34d399;
-    --accent-glow: rgba(16, 185, 129, 0.35);
-    --accent-bg: rgba(16, 185, 129, 0.1);
+    --win95-title-active: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+    --win95-title-inactive: linear-gradient(90deg, #808080 0%, #b5b5b5 100%);
     
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-glow: rgba(16, 185, 129, 0.35);
+    --os-win-bg: #c0c0c0;
+    --os-card-bg: #dcdcdc;
+    --os-card-hover: #e8e8e8;
     
-    --text-main: #ffffff;
-    --text-muted: #94a3b8;
+    /* Neon Cyber Accents for gaming data */
+    --accent: #008000;
+    --accent-bright: #00df81;
+    --accent-glow: rgba(0, 223, 129, 0.4);
     
-    --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    --font-mono: 'Space Grotesk', monospace;
-    --font-body: 'Inter', -apple-system, sans-serif;
+    --cyber-cyan: #000080;
+    --cyber-purple: #800080;
+    --gold: #b8860b;
+    --danger: #cc0000;
     
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
+    /* Classic 3D Bevel Borders */
+    --border-subtle: 1px solid #808080;
+    --border-bevel: 2px solid;
+    --border-accent: 1px solid #008080;
     
-    --container-max: 1120px;
-    --transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Typography */
+    --font-heading: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, sans-serif;
+    --font-mono: 'Space Grotesk', 'Courier New', monospace;
+    --font-pixel: 'VT323', monospace;
+    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --transition: 0.15s ease;
 }
 
 *, *::before, *::after {
@@ -36,570 +50,1024 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background-color: var(--bg-dark);
-    background-image: 
-        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 10% 30%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 70%, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
-    background-attachment: fixed;
-    color: var(--text-main);
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #245edb url('imagens/win_xp_bliss.jpg') no-repeat center center fixed;
+    background-size: cover;
     font-family: var(--font-body);
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
+    color: #000000;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-image 0.3s ease;
 }
 
-.container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 1.75rem;
-    position: relative;
-}
-
-/* LEFT VERTICAL FLOATING SOCIAL DOCK */
-.social-sidebar {
-    position: fixed;
-    left: 28px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.2rem;
-    z-index: 900;
-}
-
-.social-sidebar a {
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    text-decoration: none;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    transition: all var(--transition);
-}
-
-.social-sidebar a:hover {
-    color: var(--accent-bright);
-    transform: rotate(180deg) scale(1.12);
-    text-shadow: 0 0 10px var(--accent-glow);
-}
-
-.social-line {
-    width: 2px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    border-radius: 2px;
-    box-shadow: 0 0 8px var(--accent-glow);
-}
-
-/* TOP UNIFORM HEADER */
-.header {
+/* INTERACTIVE PARTICLE CANVAS BACKGROUND */
+#bgCanvas {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 76px;
-    background: rgba(7, 8, 11, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+/* ====================================================================
+   🖥️ DESKTOP ENVIRONMENT & CLASSIC WINDOWS 95 ICONS
+   ==================================================================== */
+#desktop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 42px);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 95px);
+    grid-auto-rows: 100px;
+    gap: 1.25rem 1.5rem;
+    z-index: 10;
+}
+
+.desktop-icon {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.4rem 0.3rem;
+    border-radius: 2px;
+    background: transparent;
+    border: 1px dotted transparent;
+    transition: all 0.1s ease;
 }
 
-.header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+.desktop-icon:hover {
+    background: rgba(0, 0, 128, 0.25);
+    border: 1px dotted rgba(255, 255, 255, 0.5);
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    text-decoration: none;
-    color: var(--text-main);
-    transition: transform var(--transition);
+.desktop-icon:active, .desktop-icon.selected {
+    background: rgba(0, 0, 128, 0.65);
+    border: 1px dotted #ffffff;
 }
 
-.brand:hover {
-    transform: scale(1.03);
-}
-
-.brand-logo {
+.icon-graphic-box {
     width: 44px;
     height: 44px;
-    object-fit: contain;
-    background: transparent;
-    border: none;
-    filter: drop-shadow(0 0 10px var(--accent-glow));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+    filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.7));
+    transition: transform 0.1s ease;
 }
 
-.brand-text {
-    font-family: var(--font-heading);
-    font-weight: 900;
-    font-size: 1.25rem;
-    letter-spacing: -0.02em;
+.desktop-icon:hover .icon-graphic-box {
+    transform: scale(1.08);
 }
 
-.brand-text span {
-    color: var(--accent);
+.icon-label {
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 2px 4px;
+    border-radius: 2px;
+    text-shadow: 1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000;
 }
 
-.nav-links {
+.desktop-icon.selected .icon-label {
+    background: #000080;
+    color: #ffffff;
+}
+
+.pixel-icon {
+    width: 38px;
+    height: 38px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+}
+
+.titlebar-icon {
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    vertical-align: middle;
+}
+
+.start-app-icon-img {
+    width: 22px;
+    height: 22px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* ====================================================================
+   🪟 AUTHENTIC WINDOWS 95 / 98 WINDOWS (BEVELED 3D RETRO)
+   ==================================================================== */
+.win95-window {
+    position: absolute;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    box-shadow: 2px 2px 0px #000000;
+    border-radius: 0;
+    padding: 3px;
+    min-width: 350px;
+    max-width: 95vw;
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.win95-window.active-window {
+    display: flex;
+}
+
+/* TITLEBAR */
+.win95-titlebar {
+    background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+    color: #ffffff;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    user-select: none;
+    margin-bottom: 3px;
+}
+
+.win95-window.inactive-focus .win95-titlebar {
+    background: linear-gradient(90deg, #808080 0%, #b5b5b5 100%);
+    color: #dcdcdc;
+}
+
+.titlebar-left {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    list-style: none;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 0.3rem 0.5rem;
-    border-radius: 30px;
-    border: 1px solid var(--border-color);
-}
-
-.nav-link {
-    color: var(--text-muted);
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 0.45rem 1rem;
-    border-radius: 20px;
-    transition: all var(--transition);
-}
-
-.nav-link:hover, .nav-link.active {
-    color: var(--text-main);
-    background: rgba(16, 185, 129, 0.15);
-    color: var(--accent-bright);
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-/* DYNAMIC BUTTONS */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.65rem 1.4rem;
-    font-family: var(--font-heading);
-    font-size: 0.88rem;
-    font-weight: 700;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    text-decoration: none;
-    transition: all var(--transition);
-    border: 1px solid transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.btn-primary {
-    background: var(--accent);
-    color: #07080b;
-    box-shadow: 0 4px 18px var(--accent-glow);
-}
-
-.btn-primary:hover {
-    background: var(--accent-bright);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
-}
-
-.btn-secondary {
-    background: var(--bg-card);
-    color: var(--text-main);
-    border-color: var(--border-color);
-    backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent-bright);
-    transform: translateY(-2px);
-    background: var(--bg-card-hover);
-}
-
-/* DYNAMIC HERO SECTION */
-.hero {
-    padding-top: 150px;
-    padding-bottom: 5rem;
-    text-align: center;
-    position: relative;
-}
-
-.hero-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.35rem 1rem;
-    border-radius: 30px;
-    background: var(--accent-bg);
-    border: 1px solid var(--border-glow);
-    color: var(--accent-bright);
-    font-size: 0.82rem;
-    font-weight: 700;
-    font-family: var(--font-mono);
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0 15px var(--accent-glow);
-}
-
-.pulse-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-    animation: pulseGlow 2s infinite;
-}
-
-@keyframes pulseGlow {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.6; }
-}
-
-.hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.25rem;
-}
-
-.hero-title span {
-    background: linear-gradient(135deg, #10b981 0%, #6ee7b7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-subtitle {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    max-width: 620px;
-    margin: 0 auto 2.25rem auto;
-}
-
-.hero-buttons {
+.titlebar-controls {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 3.5rem;
+    gap: 3px;
 }
 
-.hero-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    backdrop-filter: blur(12px);
-}
-
-.hero-stat-box .h-val {
-    font-family: var(--font-heading);
-    font-size: 2rem;
+.win-btn {
+    width: 18px;
+    height: 16px;
+    border-radius: 0;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    color: #000000;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
     font-weight: 900;
-    color: var(--accent-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     line-height: 1;
 }
 
-.hero-stat-box .h-lbl {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-top: 0.35rem;
+.win-btn:active {
+    border-color: #404040 #ffffff #ffffff #404040;
 }
 
-/* SECTION HEADINGS */
-.section {
-    padding: 5rem 0;
-    border-top: 1px solid var(--border-color);
+/* WINDOW CONTENT AREA */
+.win95-body {
+    background: #0d121d;
+    color: #f1f5f9;
+    padding: 1.25rem;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    overflow-y: auto;
+    max-height: 75vh;
+    font-size: 0.88rem;
 }
 
-.section-head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.section-title {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-}
-
-.section-title span {
-    color: var(--accent-bright);
-}
-
-.section-subtitle {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-}
-
-/* CLUTCH VIDEO THEATER (16:9 Native Ratio, No Cropping) */
-.clutch-theater {
-    position: relative;
-    width: 100%;
-    max-width: 980px;
-    margin: 0 auto;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background: #000000;
-    border: 1px solid var(--border-glow);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(16, 185, 129, 0.2);
-    aspect-ratio: 16 / 9;
-}
-
-.clutch-theater video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain;
-    background: #000000;
-}
-
-/* FILTER CHIPS */
-.tab-chips {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-}
-
-.chip {
-    padding: 0.5rem 1.1rem;
-    border-radius: 25px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
-    font-size: 0.85rem;
+/* ====================================================================
+   🕹️ CONTROLS & WIDGETS
+   ==================================================================== */
+.retro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 5px 12px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    color: #000000;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--transition);
+    text-decoration: none;
+    border-radius: 0;
 }
 
-.chip:hover, .chip.active {
-    background: var(--accent);
-    color: #07080b;
-    border-color: var(--accent);
-    box-shadow: 0 0 15px var(--accent-glow);
+.retro-btn:hover {
+    background: #d4d4d4;
 }
 
-/* ROSTER CARDS GRID */
-.roster-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
+.retro-btn:active {
+    border-color: #404040 #ffffff #ffffff #404040;
+    background: #b0b0b0;
 }
 
-.card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1.4rem;
-    cursor: pointer;
-    transition: all var(--transition);
-    position: relative;
-    backdrop-filter: blur(10px);
+.retro-btn-accent {
+    background: #008080;
+    border-color: #55d6d6 #004040 #004040 #55d6d6;
+    color: #ffffff;
+    font-weight: 800;
 }
 
-.card:hover {
-    border-color: var(--border-glow);
-    transform: translateY(-4px);
-    background: var(--bg-card-hover);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.12);
+.retro-btn-accent:hover {
+    background: #009999;
 }
 
-.card-top {
+.retro-btn-accent:active {
+    border-color: #004040 #55d6d6 #55d6d6 #004040;
+}
+
+.retro-input, .retro-select {
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+    border-radius: 0;
+    color: #000000;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    padding: 5px 8px;
+    outline: none;
+}
+
+.retro-input:focus, .retro-select:focus {
+    border-color: #000080;
+}
+
+/* MVP CYBER BANNER */
+.retro-mvp-box {
+    background: rgba(14, 20, 32, 0.95);
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+    padding: 1.25rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    position: relative;
 }
 
-.card-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
+.retro-mvp-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 0;
+    border: 2px solid #00df81;
     background-size: cover;
     background-position: center;
-    border: 1px solid var(--border-color);
+    box-shadow: 0 0 15px var(--accent-glow);
     flex-shrink: 0;
 }
 
-.card-name {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
+.retro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.85rem;
 }
 
-.card-role {
-    font-size: 0.82rem;
-    color: var(--text-muted);
+.retro-card {
+    background: #151c2c;
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+    padding: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition);
 }
 
-.card-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 0.85rem;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.85rem;
+.retro-card:hover {
+    background: #1c263c;
+    border-color: #00df81;
 }
 
-.card-badge {
-    padding: 0.25rem 0.65rem;
-    border-radius: 6px;
-    background: var(--accent-bg);
-    color: var(--accent-bright);
-    font-weight: 700;
-    font-size: 0.78rem;
+/* ATOMIC RETRO COUNTDOWN */
+.retro-timer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.65rem;
+    margin: 1.25rem 0;
 }
 
-/* MINECRAFT HUB */
-.mc-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-glow);
-    border-radius: var(--radius-lg);
-    padding: 2.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.1);
-    backdrop-filter: blur(12px);
+.retro-timer-block {
+    background: #000000;
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+    padding: 0.9rem 0.4rem;
+    text-align: center;
 }
 
-.mc-ip {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
+.retro-timer-num {
+    font-family: var(--font-pixel);
+    font-size: 3.2rem;
     font-weight: 900;
-    color: var(--accent-bright);
-    text-shadow: 0 0 12px var(--accent-glow);
+    color: #00f59b;
+    line-height: 0.85;
+    text-shadow: 0 0 15px rgba(0, 245, 155, 0.6);
 }
 
-/* MODAL */
-.modal {
+.retro-timer-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-top: 0.35rem;
+}
+
+/* SQUAD SLOTS */
+.retro-squad-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+}
+
+.retro-slot-box {
+    background: #111723;
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+    padding: 0.75rem;
+}
+
+.retro-slot-box.filled {
+    border-style: solid;
+    border-color: #00df81;
+    background: rgba(0, 223, 129, 0.08);
+}
+
+/* ====================================================================
+   💾 AUTHENTIC WINDOWS 95 TASKBAR & START MENU
+   ==================================================================== */
+#taskbar {
     position: fixed;
-    inset: 0;
-    background: rgba(7, 8, 11, 0.85);
-    backdrop-filter: blur(12px);
-    z-index: 2000;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 40px;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition);
+    justify-content: space-between;
+    padding: 2px 6px;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.modal.active {
-    opacity: 1;
-    pointer-events: auto;
+.taskbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.modal-dialog {
-    background: #11131a;
-    border: 1px solid var(--border-glow);
-    border-radius: var(--radius-lg);
-    width: 100%;
-    max-width: 520px;
-    padding: 2rem;
-    position: relative;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px var(--accent-glow);
-}
-
-.modal-close {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1.5rem;
+.start-btn {
+    height: 30px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #000000;
     cursor: pointer;
 }
 
-.modal-close:hover {
+.start-btn:hover {
+    background: #d4d4d4;
+}
+
+.start-btn:active, .start-btn.open {
+    border-color: #404040 #ffffff #ffffff #404040;
+    background: #b5b5b5;
+}
+
+.taskbar-tabs {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+}
+
+.taskbar-tab {
+    height: 28px;
+    padding: 0 8px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    white-space: nowrap;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.taskbar-tab.active {
+    border-color: #404040 #ffffff #ffffff #404040;
+    background: #dfdfdf;
+    font-weight: 800;
+}
+
+.system-tray {
+    height: 28px;
+    padding: 0 8px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* ====================================================================
+   🎛️ AUTHENTIC WINDOWS 95 START MENU (CLASSIC VERTICAL STRIP)
+   ==================================================================== */
+#startMenu {
+    position: fixed;
+    bottom: 42px;
+    left: 4px;
+    width: 320px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+    display: none;
+    flex-direction: row;
+    z-index: 2000;
+    overflow: hidden;
+}
+
+#startMenu.open {
+    display: flex;
+}
+
+/* Classic vertical brand banner */
+.start-sidebar-banner {
+    width: 34px;
+    background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 12px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.start-sidebar-banner strong {
+    font-weight: 900;
+}
+
+.start-main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #c0c0c0;
+}
+
+.start-header-profile {
+    padding: 0.6rem 0.8rem;
+    background: #d8d8d8;
+    border-bottom: 1px solid #808080;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.profile-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 0;
+    background: url('imagens/favicon.png') center/contain no-repeat;
+    border: 1px solid #808080;
+}
+
+.start-apps-list {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+}
+
+.start-app-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.45rem 0.85rem;
+    cursor: pointer;
+    color: #000000;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.start-app-item:hover {
+    background: #000080;
+    color: #ffffff;
+}
+
+.start-app-icon {
+    font-size: 1.15rem;
+    width: 22px;
+    text-align: center;
+}
+
+.start-divider {
+    height: 2px;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+    margin: 4px 0;
+}
+
+.start-footer-bar {
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #c0c0c0;
 }
 
 /* TOAST */
 .toast-box {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 52px;
+    right: 1.5rem;
     z-index: 3000;
 }
 
 .toast {
-    background: #11131a;
-    border: 1px solid var(--accent);
-    color: #ffffff;
-    padding: 0.85rem 1.4rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    color: #000000;
+    font-family: var(--font-body);
+    padding: 0.6rem 1.1rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px var(--accent-glow);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* FOOTER */
-.footer {
-    padding: 4rem 0 3rem 0;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-    background: rgba(4, 5, 8, 0.9);
+/* ====================================================================
+   📈 WALLSTREET 95 TRADING DESK & STOCK EXCHANGE STYLES
+   ==================================================================== */
+.ticker-strip {
+    background: #000000;
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+    padding: 0.4rem 0.6rem;
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    margin-bottom: 1rem;
+    white-space: nowrap;
 }
 
-.footer-logo {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
+.ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.ticker-up {
+    color: #00df81;
+    font-weight: 700;
+}
+
+.ticker-down {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.trading-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.65rem;
     margin-bottom: 1.25rem;
-    filter: drop-shadow(0 0 10px var(--accent-glow));
 }
 
-.footer-copy {
-    color: var(--text-muted);
-    font-size: 0.85rem;
+.trading-kpi-card {
+    background: #080d1a;
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+    padding: 0.85rem;
+    text-align: center;
 }
 
-@media (max-width: 992px) {
-    .social-sidebar { display: none; }
-    .hero-stats-grid { grid-template-columns: 1fr; }
+.trading-kpi-title {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.trading-kpi-val {
+    font-family: var(--font-mono);
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.trading-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 0.85rem;
+    border-bottom: 2px solid #808080;
+    padding-bottom: 2px;
+}
+
+.trading-tab-btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    padding: 4px 12px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.trading-tab-btn.active {
+    background: #000080;
+    color: #ffffff;
+    border-color: #000080;
+}
+
+.trading-table-wrap {
+    background: #000000;
+    border: 2px solid;
+    border-color: #404040 #ffffff #ffffff #404040;
+    overflow-x: auto;
+    max-height: 400px;
+}
+
+.trading-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: #ffffff;
+}
+
+.trading-table th {
+    background: #1e293b;
+    color: #94a3b8;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #334155;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.trading-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid #1e293b;
+}
+
+.trading-table tr:hover td {
+    background: #0d1b2a;
+}
+
+.trade-btn-buy {
+    background: #008000;
+    border: 2px solid;
+    border-color: #55ff55 #004000 #004000 #55ff55;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.trade-btn-buy:active {
+    border-color: #004000 #55ff55 #55ff55 #004000;
+}
+
+.trade-btn-sell {
+    background: #cc0000;
+    border: 2px solid;
+    border-color: #ff6666 #660000 #660000 #ff6666;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.trade-btn-sell:active {
+    border-color: #660000 #ff6666 #ff6666 #660000;
+}
+
+.faceit-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 900;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    letter-spacing: 0.5px;
+}
+
+.trade-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+}
+
+.trade-modal-box {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.8);
+    width: 380px;
+    padding: 4px;
+}
+
+/* ====================================================================
+   🏴 TOP-RIGHT HEADER SUITE (EVENT COUNTDOWN BESIDE VNDL BRAND)
+   ==================================================================== */
+.top-header-suite {
+    position: fixed;
+    top: 12px;
+    right: 14px;
+    z-index: 1000;
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    user-select: none;
+}
+
+.vndl-brand-badge {
+    background: rgba(10, 14, 23, 0.88);
+    border: 2px solid;
+    border-color: #00df81 #004d2c #004d2c #00df81;
+    padding: 6px 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), inset 0 0 10px rgba(0, 223, 129, 0.15);
+    backdrop-filter: blur(8px);
+    cursor: default;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vndl-brand-badge:hover {
+    box-shadow: 0 6px 20px rgba(0, 223, 129, 0.35), inset 0 0 15px rgba(0, 223, 129, 0.3);
+    border-color: #00ff95 #007a45 #007a45 #00ff95;
+    transform: translateY(-2px);
+}
+
+.vndl-logo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.1;
+}
+
+.vndl-logo-text {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(0, 223, 129, 0.6), 2px 2px 0px #000;
+}
+
+.vndl-subtext {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #00df81;
+    text-transform: uppercase;
+}
+
+.vndl-tray-tag {
+    background: #000000;
+    color: #00df81;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    padding: 1px 5px;
+    border: 1px solid #00df81;
+    border-radius: 2px;
+}
+
+/* ⏱️ LIVE EVENT ALERT & COUNTDOWN (BESIDE VNDL) */
+.retro-event-banner {
+    background: rgba(13, 18, 29, 0.88);
+    border: 2px solid;
+    border-color: #00df81 #004d2c #004d2c #00df81;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), inset 0 0 10px rgba(0, 223, 129, 0.12);
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+}
+
+.retro-event-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 223, 129, 0.35), inset 0 0 15px rgba(0, 223, 129, 0.25);
+    border-color: #00ff95;
+}
+
+.event-banner-pulse {
+    width: 9px;
+    height: 9px;
+    background: #00df81;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00df81;
+    animation: bannerPulse 1.5s infinite;
+    flex-shrink: 0;
+}
+
+.event-banner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+
+.event-banner-top-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.event-banner-badge {
+    background: #000000;
+    color: #00df81;
+    border: 1px solid #00df81;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 900;
+    padding: 1px 4px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.event-banner-title {
+    color: #cbd5e1;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    max-width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-banner-timer {
+    color: #00f0ff;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.5);
+}
+
+@keyframes bannerPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 223, 129, 0.7); }
+    70% { transform: scale(1.2); box-shadow: 0 0 0 6px rgba(0, 223, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 223, 129, 0); }
 }
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-title { font-size: 2.5rem; }
-    .mc-card { flex-direction: column; text-align: center; }
+    #startMenu { width: 92vw; left: 4vw; }
+    .win95-window { width: 96vw !important; left: 2vw !important; top: 10px !important; }
+    .taskbar-tabs { display: none; }
+    .trading-kpi-grid { grid-template-columns: 1fr 1fr; }
+    .top-header-suite { top: 8px; right: 8px; gap: 6px; }
+    .event-banner-title { max-width: 110px; font-size: 0.68rem; }
+    .event-banner-timer { font-size: 0.68rem; }
+    .vndl-brand-badge { padding: 4px 8px; }
+    .vndl-logo-text { font-size: 1.05rem; }
 }
+
+/* ====================================================================
+   📢 EVENT CREATION RETRO POPUP NOTIFICATION MODAL
+   ==================================================================== */
+.event-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+    animation: fadeInPopup 0.2s ease-out forwards;
+}
+
+.event-popup-box {
+    background: #c0c0c0;
+    border: 3px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow: 6px 6px 0px #000000, 0 10px 30px rgba(0, 223, 129, 0.25);
+    width: 440px;
+    max-width: 92vw;
+    padding: 3px;
+    animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.event-popup-header {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 50%, #b91c1c 100%);
+    color: #ffffff;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.event-popup-body {
+    background: #0b0f19;
+    padding: 1.25rem;
+    border: 2px inset #808080;
+    color: #ffffff;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+
+

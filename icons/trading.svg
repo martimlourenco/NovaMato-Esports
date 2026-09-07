@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
+  <!-- Stock Market / WallStreet 95: High-Contrast Rising Candlesticks & Bull Market Line -->
+  <!-- Monitor / Canvas Background -->
+  <rect x="2" y="3" width="28" height="26" fill="#000000"/>
+  <rect x="3" y="4" width="26" height="24" fill="#090d16"/>
+  
+  <!-- Subtle Grid -->
+  <rect x="4" y="10" width="24" height="1" fill="#1e293b"/>
+  <rect x="4" y="16" width="24" height="1" fill="#1e293b"/>
+  <rect x="4" y="22" width="24" height="1" fill="#1e293b"/>
+  
+  <!-- Candlestick 1 (Green) -->
+  <rect x="5" y="18" width="3" height="5" fill="#00df81"/>
+  <rect x="6" y="16" width="1" height="8" fill="#00df81"/>
+  
+  <!-- Candlestick 2 (Red Dip) -->
+  <rect x="10" y="19" width="3" height="4" fill="#ef4444"/>
+  <rect x="11" y="17" width="1" height="7" fill="#ef4444"/>
+  
+  <!-- Candlestick 3 (Green Rise) -->
+  <rect x="15" y="13" width="3" height="7" fill="#00df81"/>
+  <rect x="16" y="11" width="1" height="10" fill="#00df81"/>
+  
+  <!-- Candlestick 4 (Green Moon) -->
+  <rect x="20" y="8" width="3" height="9" fill="#00df81"/>
+  <rect x="21" y="6" width="1" height="13" fill="#00df81"/>
+  
+  <!-- High Voltage Neon Up-Trend Line (Connecting Candles) -->
+  <rect x="7" y="18" width="4" height="2" fill="#00f59b"/>
+  <rect x="11" y="17" width="4" height="2" fill="#00f59b"/>
+  <rect x="15" y="12" width="4" height="2" fill="#00f59b"/>
+  <rect x="19" y="8" width="5" height="2" fill="#00f59b"/>
+  <!-- Arrow Head (▲) -->
+  <rect x="23" y="6" width="3" height="2" fill="#00f59b"/>
+  <rect x="24" y="5" width="2" height="2" fill="#ffffff"/>
+  <rect x="25" y="4" width="1" height="2" fill="#ffffff"/>
+
+  <!-- Golden Dollar Badge in Corner ($) -->
+  <circle cx="9" cy="9" r="5" fill="#f59e0b"/>
+  <circle cx="9" cy="9" r="4" fill="#fbbf24"/>
+  <!-- Dollar Symbol -->
+  <rect x="8" y="6" width="2" height="6" fill="#78350f"/>
+  <rect x="7" y="7" width="4" height="1" fill="#78350f"/>
+  <rect x="7" y="9" width="4" height="1" fill="#78350f"/>
+  <rect x="7" y="11" width="4" height="1" fill="#78350f"/>
+  <rect x="9" y="5" width="1" height="8" fill="#78350f"/>
+
+  <!-- 3D Bevel -->
+  <path d="M2 3h28v1H2z M2 3v26h1V3z" fill="#ffffff"/>
+  <path d="M29 4v25h1V3h-1z M2 28h28v1H2z" fill="#475569"/>
+</svg>

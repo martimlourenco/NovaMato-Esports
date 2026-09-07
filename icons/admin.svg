@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
+  <!-- Steel Security Vault with Dial Lock & Key -->
+  <!-- Safe Outer Case -->
+  <rect x="3" y="3" width="26" height="26" fill="#000000"/>
+  <rect x="4" y="4" width="24" height="24" fill="#334155"/>
+  <rect x="5" y="5" width="22" height="22" fill="#475569"/>
+
+  <!-- Steel Rivets in Corners -->
+  <rect x="6" y="6" width="2" height="2" fill="#94a3b8"/>
+  <rect x="24" y="6" width="2" height="2" fill="#94a3b8"/>
+  <rect x="6" y="24" width="2" height="2" fill="#94a3b8"/>
+  <rect x="24" y="24" width="2" height="2" fill="#94a3b8"/>
+
+  <!-- Safe Inner Door Recess -->
+  <rect x="8" y="8" width="16" height="16" fill="#1e293b"/>
+  <rect x="9" y="9" width="14" height="14" fill="#0f172a"/>
+
+  <!-- Heavy Golden Vault Dial Lock -->
+  <circle cx="16" cy="16" r="6" fill="#b45309"/>
+  <circle cx="16" cy="16" r="5" fill="#f59e0b"/>
+  <circle cx="16" cy="16" r="3" fill="#fef08a"/>
+  <!-- Dial Spokes / Handles -->
+  <rect x="15" y="9" width="2" height="14" fill="#78350f"/>
+  <rect x="9" y="15" width="14" height="2" fill="#78350f"/>
+  <rect x="15" y="15" width="2" height="2" fill="#ffffff"/>
+
+  <!-- Golden Key on top right -->
+  <rect x="20" y="7" width="6" height="2" fill="#ffd700"/>
+  <rect x="24" y="9" width="2" height="3" fill="#ffd700"/>
+  <rect x="22" y="9" width="1" height="2" fill="#ffd700"/>
+
+  <!-- 3D Bevel -->
+  <path d="M3 3h26v1H3z M3 3v26h1V3z" fill="#ffffff"/>
+  <path d="M28 4v25h1V3h-1z M3 28h26v1H3z" fill="#0f172a"/>
+</svg>
