@@ -1831,14 +1831,21 @@ function runWindowsBootSequence() {
     const triggerStartupSound = () => {
         if (soundPlayed) return;
         soundPlayed = true;
-        try {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume().then(() => playRetroSound('startup'));
-            } else {
-                playRetroSound('startup');
+
+        // 1. Tentar tag de áudio HTML5 nativa
+        const tag = document.getElementById('bootAudioTag');
+        if (tag) {
+            tag.volume = 0.9;
+            const p = tag.play();
+            if (p !== undefined) {
+                p.catch(() => {
+                    // Fallback para Web Audio / synthesize
+                    playRetroSound('startup');
+                });
             }
-        } catch (e) {}
+        } else {
+            playRetroSound('startup');
+        }
     };
 
     // Tentar tocar logo de imediato
