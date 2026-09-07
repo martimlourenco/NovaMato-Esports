@@ -1802,12 +1802,31 @@ function runWindowsBootSequence() {
     const statusText = document.getElementById('bootStatusText');
     if (!bootScreen) return;
 
-    // Iniciar áudio retro logo ao carregar
-    try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        playRetroSound('startup');
-    } catch (e) {}
+    let soundPlayed = false;
+    const triggerStartupSound = () => {
+        if (soundPlayed) return;
+        soundPlayed = true;
+        try {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume().then(() => playRetroSound('startup'));
+            } else {
+                playRetroSound('startup');
+            }
+        } catch (e) {}
+    };
+
+    // Tentar tocar logo de imediato
+    triggerStartupSound();
+
+    // Desbloquear no primeiro toque ou movimento caso o browser bloqueie
+    const oneTimeUnlock = () => {
+        triggerStartupSound();
+        window.removeEventListener('pointerdown', oneTimeUnlock);
+        window.removeEventListener('keydown', oneTimeUnlock);
+    };
+    window.addEventListener('pointerdown', oneTimeUnlock, { once: true });
+    window.addEventListener('keydown', oneTimeUnlock, { once: true });
 
     const messages = [
         'A carregar ficheiros de sistema...',
@@ -1824,14 +1843,9 @@ function runWindowsBootSequence() {
         }
     }, 450);
 
-    // Fade out automático direto após 1.8 segundos
+    // Fade out automático e transição suave
     setTimeout(() => {
         clearInterval(interval);
-        // Tentar novamente caso o contexto tenha despertado
-        try {
-            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-        } catch (e) {}
-
         bootScreen.classList.add('fade-out');
         setTimeout(() => {
             bootScreen.remove();
