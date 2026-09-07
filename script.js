@@ -287,20 +287,20 @@ function minimizeWindow(winId) {
 function maximizeWindow(winId) {
     const win = document.getElementById(winId);
     if (!win) return;
+    bringToFront(winId);
+
     if (win.dataset.maximized === 'true') {
-        win.style.top = win.dataset.origTop;
-        win.style.left = win.dataset.origLeft;
-        win.style.width = win.dataset.origWidth;
+        win.classList.remove('maximized');
+        win.style.top = win.dataset.origTop || '40px';
+        win.style.left = win.dataset.origLeft || '80px';
+        win.style.width = win.dataset.origWidth || '800px';
         win.style.height = 'auto';
         win.dataset.maximized = 'false';
     } else {
-        win.dataset.origTop = win.style.top;
-        win.dataset.origLeft = win.style.left;
-        win.dataset.origWidth = win.style.width;
-        win.style.top = '0px';
-        win.style.left = '0px';
-        win.style.width = '100vw';
-        win.style.height = 'calc(100vh - 46px)';
+        win.dataset.origTop = win.style.top || `${win.offsetTop}px`;
+        win.dataset.origLeft = win.style.left || `${win.offsetLeft}px`;
+        win.dataset.origWidth = win.style.width || `${win.offsetWidth}px`;
+        win.classList.add('maximized');
         win.dataset.maximized = 'true';
     }
     playRetroSound('click');
