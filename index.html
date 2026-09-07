@@ -13,7 +13,7 @@
 <body>
 
     <!-- 🖥️ AUTHENTIC WINDOWS 95 BOOT SEQUENCE SCREEN -->
-    <div id="winBootScreen" class="boot-screen">
+    <div id="winBootScreen" class="boot-screen" onclick="startSystemWithSound()">
         <div class="boot-container">
             <div class="boot-logo-box">
                 <img src="icons/win95_logo.svg" class="boot-logo-img" alt="Windows Logo">
@@ -34,8 +34,12 @@
                 </div>
             </div>
 
+            <button class="boot-start-btn" id="bootStartBtn" onclick="startSystemWithSound(event)">
+                ▶ Entrar no Sistema (com Som)
+            </button>
+
             <div class="boot-footer-text">
-                Powered by VNDL // Esports Architecture
+                Powered by VNDL // Esports Architecture · Clica em qualquer sítio para ligar
             </div>
         </div>
     </div>

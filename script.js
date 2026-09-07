@@ -1797,6 +1797,31 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====================================================================
 // 🖥️ BOOT SEQUENCE CONTROLLER
 // ====================================================================
+let bootDismissed = false;
+
+function startSystemWithSound(e) {
+    if (e) e.stopPropagation();
+    if (bootDismissed) return;
+    bootDismissed = true;
+
+    // Desbloquear contexto de áudio do browser via interação
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    
+    playRetroSound('startup');
+
+    const bootScreen = document.getElementById('winBootScreen');
+    const statusText = document.getElementById('bootStatusText');
+    if (statusText) statusText.innerText = 'Sessão iniciada! A abrir Novamato 95...';
+
+    if (bootScreen) {
+        bootScreen.classList.add('fade-out');
+        setTimeout(() => {
+            bootScreen.remove();
+        }, 500);
+    }
+}
+
 function runWindowsBootSequence() {
     const bootScreen = document.getElementById('winBootScreen');
     const statusText = document.getElementById('bootStatusText');
@@ -1804,27 +1829,30 @@ function runWindowsBootSequence() {
 
     const messages = [
         'A carregar ficheiros de sistema...',
-        'A inicializar drivers de hardware e rede...',
+        'A inicializar drivers de hardware e som...',
         'A carregar o ambiente de trabalho Novamato 95...',
-        'Pronto.'
+        'Pronto para iniciar.'
     ];
 
     let step = 0;
     const interval = setInterval(() => {
+        if (bootDismissed) {
+            clearInterval(interval);
+            return;
+        }
         step++;
         if (statusText && messages[step]) {
             statusText.innerText = messages[step];
         }
     }, 550);
 
+    // Auto-dismiss após 3.5 segundos caso o utilizador não clique
     setTimeout(() => {
         clearInterval(interval);
-        playRetroSound('startup');
-        bootScreen.classList.add('fade-out');
-        setTimeout(() => {
-            bootScreen.remove();
-        }, 600);
-    }, 2200);
+        if (!bootDismissed) {
+            startSystemWithSound();
+        }
+    }, 3500);
 }
 
 
