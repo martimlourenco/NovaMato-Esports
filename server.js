@@ -16,6 +16,8 @@ const mime = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.mp4': 'video/mp4',
+  '.wav': 'audio/wav',
+  '.mp3': 'audio/mpeg',
   '.json': 'application/json'
 };
 

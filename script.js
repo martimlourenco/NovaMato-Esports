@@ -143,8 +143,27 @@ const ROSTER_DATA = {
 // 🕹️ RETRO AUDIO SYNTHESIZER (WEB AUDIO API)
 // ====================================================================
 let audioCtx = null;
+let startupAudio = new Audio('audio/win95_startup.wav');
+startupAudio.preload = 'auto';
 
 function playRetroSound(type) {
+    if (type === 'startup') {
+        try {
+            startupAudio.currentTime = 0;
+            startupAudio.volume = 0.85;
+            const playPromise = startupAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // Fallback para sintetizador se bloqueado
+                    synthesizeStartupSound();
+                });
+            }
+        } catch (e) {
+            synthesizeStartupSound();
+        }
+        return;
+    }
+
     try {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -180,22 +199,28 @@ function playRetroSound(type) {
             gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
             osc.start(now);
             osc.stop(now + 0.2);
-        } else if (type === 'startup') {
-            // Classic Microsoft Windows 95 iconic startup chime chord synthesizer
-            const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99]; // C4 chord progression
-            notes.forEach((freq, idx) => {
-                const subOsc = audioCtx.createOscillator();
-                const subGain = audioCtx.createGain();
-                subOsc.type = 'sine';
-                subOsc.frequency.setValueAtTime(freq, now + idx * 0.12);
-                subGain.gain.setValueAtTime(0.08, now + idx * 0.12);
-                subGain.gain.exponentialRampToValueAtTime(0.001, now + 2.2);
-                subOsc.connect(subGain);
-                subGain.connect(audioCtx.destination);
-                subOsc.start(now + idx * 0.12);
-                subOsc.stop(now + 2.2);
-            });
         }
+    } catch (e) {}
+}
+
+function synthesizeStartupSound() {
+    try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+            const subOsc = audioCtx.createOscillator();
+            const subGain = audioCtx.createGain();
+            subOsc.type = 'sine';
+            subOsc.frequency.setValueAtTime(freq, now + idx * 0.1);
+            subGain.gain.setValueAtTime(0.15, now + idx * 0.1);
+            subGain.gain.exponentialRampToValueAtTime(0.001, now + 2.2);
+            subOsc.connect(subGain);
+            subGain.connect(audioCtx.destination);
+            subOsc.start(now + idx * 0.1);
+            subOsc.stop(now + 2.2);
+        });
     } catch (e) {}
 }
 
