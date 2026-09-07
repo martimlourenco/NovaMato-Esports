@@ -1795,64 +1795,48 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ====================================================================
-// 🖥️ BOOT SEQUENCE CONTROLLER
+// 🖥️ BOOT SEQUENCE CONTROLLER (100% AUTOMATIC STARTUP WITH AUDIO)
 // ====================================================================
-let bootDismissed = false;
-
-function startSystemWithSound(e) {
-    if (e) e.stopPropagation();
-    if (bootDismissed) return;
-    bootDismissed = true;
-
-    // Desbloquear contexto de áudio do browser via interação
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    
-    playRetroSound('startup');
-
-    const bootScreen = document.getElementById('winBootScreen');
-    const statusText = document.getElementById('bootStatusText');
-    if (statusText) statusText.innerText = 'Sessão iniciada! A abrir Novamato 95...';
-
-    if (bootScreen) {
-        bootScreen.classList.add('fade-out');
-        setTimeout(() => {
-            bootScreen.remove();
-        }, 500);
-    }
-}
-
 function runWindowsBootSequence() {
     const bootScreen = document.getElementById('winBootScreen');
     const statusText = document.getElementById('bootStatusText');
     if (!bootScreen) return;
 
+    // Iniciar áudio retro logo ao carregar
+    try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        playRetroSound('startup');
+    } catch (e) {}
+
     const messages = [
         'A carregar ficheiros de sistema...',
-        'A inicializar drivers de hardware e som...',
+        'A inicializar drivers e periféricos...',
         'A carregar o ambiente de trabalho Novamato 95...',
-        'Pronto para iniciar.'
+        'Bem-vindo!'
     ];
 
     let step = 0;
     const interval = setInterval(() => {
-        if (bootDismissed) {
-            clearInterval(interval);
-            return;
-        }
         step++;
         if (statusText && messages[step]) {
             statusText.innerText = messages[step];
         }
-    }, 550);
+    }, 450);
 
-    // Auto-dismiss após 3.5 segundos caso o utilizador não clique
+    // Fade out automático direto após 1.8 segundos
     setTimeout(() => {
         clearInterval(interval);
-        if (!bootDismissed) {
-            startSystemWithSound();
-        }
-    }, 3500);
+        // Tentar novamente caso o contexto tenha despertado
+        try {
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        } catch (e) {}
+
+        bootScreen.classList.add('fade-out');
+        setTimeout(() => {
+            bootScreen.remove();
+        }, 500);
+    }, 1800);
 }
 
 
