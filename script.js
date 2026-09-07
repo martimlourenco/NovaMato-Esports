@@ -180,16 +180,21 @@ function playRetroSound(type) {
             gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
             osc.start(now);
             osc.stop(now + 0.2);
-        } else if (type === 'alert' || type === 'event') {
-            osc.type = 'square';
-            osc.frequency.setValueAtTime(523.25, now); // C5
-            osc.frequency.setValueAtTime(659.25, now + 0.09); // E5
-            osc.frequency.setValueAtTime(783.99, now + 0.18); // G5
-            osc.frequency.setValueAtTime(1046.50, now + 0.27); // C6
-            gain.gain.setValueAtTime(0.2, now);
-            gain.gain.linearRampToValueAtTime(0.01, now + 0.45);
-            osc.start(now);
-            osc.stop(now + 0.45);
+        } else if (type === 'startup') {
+            // Classic Microsoft Windows 95 iconic startup chime chord synthesizer
+            const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99]; // C4 chord progression
+            notes.forEach((freq, idx) => {
+                const subOsc = audioCtx.createOscillator();
+                const subGain = audioCtx.createGain();
+                subOsc.type = 'sine';
+                subOsc.frequency.setValueAtTime(freq, now + idx * 0.12);
+                subGain.gain.setValueAtTime(0.08, now + idx * 0.12);
+                subGain.gain.exponentialRampToValueAtTime(0.001, now + 2.2);
+                subOsc.connect(subGain);
+                subGain.connect(audioCtx.destination);
+                subOsc.start(now + idx * 0.12);
+                subOsc.stop(now + 2.2);
+            });
         }
     } catch (e) {}
 }
@@ -1766,9 +1771,8 @@ document.addEventListener('DOMContentLoaded', () => {
     syncFaceitData(false);
     setInterval(() => syncFaceitData(false), 20000);
 
-    // Abrir janelas principais por padrão
-    openWindow('winCS2');
-    openWindow('winCheckin');
+    // 🖥️ Executar animação de boot do Windows 95
+    runWindowsBootSequence();
 
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
@@ -1789,5 +1793,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// ====================================================================
+// 🖥️ BOOT SEQUENCE CONTROLLER
+// ====================================================================
+function runWindowsBootSequence() {
+    const bootScreen = document.getElementById('winBootScreen');
+    const statusText = document.getElementById('bootStatusText');
+    if (!bootScreen) return;
+
+    const messages = [
+        'A carregar ficheiros de sistema...',
+        'A inicializar drivers de hardware e rede...',
+        'A carregar o ambiente de trabalho Novamato 95...',
+        'Pronto.'
+    ];
+
+    let step = 0;
+    const interval = setInterval(() => {
+        step++;
+        if (statusText && messages[step]) {
+            statusText.innerText = messages[step];
+        }
+    }, 550);
+
+    setTimeout(() => {
+        clearInterval(interval);
+        playRetroSound('startup');
+        bootScreen.classList.add('fade-out');
+        setTimeout(() => {
+            bootScreen.remove();
+        }, 600);
+    }, 2200);
+}
 
 
