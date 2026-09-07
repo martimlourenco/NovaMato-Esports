@@ -1820,45 +1820,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ====================================================================
-// 🖥️ BOOT SEQUENCE CONTROLLER (100% AUTOMATIC STARTUP WITH AUDIO)
+// 🖥️ BOOT SEQUENCE CONTROLLER (CLEAN VISUAL BOOT SEQUENCE)
 // ====================================================================
 function runWindowsBootSequence() {
     const bootScreen = document.getElementById('winBootScreen');
     const statusText = document.getElementById('bootStatusText');
     if (!bootScreen) return;
-
-    let soundPlayed = false;
-    const triggerStartupSound = () => {
-        if (soundPlayed) return;
-        soundPlayed = true;
-
-        // 1. Tentar tag de áudio HTML5 nativa
-        const tag = document.getElementById('bootAudioTag');
-        if (tag) {
-            tag.volume = 0.9;
-            const p = tag.play();
-            if (p !== undefined) {
-                p.catch(() => {
-                    // Fallback para Web Audio / synthesize
-                    playRetroSound('startup');
-                });
-            }
-        } else {
-            playRetroSound('startup');
-        }
-    };
-
-    // Tentar tocar logo de imediato
-    triggerStartupSound();
-
-    // Desbloquear no primeiro toque ou movimento caso o browser bloqueie
-    const oneTimeUnlock = () => {
-        triggerStartupSound();
-        window.removeEventListener('pointerdown', oneTimeUnlock);
-        window.removeEventListener('keydown', oneTimeUnlock);
-    };
-    window.addEventListener('pointerdown', oneTimeUnlock, { once: true });
-    window.addEventListener('keydown', oneTimeUnlock, { once: true });
 
     const messages = [
         'A carregar ficheiros de sistema...',
@@ -1873,16 +1840,16 @@ function runWindowsBootSequence() {
         if (statusText && messages[step]) {
             statusText.innerText = messages[step];
         }
-    }, 450);
+    }, 400);
 
-    // Fade out automático e transição suave
+    // Fade out suave automático
     setTimeout(() => {
         clearInterval(interval);
         bootScreen.classList.add('fade-out');
         setTimeout(() => {
             bootScreen.remove();
-        }, 500);
-    }, 1800);
+        }, 450);
+    }, 1600);
 }
 
 
