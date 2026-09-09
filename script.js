@@ -298,6 +298,14 @@ function openWindow(winId) {
 function closeWindow(winId) {
     const win = document.getElementById(winId);
     if (!win) return;
+    
+    // 🛑 Parar reprodução de vídeo caso a janela tenha algum vídeo a rodar
+    const videos = win.querySelectorAll('video');
+    videos.forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+    });
+
     win.classList.remove('active-window');
     win.classList.remove('focused');
     win.style.display = 'none';
@@ -308,6 +316,11 @@ function closeWindow(winId) {
 function minimizeWindow(winId) {
     const win = document.getElementById(winId);
     if (!win) return;
+
+    // 🛑 Pausar reprodução de vídeo ao minimizar
+    const videos = win.querySelectorAll('video');
+    videos.forEach(v => v.pause());
+
     win.style.display = 'none';
     win.classList.remove('focused');
     updateTaskbarTabs();
@@ -807,6 +820,17 @@ function renderHighlightVideo() {
 // ====================================================================
 // 🔒 ADMIN VAULT BODY & MANAGEMENT
 // ====================================================================
+// ====================================================================
+// 🔒 ADMIN VAULT BODY & MANAGEMENT (FULL CONTROL CENTER WITH TABS)
+// ====================================================================
+let currentAdminTab = 'matches';
+
+function setAdminTab(tab) {
+    currentAdminTab = tab;
+    renderAdminVaultBody();
+    playRetroSound('click');
+}
+
 function renderAdminVaultBody() {
     const container = document.getElementById('adminVaultBody');
     if (!container) return;
@@ -816,141 +840,349 @@ function renderAdminVaultBody() {
         memberOptionsWithRandom += `<option value="${m.name}">${m.name}</option>`;
     });
 
-    const savedFaceitKey = localStorage.getItem('novamato_faceit_api_key') || '';
+    let tabContentHtml = '';
 
-    container.innerHTML = `
-        <div style="margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 0.75rem;">
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); font-weight: 800;">[ ADMIN COCKPIT // FULL CONTROL ]</div>
-        </div>
+    if (currentAdminTab === 'matches') {
+        // GESTÃO DE PARTIDAS & RESULTADOS
+        let matchRows = '';
+        MATCH_RESULTS.forEach((r, idx) => {
+            const outcomeColor = r.outcome === 'win' ? '#00df81' : (r.outcome === 'loss' ? '#ef4444' : '#94a3b8');
+            const outcomeText = r.outcome === 'win' ? 'Vitória' : (r.outcome === 'loss' ? 'Derrota' : 'Empate');
+            matchRows += `
+                <tr style="border-bottom: 1px solid #1e293b;">
+                    <td style="padding: 6px 8px; color: #fff;">${r.date || '-'}</td>
+                    <td style="padding: 6px 8px; font-weight: 700; color: #fff;">${r.opponent}</td>
+                    <td style="padding: 6px 8px; color: #94a3b8;">${r.map}</td>
+                    <td style="padding: 6px 8px; font-family: var(--font-pixel); font-size: 1.1rem; color: ${outcomeColor};">${r.score}</td>
+                    <td style="padding: 6px 8px; color: ${outcomeColor}; font-weight: 700;">${outcomeText}</td>
+                    <td style="padding: 6px 8px; text-align: right;">
+                        <button class="retro-btn" style="padding: 2px 6px; font-size: 0.7rem; color: #ef4444;" onclick="deleteMatchResult(${r.id || idx})">🗑️ Apagar</button>
+                    </td>
+                </tr>
+            `;
+        });
 
-        <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15); margin-bottom: 1.25rem;">
-            <strong style="color: #fff; display: block; margin-bottom: 0.75rem;">📊 Registar Resultado de Partida (Mínimo 3 Membros Oficiais)</strong>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
-                <input type="text" id="resOpponent" class="retro-input" placeholder="Adversário (ex: Rhinos)">
-                <input type="text" id="resMap" class="retro-input" placeholder="Mapa (ex: Mirage)">
+        tabContentHtml = `
+            <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15); margin-bottom: 1.25rem;">
+                <strong style="color: #00df81; display: block; margin-bottom: 0.75rem; font-size: 0.95rem;">➕ Registar Nova Partida Oficial</strong>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                    <div>
+                        <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.2rem;">Adversário:</label>
+                        <input type="text" id="resOpponent" class="retro-input" style="width:100%;" placeholder="ex: Rhinos Gaming">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.2rem;">Mapa:</label>
+                        <input type="text" id="resMap" class="retro-input" style="width:100%;" placeholder="ex: Mirage / Inferno / Nuke">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                    <div>
+                        <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.2rem;">Placar (Novamato - Adversário):</label>
+                        <input type="text" id="resScore" class="retro-input" style="width:100%;" placeholder="ex: 13 - 9">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.2rem;">Resultado:</label>
+                        <select id="resOutcome" class="retro-select" style="width:100%;">
+                            <option value="win">Vitória 🏆</option>
+                            <option value="loss">Derrota ❌</option>
+                            <option value="draw">Empate ⚖️</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-bottom: 0.85rem;">
+                    <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.35rem;">Line-up Oficial (Mínimo 3 atletas da Novamato):</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.4rem;">
+                        <select id="slotP1" class="retro-select">${memberOptionsWithRandom}</select>
+                        <select id="slotP2" class="retro-select">${memberOptionsWithRandom}</select>
+                        <select id="slotP3" class="retro-select">${memberOptionsWithRandom}</select>
+                        <select id="slotP4" class="retro-select">${memberOptionsWithRandom}</select>
+                        <select id="slotP5" class="retro-select">${memberOptionsWithRandom}</select>
+                    </div>
+                </div>
+                <button class="retro-btn retro-btn-accent" onclick="submitMatchResult()" style="width: 100%; padding: 6px;">Publicar Resultado e Atualizar Cotações →</button>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
-                <input type="text" id="resScore" class="retro-input" placeholder="Placar (ex: 13-9)">
-                <select id="resOutcome" class="retro-select">
-                    <option value="win">Vitória 🏆</option>
-                    <option value="loss">Derrota</option>
-                    <option value="draw">Empate</option>
-                </select>
-            </div>
-            <div style="margin-bottom: 0.75rem;">
-                <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.35rem;">Line-up de 5 Atletas:</label>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.4rem;">
-                    <select id="slotP1" class="retro-select">${memberOptionsWithRandom}</select>
-                    <select id="slotP2" class="retro-select">${memberOptionsWithRandom}</select>
-                    <select id="slotP3" class="retro-select">${memberOptionsWithRandom}</select>
-                    <select id="slotP4" class="retro-select">${memberOptionsWithRandom}</select>
-                    <select id="slotP5" class="retro-select">${memberOptionsWithRandom}</select>
+
+            <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <strong style="color: #fff; font-size: 0.95rem;">📜 Histórico de Partidas Gravadas (${MATCH_RESULTS.length})</strong>
+                    <button class="retro-btn" style="font-size: 0.72rem; color: #ef4444;" onclick="resetMatchResults()">Repor Partidas Padrão</button>
+                </div>
+                <div style="background: #000; border: 1px solid #334155; max-height: 240px; overflow-y: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.78rem;">
+                        <thead>
+                            <tr style="background: #1e293b; color: #94a3b8; text-align: left;">
+                                <th style="padding: 6px 8px;">Data</th>
+                                <th style="padding: 6px 8px;">Adversário</th>
+                                <th style="padding: 6px 8px;">Mapa</th>
+                                <th style="padding: 6px 8px;">Placar</th>
+                                <th style="padding: 6px 8px;">Estado</th>
+                                <th style="padding: 6px 8px; text-align: right;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${matchRows || '<tr><td colspan="6" style="padding: 12px; text-align: center; color: #64748b;">Nenhuma partida registada.</td></tr>'}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <button class="retro-btn retro-btn-accent" onclick="submitMatchResult()" style="width: 100%;">Publicar Resultado →</button>
-        </div>
+        `;
+    } else if (currentAdminTab === 'video') {
+        // GESTÃO DO VÍDEO DE HIGHLIGHT
+        const videoOptions = [
+            { label: 'Vídeo Padrão 1 (videocs2.mp4)', src: 'imagens/videocs2.mp4' },
+            { label: 'Melhores Jogadas (Melhores_Jogadas.mp4)', src: 'Melhores_Jogadas.mp4' }
+        ];
 
-        <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15); margin-bottom: 1.25rem;">
-            <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">⚡ Faceit Live Feed & Cotações Automáticas</strong>
-            <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.75rem;">O sistema sincroniza automaticamente o Elo e as cotações das ações dos 12 atletas em segundo plano.</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <button class="retro-btn" onclick="simulateMarketShift(0.15)" style="flex: 1; font-size: 0.75rem; color: #00df81;">📈 Simular Alta (+15%)</button>
-                <button class="retro-btn" onclick="simulateMarketShift(-0.10)" style="flex: 1; font-size: 0.75rem; color: #ef4444;">📉 Simular Queda (-10%)</button>
+        let videoOptionsHtml = '';
+        videoOptions.forEach(opt => {
+            const isSel = HIGHLIGHT_VIDEO.src === opt.src ? 'selected' : '';
+            videoOptionsHtml += `<option value="${opt.src}" ${isSel}>${opt.label}</option>`;
+        });
+
+        tabContentHtml = `
+            <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15);">
+                <strong style="color: #00df81; display: block; margin-bottom: 0.75rem; font-size: 0.95rem;">🎬 Escolher Vídeo de Destaque / Highlight</strong>
+                <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 1rem;">Seleciona um ficheiro de vídeo existente ou insere um link direto (MP4/URL) para ser reproduzido na aplicação de Melhores Jogadas.</p>
+                
+                <div style="margin-bottom: 0.85rem;">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Escolher da lista de vídeos:</label>
+                    <select id="adminVideoSelect" class="retro-select" style="width: 100%;" onchange="previewSelectedVideo(this.value)">
+                        ${videoOptionsHtml}
+                        <option value="custom">-- Inserir URL / Caminho Personalizado --</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 0.85rem;">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Caminho ou URL do ficheiro de vídeo (MP4):</label>
+                    <input type="text" id="adminVideoSrcInput" class="retro-input" style="width: 100%;" value="${HIGHLIGHT_VIDEO.src}">
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Título do Highlight:</label>
+                    <input type="text" id="adminVideoTitleInput" class="retro-input" style="width: 100%; margin-bottom: 0.5rem;" value="${HIGHLIGHT_VIDEO.title}">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.35rem;">Descrição:</label>
+                    <input type="text" id="adminVideoSubtitleInput" class="retro-input" style="width: 100%;" value="${HIGHLIGHT_VIDEO.subtitle}">
+                </div>
+
+                <div style="display: flex; gap: 8px;">
+                    <button class="retro-btn retro-btn-accent" onclick="saveAdminVideo()" style="flex: 2; padding: 6px;">Salvar & Atualizar Reprodutor de Vídeo ✓</button>
+                    <button class="retro-btn" onclick="testPlayVideo()" style="flex: 1; padding: 6px;">Abrir Pré-visualização</button>
+                </div>
+            </div>
+        `;
+    } else if (currentAdminTab === 'event') {
+        // GESTÃO DO PRÓXIMO CONFRONTO & TIMER
+        tabContentHtml = `
+            <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15);">
+                <strong style="color: #00df81; display: block; margin-bottom: 0.75rem; font-size: 0.95rem;">⏱️ Ajustar Próximo Confronto Competitivo & Contagem</strong>
+                <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 1rem;">Ao guardar, é emitido um popup de aviso sonoro e a contagem no topo ao lado de VNDL atualiza-se de imediato.</p>
+                
+                <div style="margin-bottom: 0.75rem;">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.25rem;">Título da Partida / Scrim:</label>
+                    <input type="text" id="adminEventTitle" class="retro-input" style="width: 100%;" value="${COMPETITIVE_EVENT.title}">
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.25rem;">Data e Hora de Início:</label>
+                    <input type="datetime-local" id="adminEventDateInput" class="retro-input" style="width: 100%;" value="${COMPETITIVE_EVENT.targetDate}">
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button class="retro-btn retro-btn-accent" onclick="saveAdminEvent()" style="flex: 2; padding: 6px;">Publicar Evento (Popup & Timer) 🚨</button>
+                    <button class="retro-btn" onclick="clearEventCheckins()" style="flex: 1; padding: 6px; color: #ef4444;">Limpar Presenças</button>
+                </div>
+            </div>
+        `;
+    } else if (currentAdminTab === 'mvp') {
+        // GESTÃO DO ATLETA MVP
+        let athleteOpts = '';
+        ROSTER_DATA.cs2.forEach(a => {
+            const isSel = CS2_TOP_PLAYER.name === a.name ? 'selected' : '';
+            athleteOpts += `<option value="${a.name}" ${isSel}>${a.name}</option>`;
+        });
+
+        tabContentHtml = `
+            <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15);">
+                <strong style="color: #00df81; display: block; margin-bottom: 0.75rem; font-size: 0.95rem;">⭐ Configurar Atleta Destaque (MVP Spotlight)</strong>
+                
+                <div style="margin-bottom: 0.75rem;">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.25rem;">Escolher Atleta:</label>
+                    <select id="adminMvpSelect" class="retro-select" style="width: 100%;" onchange="autoFillMvpData(this.value)">
+                        ${athleteOpts}
+                    </select>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                    <div>
+                        <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.2rem;">Rating Leetify:</label>
+                        <input type="text" id="adminMvpRating" class="retro-input" style="width: 100%;" value="${CS2_TOP_PLAYER.rating}">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.2rem;">K/D Ratio:</label>
+                        <input type="text" id="adminMvpKd" class="retro-input" style="width: 100%;" value="${CS2_TOP_PLAYER.kd}">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 0.2rem;">Título / Badge de Destaque:</label>
+                    <input type="text" id="adminMvpBadge" class="retro-input" style="width: 100%;" value="${CS2_TOP_PLAYER.badge}">
+                </div>
+
+                <button class="retro-btn retro-btn-accent" onclick="saveAdminMvp()" style="width: 100%; padding: 6px;">Atualizar Atleta MVP ✓</button>
+            </div>
+        `;
+    } else if (currentAdminTab === 'market') {
+        // GESTÃO DA BOLSA & FACEIT
+        tabContentHtml = `
+            <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15); margin-bottom: 1.25rem;">
+                <strong style="color: #00df81; display: block; margin-bottom: 0.5rem; font-size: 0.95rem;">⚡ Faceit Live Feed & Cotações Automáticas</strong>
+                <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.75rem;">O sistema sincroniza automaticamente o Elo e as cotações das ações dos 12 atletas em segundo plano.</p>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button class="retro-btn" onclick="simulateMarketShift(0.15)" style="flex: 1; font-size: 0.75rem; color: #00df81;">📈 Simular Alta (+15%)</button>
+                    <button class="retro-btn" onclick="simulateMarketShift(-0.10)" style="flex: 1; font-size: 0.75rem; color: #ef4444;">📉 Simular Queda (-10%)</button>
+                    <button class="retro-btn" onclick="syncFaceitData(true)" style="flex: 1; font-size: 0.75rem; color: #00f0ff;">🔄 Forçar Sync Faceit</button>
+                </div>
+            </div>
+
+            <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15);">
+                <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">🔑 Chave API Faceit (Opcional)</strong>
+                <div style="display: flex; gap: 6px;">
+                    <input type="text" id="faceitApiKeyInput" class="retro-input" style="flex: 1;" placeholder="Bearer Key da Faceit..." value="${savedFaceitKey}">
+                    <button class="retro-btn" onclick="saveFaceitKey()">Guardar Chave</button>
+                </div>
+            </div>
+        `;
+    }
+
+    container.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 0.5rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); font-weight: 900; letter-spacing: 1px;">
+                [ PAINEL DE CONTROLO NOVAMATO // COCKPIT ADMINISTRATIVO ]
             </div>
         </div>
 
-        <div style="background: var(--win-card-bg); padding: 1.25rem; border: 1px solid rgba(255,255,255,0.15);">
-            <strong style="color: #fff; display: block; margin-bottom: 0.75rem;">⏱️ Ajustar Próximo Competitivo & Timer</strong>
-            <input type="text" id="adminEventTitle" class="retro-input" style="width: 100%; margin-bottom: 0.5rem;" value="${COMPETITIVE_EVENT.title}">
-            <input type="datetime-local" id="adminEventDateInput" class="retro-input" style="width: 100%; margin-bottom: 0.75rem;" value="${COMPETITIVE_EVENT.targetDate}">
-            <div style="display: flex; gap: 0.5rem;">
-                <button class="retro-btn retro-btn-accent" onclick="saveAdminEvent()" style="flex: 2;">Salvar Evento</button>
-                <button class="retro-btn" onclick="clearEventCheckins()" style="flex: 1;">Limpar Presenças</button>
-            </div>
+        <div class="trading-tabs" style="margin-bottom: 1rem;">
+            <button class="trading-tab-btn ${currentAdminTab === 'matches' ? 'active' : ''}" onclick="setAdminTab('matches')">📊 Partidas & Placar</button>
+            <button class="trading-tab-btn ${currentAdminTab === 'video' ? 'active' : ''}" onclick="setAdminTab('video')">🎬 Vídeo Highlight</button>
+            <button class="trading-tab-btn ${currentAdminTab === 'event' ? 'active' : ''}" onclick="setAdminTab('event')">⏱️ Próximo Evento</button>
+            <button class="trading-tab-btn ${currentAdminTab === 'mvp' ? 'active' : ''}" onclick="setAdminTab('mvp')">⭐ Atleta MVP</button>
+            <button class="trading-tab-btn ${currentAdminTab === 'market' ? 'active' : ''}" onclick="setAdminTab('market')">📈 Bolsa & Faceit</button>
+        </div>
+
+        <div>
+            ${tabContentHtml}
         </div>
     `;
 }
 
-function saveFaceitKey() {
-    const input = document.getElementById('faceitApiKeyInput');
-    if (!input) return;
-    const key = input.value.trim();
-    localStorage.setItem('novamato_faceit_api_key', key);
-    showToast('🔑 Chave Faceit API guardada com sucesso!');
+// Helpers para Gestão de Vídeo
+function previewSelectedVideo(val) {
+    const input = document.getElementById('adminVideoSrcInput');
+    if (input && val !== 'custom') {
+        input.value = val;
+    }
+}
+
+function saveAdminVideo() {
+    const srcInput = document.getElementById('adminVideoSrcInput');
+    const titleInput = document.getElementById('adminVideoTitleInput');
+    const subInput = document.getElementById('adminVideoSubtitleInput');
+
+    if (!srcInput) return;
+
+    HIGHLIGHT_VIDEO.src = srcInput.value.trim() || 'imagens/videocs2.mp4';
+    if (titleInput) HIGHLIGHT_VIDEO.title = titleInput.value.trim() || 'HIGHLIGHT CLUTCH CS2';
+    if (subInput) HIGHLIGHT_VIDEO.subtitle = subInput.value.trim() || 'Momento de destaque competitivo da nossa equipa.';
+
+    localStorage.setItem('novamato_custom_vid', JSON.stringify(HIGHLIGHT_VIDEO));
+    renderHighlightVideo();
+    showToast('🎬 Vídeo de Highlight atualizado com sucesso!');
     playRetroSound('open');
 }
 
-function simulateMarketShift(pct) {
-    ATHLETE_STOCKS.forEach(stock => {
-        const delta = pct + (Math.random() * 0.06 - 0.03);
-        const oldPrice = stock.price;
-        stock.price = Math.max(10, parseFloat((stock.price * (1 + delta)).toFixed(2)));
-        stock.change24h = parseFloat((((stock.price - oldPrice) / oldPrice) * 100).toFixed(1));
-        stock.history.push(stock.price);
-        if (stock.history.length > 10) stock.history.shift();
-        if (delta > 0) stock.elo += Math.floor(Math.random() * 20 + 10);
-        else stock.elo = Math.max(1000, stock.elo - Math.floor(Math.random() * 20 + 10));
-    });
-    saveTradingData();
-    renderTradingDesk();
-    showToast(`📊 Mercado ajustado em ${(pct * 100).toFixed(0)}%!`);
-    playRetroSound('cash');
+function testPlayVideo() {
+    saveAdminVideo();
+    openWindow('winHighlight');
 }
 
-function submitMatchResult() {
-    const opp = document.getElementById('resOpponent').value.trim();
-    const map = document.getElementById('resMap').value.trim() || 'Mirage';
-    const score = document.getElementById('resScore').value.trim() || '13 - 0';
-    const outcome = document.getElementById('resOutcome').value;
+// Helpers para Gestão de Partidas
+function deleteMatchResult(id) {
+    if (!confirm('Tens a certeza que queres eliminar esta partida do registo?')) return;
+    MATCH_RESULTS = MATCH_RESULTS.filter((r, idx) => (r.id ? r.id !== id : idx !== id));
+    localStorage.setItem('novamato_custom_results', JSON.stringify(MATCH_RESULTS));
+    renderMatchResults();
+    renderAdminVaultBody();
+    showToast('Partida removida do histórico.');
+    playRetroSound('click');
+}
 
-    if (!opp) {
-        showToast('Indica o nome do adversário!');
-        return;
+function resetMatchResults() {
+    if (!confirm('Restaurar histórico inicial de partidas?')) return;
+    MATCH_RESULTS = [
+        {
+            id: 1,
+            game: 'Counter-Strike 2',
+            opponent: 'Rhinos Gaming',
+            map: 'Mirage',
+            score: '13 - 9',
+            outcome: 'win',
+            date: '22 Ago',
+            lineup: ['white', 'migga', 'FurryFeetLover_69', 'Random', 'Random']
+        },
+        {
+            id: 2,
+            game: 'Counter-Strike 2',
+            opponent: 'Saw Youngsters',
+            map: 'Inferno',
+            score: '11 - 13',
+            outcome: 'loss',
+            date: '19 Ago',
+            lineup: ['white', 'migga', 'CØSTA', 't6maj', 'Random']
+        }
+    ];
+    localStorage.setItem('novamato_custom_results', JSON.stringify(MATCH_RESULTS));
+    renderMatchResults();
+    renderAdminVaultBody();
+    showToast('Partidas restauradas.');
+    playRetroSound('open');
+}
+
+// Helpers para Gestão de MVP
+function autoFillMvpData(name) {
+    const stock = ATHLETE_STOCKS.find(s => s.name === name);
+    const athlete = ROSTER_DATA.cs2.find(a => a.name === name);
+    if (stock) {
+        const ratingInput = document.getElementById('adminMvpRating');
+        const kdInput = document.getElementById('adminMvpKd');
+        if (ratingInput) ratingInput.value = `+${((stock.price / 50) - 1.0).toFixed(2)}`;
+        if (kdInput) kdInput.value = stock.kd.toFixed(2);
     }
+}
 
-    const p1 = document.getElementById('slotP1').value;
-    const p2 = document.getElementById('slotP2').value;
-    const p3 = document.getElementById('slotP3').value;
-    const p4 = document.getElementById('slotP4').value;
-    const p5 = document.getElementById('slotP5').value;
+function saveAdminMvp() {
+    const select = document.getElementById('adminMvpSelect');
+    const ratingInput = document.getElementById('adminMvpRating');
+    const kdInput = document.getElementById('adminMvpKd');
+    const badgeInput = document.getElementById('adminMvpBadge');
 
-    const lineup = [p1, p2, p3, p4, p5];
-    const officialMembers = lineup.filter(p => p !== 'Random');
+    if (!select) return;
 
-    if (officialMembers.length < 3) {
-        showToast('❌ Mínimo 3 membros oficiais da Novamato na partida!');
-        return;
-    }
+    const athlete = ROSTER_DATA.cs2.find(a => a.name === select.value) || ROSTER_DATA.cs2[0];
 
-    const newResult = {
-        id: Date.now(),
-        game: 'Counter-Strike 2',
-        opponent: opp,
-        map: map,
-        score: score,
-        outcome: outcome,
-        date: new Date().toLocaleDateString('pt-PT', { day: 'numeric', month: 'short' }),
-        lineup: lineup
+    CS2_TOP_PLAYER = {
+        name: athlete.name,
+        role: 'Top Leetify Rating',
+        rating: ratingInput?.value.trim() || '+2.98',
+        kd: kdInput?.value.trim() || '1.25',
+        photo: athlete.photo,
+        badge: badgeInput?.value.trim() || '⭐ MVP / TOP LEETIFY RATING',
+        steamUrl: athlete.steamUrl,
+        leetifyUrl: athlete.trackerUrl
     };
 
-    MATCH_RESULTS.unshift(newResult);
-    localStorage.setItem('novamato_custom_results', JSON.stringify(MATCH_RESULTS));
-
-    officialMembers.forEach(mem => {
-        if (!PLAYER_MATCH_STATS[mem]) {
-            PLAYER_MATCH_STATS[mem] = { matches: 1, photo: 'imagens/favicon.png' };
-        } else {
-            PLAYER_MATCH_STATS[mem].matches += 1;
-        }
-    });
-    localStorage.setItem('novamato_custom_match_stats', JSON.stringify(PLAYER_MATCH_STATS));
-
-    // 📈 Atualizar Cotação das Ações dos Atletas após a Partida (Win = Alta, Loss = Queda)
-    updateAthleteStockFromMatch(officialMembers, outcome);
-
-    renderMatchResults();
-    renderCapsLeaderboard();
-    showToast(`✅ Resultado de ${score} registado! Ações de mercado atualizadas.`);
+    localStorage.setItem('novamato_custom_mvp', JSON.stringify(CS2_TOP_PLAYER));
+    renderTopPlayer();
+    showToast(`⭐ Atleta MVP atualizado para ${athlete.name}!`);
     playRetroSound('open');
 }
 
