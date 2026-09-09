@@ -1,31 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
-  <!-- Video Player / Clapperboard Pixel Art -->
-  <!-- Screen Box -->
-  <rect x="3" y="4" width="26" height="24" fill="#000000"/>
-  <rect x="4" y="5" width="24" height="22" fill="#0f172a"/>
+  <!-- YouTube 2010 Retro Icon Pixel Art -->
+  <!-- CRT Outer Bezel -->
+  <rect x="2" y="3" width="28" height="26" fill="#1e293b"/>
+  <rect x="3" y="4" width="26" height="24" fill="#ffffff"/>
   
-  <!-- Film Strip Top (Black and White Slanted Stripes) -->
-  <rect x="4" y="5" width="24" height="6" fill="#1e293b"/>
-  <rect x="6" y="5" width="3" height="6" fill="#ffffff"/>
-  <rect x="12" y="5" width="3" height="6" fill="#ffffff"/>
-  <rect x="18" y="5" width="3" height="6" fill="#ffffff"/>
-  <rect x="24" y="5" width="3" height="6" fill="#ffffff"/>
+  <!-- "You" Text in 2010 Black Pixel Style -->
+  <!-- Y -->
+  <rect x="5" y="7" width="2" height="3" fill="#222222"/>
+  <rect x="9" y="7" width="2" height="3" fill="#222222"/>
+  <rect x="7" y="10" width="2" height="4" fill="#222222"/>
   
-  <!-- Screen Area -->
-  <rect x="5" y="12" width="22" height="14" fill="#020617"/>
+  <!-- o -->
+  <rect x="12" y="9" width="3" height="5" fill="#222222"/>
+  <rect x="13" y="10" width="1" height="3" fill="#ffffff"/>
   
-  <!-- Big Neon Cyan / Emerald Play Button (▶) -->
-  <rect x="12" y="14" width="2" height="10" fill="#06b6d4"/>
-  <rect x="14" y="15" width="2" height="8" fill="#06b6d4"/>
-  <rect x="16" y="16" width="2" height="6" fill="#22d3ee"/>
-  <rect x="18" y="17" width="2" height="4" fill="#67e8f9"/>
-  <rect x="20" y="18" width="2" height="2" fill="#ffffff"/>
-  
-  <!-- Red Recording Dot at bottom right -->
-  <rect x="23" y="22" width="3" height="3" fill="#ef4444"/>
-  <rect x="24" y="23" width="1" height="1" fill="#fca5a5"/>
+  <!-- u -->
+  <rect x="16" y="9" width="1" height="5" fill="#222222"/>
+  <rect x="18" y="9" width="1" height="5" fill="#222222"/>
+  <rect x="16" y="13" width="3" height="1" fill="#222222"/>
 
-  <!-- 3D Bevel -->
-  <path d="M3 4h26v1H3z M3 4v24h1V4z" fill="#ffffff"/>
-  <path d="M28 5v23h1V4h-1z M3 27h26v1H3z" fill="#64748b"/>
+  <!-- 2010 Red Tube Box (Classic glossy red container) -->
+  <rect x="5" y="16" width="22" height="10" fill="#cc181e"/>
+  <rect x="6" y="17" width="20" height="4" fill="#e52d27"/>
+  <rect x="5" y="16" width="22" height="1" fill="#ff4e45"/>
+  <rect x="5" y="25" width="22" height="1" fill="#990000"/>
+
+  <!-- "Tube" or Play Triangle in Tube -->
+  <!-- Play Triangle -->
+  <rect x="14" y="18" width="2" height="6" fill="#ffffff"/>
+  <rect x="16" y="19" width="2" height="4" fill="#ffffff"/>
+  <rect x="18" y="20" width="1" height="2" fill="#ffffff"/>
+
+  <!-- Win95 Icon Bevel Border -->
+  <path d="M2 3h28v1H2z M2 3v26h1V3z" fill="#ffffff"/>
+  <path d="M29 4v25h1V3h-1z M2 28h28v1H2z" fill="#475569"/>
 </svg>

@@ -14,11 +14,15 @@ let CS2_TOP_PLAYER = {
     leetifyUrl: 'https://leetify.com/app/profile/76561198272195222'
 };
 
-// 2. VÍDEO HIGHLIGHT
+// 2. VÍDEO HIGHLIGHT & YOUTUBE 2010
 let HIGHLIGHT_VIDEO = {
-    title: 'HIGHLIGHT CLUTCH CS2',
-    subtitle: 'Momento de destaque competitivo da nossa equipa de Counter-Strike 2.',
-    src: 'imagens/videocs2.mp4'
+    title: 'HIGHLIGHT CLUTCH CS2 — NOVAMATO ESPORTS vs RHINOS (13-9)',
+    subtitle: 'Momento de destaque competitivo da nossa equipa de Counter-Strike 2 na Mirage!\nJogadas decisivas, retakes e clutches 1v3 para fechar o mapa na scrim oficial.',
+    src: 'imagens/videocs2.mp4',
+    views: '18.420',
+    date: '14 de Ago de 2026',
+    author: 'Novamato Esports',
+    subscribers: '1.482'
 };
 
 // 3. BASE DE DADOS DE PARTIDAS JOGADAS (CAPS / HALL OF FAME)
@@ -804,15 +808,332 @@ function renderCapsLeaderboard() {
     });
 }
 
+// ====================================================================
+// 📺 YOUTUBE 2010 RETRO WATCH PAGE & CONTROLS
+// ====================================================================
+let YT_SUBSCRIBED = false;
+let YT_LIKED = false;
+let YT_DISLIKED = false;
+let YT_LIKES_COUNT = 842;
+let YT_DISLIKES_COUNT = 12;
+
+let YT_COMMENTS = [
+    {
+        author: 'white_cs',
+        avatar: 'imagens/1.jpg',
+        time: 'há 2 dias',
+        text: 'Aquele clutch 1v3 no bombsite B salvou o jogo todo 🔥 Bora rapazes, continuar a treinar assim!'
+    },
+    {
+        author: 'migga_awp',
+        avatar: 'imagens/2.jpg',
+        time: 'há 3 dias',
+        text: 'A rotação pela caverna funcionou perfeitamente. Mirage é o nosso mapa mais forte 🐐'
+    },
+    {
+        author: 't6maj',
+        avatar: 'imagens/10.jpg',
+        time: 'há 4 dias',
+        text: 'Sexta-feira às 21h temos scrim contra os Rhinos novamente, todos no servidor!'
+    },
+    {
+        author: 'FurryFeetLover_69',
+        avatar: 'imagens/4.jpg',
+        time: 'há 5 dias',
+        text: 'Top leetify rating na tabela, ggwp aos Rhinos!'
+    }
+];
+
+let YT_SUGGESTED_VIDEOS = [
+    {
+        title: 'Novamato Scrims #12 — Inferno Comeback (13-11)',
+        author: 'Novamato Esports',
+        views: '12.530 visualizações',
+        duration: '4:15',
+        thumb: 'imagens/mschf_cs2.jpg',
+        src: 'imagens/videocs2.mp4',
+        date: '10 de Ago de 2026'
+    },
+    {
+        title: 'white 1v4 Deagle Ace na Mirage (ESL Highlights)',
+        author: 'Novamato Esports',
+        views: '24.110 visualizações',
+        duration: '1:45',
+        thumb: 'imagens/1.jpg',
+        src: 'imagens/videocs2.mp4',
+        date: '08 de Ago de 2026'
+    },
+    {
+        title: 'Melhores Momentos Clash Royale — Guerra de Clãs Top 10k',
+        author: 'Novamato Royale',
+        views: '9.800 visualizações',
+        duration: '5:20',
+        thumb: 'imagens/mschf_clash.jpg',
+        src: 'imagens/videocs2.mp4',
+        date: '02 de Ago de 2026'
+    },
+    {
+        title: 'Minecraft Novamato SMP — Tour da Mega Base 2026',
+        author: 'Novamato Craft',
+        views: '6.450 visualizações',
+        duration: '14:20',
+        thumb: 'imagens/mschf_minecraft.jpg',
+        src: 'imagens/videocs2.mp4',
+        date: '28 de Jul de 2026'
+    }
+];
+
+function toggleYtSubscribe() {
+    YT_SUBSCRIBED = !YT_SUBSCRIBED;
+    const btn = document.getElementById('ytSubBtn');
+    const count = document.getElementById('ytSubCount');
+    if (btn) {
+        if (YT_SUBSCRIBED) {
+            btn.classList.add('subscribed');
+            btn.textContent = '✓ Subscrito';
+            if (count) count.textContent = '1.483 subscritores';
+            showToast('🔔 Subscrição adicionada no canal Novamato Esports!');
+        } else {
+            btn.classList.remove('subscribed');
+            btn.textContent = 'Subscrever';
+            if (count) count.textContent = '1.482 subscritores';
+        }
+    }
+    playRetroSound('click');
+}
+
+function toggleYtLike() {
+    const likeBtn = document.getElementById('ytLikeBtn');
+    const likeCountSpan = document.getElementById('ytLikeCount');
+    if (!YT_LIKED) {
+        YT_LIKED = true;
+        YT_LIKES_COUNT++;
+        if (YT_DISLIKED) {
+            YT_DISLIKED = false;
+            YT_DISLIKES_COUNT = Math.max(0, YT_DISLIKES_COUNT - 1);
+        }
+        showToast('👍 Marcaste o vídeo como "Gosto"!');
+    } else {
+        YT_LIKED = false;
+        YT_LIKES_COUNT--;
+    }
+    if (likeBtn) likeBtn.style.fontWeight = YT_LIKED ? '900' : 'bold';
+    if (likeCountSpan) likeCountSpan.textContent = YT_LIKES_COUNT.toLocaleString();
+    updateYtRatingBar();
+    playRetroSound('click');
+}
+
+function toggleYtDislike() {
+    const dislikeBtn = document.getElementById('ytDislikeBtn');
+    if (!YT_DISLIKED) {
+        YT_DISLIKED = true;
+        YT_DISLIKES_COUNT++;
+        if (YT_LIKED) {
+            YT_LIKED = false;
+            YT_LIKES_COUNT = Math.max(0, YT_LIKES_COUNT - 1);
+        }
+    } else {
+        YT_DISLIKED = false;
+        YT_DISLIKES_COUNT--;
+    }
+    updateYtRatingBar();
+    playRetroSound('click');
+}
+
+function updateYtRatingBar() {
+    const total = YT_LIKES_COUNT + YT_DISLIKES_COUNT;
+    const dislikePercent = total > 0 ? (YT_DISLIKES_COUNT / total) * 100 : 4;
+    const dislikeBar = document.getElementById('ytDislikeBar');
+    const dislikeCountSpan = document.getElementById('ytDislikeCount');
+    const likeCountSpan = document.getElementById('ytLikeCount');
+    if (dislikeBar) dislikeBar.style.width = `${Math.min(50, Math.max(2, dislikePercent))}%`;
+    if (likeCountSpan) likeCountSpan.textContent = YT_LIKES_COUNT.toLocaleString();
+    if (dislikeCountSpan) dislikeCountSpan.textContent = YT_DISLIKES_COUNT.toLocaleString();
+}
+
+function postYtComment() {
+    const input = document.getElementById('ytCommentInput');
+    if (!input || !input.value.trim()) return;
+    
+    const newComment = {
+        author: 'Tu (Gabusuck)',
+        avatar: 'imagens/favicon.png',
+        time: 'agora mesmo',
+        text: input.value.trim()
+    };
+    
+    YT_COMMENTS.unshift(newComment);
+    input.value = '';
+    renderYtCommentsList();
+    showToast('💬 Comentário publicado no YouTube 2010!');
+    playRetroSound('open');
+}
+
+function renderYtCommentsList() {
+    const list = document.getElementById('ytCommentList');
+    const countHeader = document.getElementById('ytCommentsCount');
+    if (countHeader) countHeader.textContent = `Todos os Comentários (${YT_COMMENTS.length + 10})`;
+    if (!list) return;
+
+    list.innerHTML = YT_COMMENTS.map(c => `
+        <div class="yt2010-comment-item">
+            <img src="${c.avatar}" class="yt2010-comment-avatar" alt="${c.author}" onerror="this.src='imagens/favicon.png'">
+            <div class="yt2010-comment-content">
+                <div class="yt2010-comment-header">
+                    <span class="yt2010-comment-author">${c.author}</span>
+                    <span class="yt2010-comment-time">${c.time}</span>
+                </div>
+                <div class="yt2010-comment-body">${c.text}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function loadSuggestedVideo(idx) {
+    const item = YT_SUGGESTED_VIDEOS[idx];
+    if (!item) return;
+
+    HIGHLIGHT_VIDEO.title = item.title;
+    HIGHLIGHT_VIDEO.subtitle = `Destaque oficial do canal ${item.author}. Partida e jogadas gravadas em direto.`;
+    HIGHLIGHT_VIDEO.src = item.src;
+    HIGHLIGHT_VIDEO.views = item.views.split(' ')[0] || '14.200';
+    HIGHLIGHT_VIDEO.date = item.date || '10 de Ago de 2026';
+
+    renderHighlightVideo();
+    showToast(`▶ A reproduzir: ${item.title}`);
+    playRetroSound('open');
+}
+
 function renderHighlightVideo() {
     const container = document.getElementById('clutchVideoContainer');
     if (!container || !HIGHLIGHT_VIDEO) return;
 
+    const suggestedCardsHtml = YT_SUGGESTED_VIDEOS.map((s, idx) => `
+        <div class="yt2010-suggested-card" onclick="loadSuggestedVideo(${idx})">
+            <div class="yt2010-thumb-wrap">
+                <img src="${s.thumb}" class="yt2010-thumb-img" alt="${s.title}" onerror="this.src='imagens/hero-bg.jpg'">
+                <span class="yt2010-duration">${s.duration}</span>
+            </div>
+            <div class="yt2010-suggested-info">
+                <div class="yt2010-suggested-title">${s.title}</div>
+                <div class="yt2010-suggested-author">${s.author}</div>
+                <div class="yt2010-suggested-views">${s.views}</div>
+            </div>
+        </div>
+    `).join('');
+
     container.innerHTML = `
-        <video controls autoplay muted loop playsinline style="width: 100%; display: block; max-height: 480px;">
-            <source src="${HIGHLIGHT_VIDEO.src}" type="video/mp4">
-        </video>
+        <div class="yt2010-container">
+            <!-- 2010 Top Header Bar -->
+            <div class="yt2010-header">
+                <div class="yt2010-logo" onclick="showToast('YouTube 2010 Broadcast Yourself™')">
+                    <span class="yt2010-logo-you">You</span><span class="yt2010-logo-tube">Tube</span><sup class="yt2010-logo-country">PT</sup>
+                </div>
+
+                <div class="yt2010-search-box">
+                    <input type="text" class="yt2010-search-input" value="${HIGHLIGHT_VIDEO.title}">
+                    <button class="yt2010-search-btn" onclick="showToast('🔍 A pesquisar no arquivo do YouTube...')">Pesquisar</button>
+                </div>
+
+                <div class="yt2010-top-nav">
+                    <span class="yt2010-top-link" onclick="showToast('A navegar para Explorar...')">Explorar</span>
+                    <button class="yt2010-upload-btn" onclick="openWindow('winAdmin')">Carregar Vídeo</button>
+                    <span class="yt2010-user-badge">NovamatoTV</span>
+                </div>
+            </div>
+
+            <!-- Main Two-Column Watch Layout -->
+            <div class="yt2010-layout">
+                <!-- Left Watch Column -->
+                <div class="yt2010-main-col">
+                    <h1 class="yt2010-video-title">${HIGHLIGHT_VIDEO.title}</h1>
+
+                    <!-- 16:9 Video Player -->
+                    <div class="yt2010-player-wrapper">
+                        <video id="mainYtVideo" controls autoplay muted loop playsinline>
+                            <source src="${HIGHLIGHT_VIDEO.src}" type="video/mp4">
+                            O teu navegador não suporta reprodução de vídeo HTML5.
+                        </video>
+                    </div>
+
+                    <!-- Channel & Views Bar -->
+                    <div class="yt2010-info-bar">
+                        <div class="yt2010-channel-info">
+                            <img src="imagens/favicon.png" class="yt2010-avatar" alt="Novamato">
+                            <div>
+                                <div class="yt2010-channel-name" onclick="showToast('Canal Oficial Novamato Esports')">${HIGHLIGHT_VIDEO.author || 'Novamato Esports'}</div>
+                                <div class="yt2010-sub-wrap">
+                                    <button class="yt2010-sub-btn ${YT_SUBSCRIBED ? 'subscribed' : ''}" id="ytSubBtn" onclick="toggleYtSubscribe()">
+                                        ${YT_SUBSCRIBED ? '✓ Subscrito' : 'Subscrever'}
+                                    </button>
+                                    <span class="yt2010-sub-count" id="ytSubCount">${YT_SUBSCRIBED ? '1.483' : (HIGHLIGHT_VIDEO.subscribers || '1.482')} subscritores</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="yt2010-views-rating">
+                            <div class="yt2010-views-num">${HIGHLIGHT_VIDEO.views || '18.420'} visualizações</div>
+                            <div class="yt2010-rating-line">
+                                <div class="yt2010-like-bar">
+                                    <div class="yt2010-dislike-bar" id="ytDislikeBar"></div>
+                                </div>
+                            </div>
+                            <div class="yt2010-like-counts">
+                                <span style="color:#008000;">👍 <strong id="ytLikeCount">${YT_LIKES_COUNT}</strong></span>
+                                <span style="color:#cc0000;">👎 <strong id="ytDislikeCount">${YT_DISLIKES_COUNT}</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions Toolbar -->
+                    <div class="yt2010-toolbar">
+                        <button class="yt2010-btn yt2010-btn-like" id="ytLikeBtn" onclick="toggleYtLike()">👍 Gosto</button>
+                        <button class="yt2010-btn yt2010-btn-dislike" id="ytDislikeBtn" onclick="toggleYtDislike()">👎 Não Gosto</button>
+                        <button class="yt2010-btn" onclick="showToast('⭐ Adicionado aos teus Favoritos!')">+ Adicionar a</button>
+                        <button class="yt2010-btn" onclick="copyText(window.location.href, 'Link do vídeo copiado para a área de transferência!')">🔗 Partilhar</button>
+                        <button class="yt2010-btn" onclick="showToast('&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;${HIGHLIGHT_VIDEO.src}&quot;&gt;&lt;/iframe&gt;')">&lt;/&gt; Incorporar</button>
+                    </div>
+
+                    <!-- Video Description Box -->
+                    <div class="yt2010-desc-box">
+                        <div class="yt2010-desc-meta">
+                            Publicado a <strong>${HIGHLIGHT_VIDEO.date || '14 de Ago de 2026'}</strong> por <strong>${HIGHLIGHT_VIDEO.author || 'Novamato Esports'}</strong>
+                        </div>
+                        <div class="yt2010-desc-text">${HIGHLIGHT_VIDEO.subtitle || 'Momento de destaque competitivo da nossa equipa de Counter-Strike 2.'}</div>
+                        <div class="yt2010-desc-tags">
+                            <span class="yt2010-desc-label">Categoria:</span>
+                            <span>Jogos de Computador / Esports</span>
+                            <span class="yt2010-desc-label">Jogo:</span>
+                            <span>Counter-Strike 2 (Valve)</span>
+                            <span class="yt2010-desc-label">Licença:</span>
+                            <span>Licença padrão do YouTube</span>
+                        </div>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="yt2010-comments-box">
+                        <div class="yt2010-comments-title" id="ytCommentsCount">Todos os Comentários (${YT_COMMENTS.length + 10})</div>
+                        
+                        <div class="yt2010-comment-input-row">
+                            <img src="imagens/favicon.png" class="yt2010-comment-avatar" alt="Avatar">
+                            <textarea id="ytCommentInput" class="yt2010-comment-input" placeholder="Adicionar um comentário público..."></textarea>
+                            <button class="yt2010-btn" style="background:#4d90fe; color:#fff; border-color:#3079ed;" onclick="postYtComment()">Comentar</button>
+                        </div>
+
+                        <div class="yt2010-comment-list" id="ytCommentList"></div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar (Suggested Videos) -->
+                <div class="yt2010-sidebar">
+                    <div class="yt2010-sidebar-title">Vídeos Sugeridos</div>
+                    ${suggestedCardsHtml}
+                </div>
+            </div>
+        </div>
     `;
+
+    renderYtCommentsList();
 }
 
 // ====================================================================
