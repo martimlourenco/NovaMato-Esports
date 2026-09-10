@@ -16,8 +16,8 @@ let CS2_TOP_PLAYER = {
 
 // 2. VÍDEO HIGHLIGHT & YOUTUBE 2010
 let HIGHLIGHT_VIDEO = {
-    title: 'HIGHLIGHT CLUTCH CS2 — NOVAMATO ESPORTS vs RHINOS (13-9)',
-    subtitle: 'Momento de destaque competitivo da nossa equipa de Counter-Strike 2 na Mirage!\nJogadas decisivas, retakes e clutches 1v3 para fechar o mapa na scrim oficial.',
+    title: 'HIGHLIGHT CLUTCH CS2 — NOVAMATO ESPORTS (13-9 MIRAGE)',
+    subtitle: 'Momento de destaque da nossa equipa de Counter-Strike 2 na Mirage!\nJogadas decisivas, retakes rápidos e clutches 1v3 para fechar a partida de Premier.',
     src: 'imagens/videocs2.mp4',
     views: '18.420',
     date: '14 de Ago de 2026',
@@ -46,7 +46,7 @@ let MATCH_RESULTS = [
     {
         id: 1,
         game: 'Counter-Strike 2',
-        opponent: 'Rhinos Gaming',
+        opponent: 'Randoms (Premier)',
         map: 'Mirage',
         score: '13 - 9',
         outcome: 'win',
@@ -56,7 +56,7 @@ let MATCH_RESULTS = [
     {
         id: 2,
         game: 'Counter-Strike 2',
-        opponent: 'Saw Youngsters',
+        opponent: 'Randoms (Matchmaking)',
         map: 'Inferno',
         score: '11 - 13',
         outcome: 'loss',
@@ -71,8 +71,8 @@ defaultMeetTarget.setDate(defaultMeetTarget.getDate() + 3);
 defaultMeetTarget.setHours(21, 0, 0, 0);
 
 let COMPETITIVE_EVENT = {
-    title: 'CS2 5V5 COMPETITIVE SCRIM — NOVAMATO vs RHINOS',
-    dateText: 'Sexta-feira · 21:00 (Servidor Dedicado / Discord #treinos)',
+    title: 'CS2 5V5 COMPETITIVE — PARTIDA PREMIER / MATCHMAKING',
+    dateText: 'Sexta-feira · 21:00 (Premier / Discord #jogos)',
     targetDate: defaultMeetTarget.toISOString().slice(0, 16),
     maxSlots: 5,
     checkedInPlayers: [
@@ -82,10 +82,10 @@ let COMPETITIVE_EVENT = {
     ]
 };
 
-// 6. FUTURAS PARTIDAS & SCRIMS
+// 6. FUTURAS PARTIDAS & JOGOS
 let UPCOMING_MATCHES = [
-    { id: 1, game: 'Counter-Strike 2', opponent: 'Rhinos Gaming', date: '29 Ago · 21:00', type: 'Scrim 5v5', status: 'Confirmado' },
-    { id: 2, game: 'Clash Royale', opponent: 'Clan War Ladder', date: '30 Ago · 22:00', type: 'Guerra de Clãs', status: 'Confirmado' }
+    { id: 1, game: 'Counter-Strike 2', opponent: 'Randoms (Premier 5v5)', date: '29 Ago · 21:00', type: 'Premier 5v5', status: 'Confirmado' },
+    { id: 2, game: 'Clash Royale', opponent: 'Ladder Randoms', date: '30 Ago · 22:00', type: 'Guerra de Clãs', status: 'Confirmado' }
 ];
 
 // Carregar personalizações salvas
@@ -822,31 +822,31 @@ let YT_COMMENTS = [
         author: 'white_cs',
         avatar: 'imagens/1.jpg',
         time: 'há 2 dias',
-        text: 'Aquele clutch 1v3 no bombsite B salvou o jogo todo 🔥 Bora rapazes, continuar a treinar assim!'
+        text: 'Aquele clutch 1v3 no bombsite B salvou o jogo todo 🔥 Bora rapazes, continuar a grindar Premier!'
     },
     {
         author: 'migga_awp',
         avatar: 'imagens/2.jpg',
         time: 'há 3 dias',
-        text: 'A rotação pela caverna funcionou perfeitamente. Mirage é o nosso mapa mais forte 🐐'
+        text: 'A rotação pela caverna funcionou perfeitamente. Os randoms ficaram perdidos 🐐'
     },
     {
         author: 't6maj',
         avatar: 'imagens/10.jpg',
         time: 'há 4 dias',
-        text: 'Sexta-feira às 21h temos scrim contra os Rhinos novamente, todos no servidor!'
+        text: 'Sexta-feira às 21h temos mais 5v5 de Premier rapazes, todos no Discord!'
     },
     {
         author: 'FurryFeetLover_69',
         avatar: 'imagens/4.jpg',
         time: 'há 5 dias',
-        text: 'Top leetify rating na tabela, ggwp aos Rhinos!'
+        text: 'Top leetify rating na tabela, ggwp 🔥'
     }
 ];
 
 let YT_SUGGESTED_VIDEOS = [
     {
-        title: 'Novamato Scrims #12 — Inferno Comeback (13-11)',
+        title: 'Novamato Premier #12 — Inferno Comeback (13-11)',
         author: 'Novamato Esports',
         views: '12.530 visualizações',
         duration: '4:15',
@@ -855,7 +855,7 @@ let YT_SUGGESTED_VIDEOS = [
         date: '10 de Ago de 2026'
     },
     {
-        title: 'white 1v4 Deagle Ace na Mirage (ESL Highlights)',
+        title: 'white 1v4 Deagle Ace na Mirage (Premier Highlights)',
         author: 'Novamato Esports',
         views: '24.110 visualizações',
         duration: '1:45',
@@ -1189,7 +1189,7 @@ function renderAdminVaultBody() {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
                     <div>
                         <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.2rem;">Adversário:</label>
-                        <input type="text" id="resOpponent" class="retro-input" style="width:100%;" placeholder="ex: Rhinos Gaming">
+                        <input type="text" id="resOpponent" class="retro-input" style="width:100%;" placeholder="ex: Randoms / Premier / Faceit" value="Randoms">
                     </div>
                     <div>
                         <label style="font-size: 0.72rem; color: var(--text-dim); display: block; margin-bottom: 0.2rem;">Mapa:</label>
@@ -1437,13 +1437,64 @@ function deleteMatchResult(id) {
     playRetroSound('click');
 }
 
+function submitMatchResult() {
+    const oppInput = document.getElementById('resOpponent');
+    const mapInput = document.getElementById('resMap');
+    const scoreInput = document.getElementById('resScore');
+    const outcomeSelect = document.getElementById('resOutcome');
+
+    const p1 = document.getElementById('slotP1') ? document.getElementById('slotP1').value : 'Random';
+    const p2 = document.getElementById('slotP2') ? document.getElementById('slotP2').value : 'Random';
+    const p3 = document.getElementById('slotP3') ? document.getElementById('slotP3').value : 'Random';
+    const p4 = document.getElementById('slotP4') ? document.getElementById('slotP4').value : 'Random';
+    const p5 = document.getElementById('slotP5') ? document.getElementById('slotP5').value : 'Random';
+
+    const opponent = oppInput && oppInput.value.trim() ? oppInput.value.trim() : 'Randoms';
+    const map = mapInput && mapInput.value.trim() ? mapInput.value.trim() : 'Mirage';
+    const score = scoreInput && scoreInput.value.trim() ? scoreInput.value.trim() : '13 - 9';
+    const outcome = outcomeSelect ? outcomeSelect.value : 'win';
+
+    const lineup = [p1, p2, p3, p4, p5];
+    const today = new Date();
+    const months = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    const dateFormatted = `${today.getDate()} ${months[today.getMonth()]}`;
+
+    const newMatch = {
+        id: Date.now(),
+        game: 'Counter-Strike 2',
+        opponent: opponent,
+        map: map,
+        score: score,
+        outcome: outcome,
+        date: dateFormatted,
+        lineup: lineup
+    };
+
+    MATCH_RESULTS.unshift(newMatch);
+    localStorage.setItem('novamato_custom_results', JSON.stringify(MATCH_RESULTS));
+
+    // Atualizar partidas dos atletas na BD
+    lineup.forEach(name => {
+        if (name !== 'Random' && PLAYER_MATCH_STATS[name]) {
+            PLAYER_MATCH_STATS[name].matches = (PLAYER_MATCH_STATS[name].matches || 0) + 1;
+        }
+    });
+    localStorage.setItem('novamato_custom_match_stats', JSON.stringify(PLAYER_MATCH_STATS));
+
+    renderMatchResults();
+    renderCapsLeaderboard();
+    renderAdminVaultBody();
+    showToast(`🏆 Partida contra ${opponent} registada com sucesso!`);
+    playRetroSound('open');
+}
+
 function resetMatchResults() {
     if (!confirm('Restaurar histórico inicial de partidas?')) return;
     MATCH_RESULTS = [
         {
             id: 1,
             game: 'Counter-Strike 2',
-            opponent: 'Rhinos Gaming',
+            opponent: 'Randoms (Premier)',
             map: 'Mirage',
             score: '13 - 9',
             outcome: 'win',
@@ -1453,7 +1504,7 @@ function resetMatchResults() {
         {
             id: 2,
             game: 'Counter-Strike 2',
-            opponent: 'Saw Youngsters',
+            opponent: 'Randoms (Matchmaking)',
             map: 'Inferno',
             score: '11 - 13',
             outcome: 'loss',
