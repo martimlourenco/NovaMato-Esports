@@ -93,8 +93,8 @@ try {
     const sMvp = localStorage.getItem('novamato_custom_mvp');
     if (sMvp) CS2_TOP_PLAYER = JSON.parse(sMvp);
     
-    const sVid = localStorage.getItem('novamato_custom_vid');
-    if (sVid) HIGHLIGHT_VIDEO = JSON.parse(sVid);
+    // const sVid = localStorage.getItem('novamato_custom_vid');
+    // if (sVid) HIGHLIGHT_VIDEO = JSON.parse(sVid);
 
     const sStats = localStorage.getItem('novamato_custom_match_stats');
     if (sStats) PLAYER_MATCH_STATS = JSON.parse(sStats);
