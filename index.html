@@ -50,10 +50,7 @@
             <div class="icon-label">Plantel_CS2.exe</div>
         </div>
 
-        <div class="desktop-icon" ondblclick="openWindow('winCheckin')" onclick="selectIcon(this)">
-            <div class="icon-graphic-box"><img src="icons/checkin.svg" class="pixel-icon" alt="Checkin"></div>
-            <div class="icon-label">Presencas_CS2.exe</div>
-        </div>
+
 
         <div class="desktop-icon" ondblclick="openWindow('winResults')" onclick="selectIcon(this)">
             <div class="icon-graphic-box"><img src="icons/results.svg" class="pixel-icon" alt="Resultados"></div>
@@ -75,15 +72,7 @@
             <div class="icon-label">YouTube_2010.exe</div>
         </div>
 
-        <div class="desktop-icon" ondblclick="openWindow('winTrading')" onclick="selectIcon(this)">
-            <div class="icon-graphic-box"><img src="icons/trading.svg" class="pixel-icon" alt="Bolsa"></div>
-            <div class="icon-label">Bolsa_Atletas.exe</div>
-        </div>
 
-        <div class="desktop-icon" ondblclick="openWindow('winAdmin')" onclick="selectIcon(this)">
-            <div class="icon-graphic-box"><img src="icons/admin.svg" class="pixel-icon" alt="Admin"></div>
-            <div class="icon-label">Painel_Admin.exe</div>
-        </div>
 
         <a href="https://discord.gg/Yk3yHaqqCX" target="_blank" class="desktop-icon" style="text-decoration: none;">
             <div class="icon-graphic-box"><img src="icons/discord.svg" class="pixel-icon" alt="Discord"></div>
@@ -119,23 +108,7 @@
         </div>
     </div>
 
-    <!-- ====================================================================
-         🪟 WINDOW 2: SCRIM RSVP & CHECK-IN (LIVE COUNTDOWN)
-         ==================================================================== -->
-    <div class="win95-window" id="winCheckin" style="top: 60px; left: 140px; width: 740px;">
-        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winCheckin')">
-            <div class="titlebar-left">
-                <img src="icons/checkin.svg" class="titlebar-icon" alt="Checkin">
-                <span>Presencas_CS2.exe — Confirmação de Presenças</span>
-            </div>
-            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
-                <button class="win-btn" onclick="minimizeWindow('winCheckin')">_</button>
-                <button class="win-btn" onclick="maximizeWindow('winCheckin')">□</button>
-                <button class="win-btn close-btn" onclick="closeWindow('winCheckin')">✕</button>
-            </div>
-        </div>
-        <div class="win95-body" id="attendanceWidget"></div>
-    </div>
+
 
     <!-- ====================================================================
          🪟 WINDOW 3: MATCH RESULTS & CAPS RECORD BREAKERS
@@ -248,41 +221,7 @@
          </div>
      </div>
 
-    <!-- ====================================================================
-         🪟 WINDOW 7: SECRET ADMIN VAULT
-         ==================================================================== -->
-    <div class="win95-window" id="winAdmin" style="top: 50px; left: 100px; width: 800px;">
-        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winAdmin')">
-            <div class="titlebar-left">
-                <img src="icons/admin.svg" class="titlebar-icon" alt="Admin">
-                <span>Painel_Admin.exe — Gestão e Controlo</span>
-            </div>
-            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
-                <button class="win-btn" onclick="minimizeWindow('winAdmin')">_</button>
-                <button class="win-btn" onclick="maximizeWindow('winAdmin')">□</button>
-                <button class="win-btn close-btn" onclick="closeWindow('winAdmin')">✕</button>
-            </div>
-        </div>
-        <div class="win95-body" id="adminVaultBody"></div>
-    </div>
 
-    <!-- ====================================================================
-         🪟 WINDOW 8: 📈 WALLSTREET 95 (CS2 ATHLETE STOCK EXCHANGE)
-         ==================================================================== -->
-    <div class="win95-window" id="winTrading" style="top: 65px; left: 130px; width: 880px;">
-        <div class="win95-titlebar" onmousedown="startDragWindow(event, 'winTrading')">
-            <div class="titlebar-left">
-                <img src="icons/trading.svg" class="titlebar-icon" alt="Bolsa">
-                <span>Bolsa_Atletas.exe — Mercado de Ações dos Atletas CS2</span>
-            </div>
-            <div class="titlebar-controls" onmousedown="event.stopPropagation()">
-                <button class="win-btn" onclick="minimizeWindow('winTrading')">_</button>
-                <button class="win-btn" onclick="maximizeWindow('winTrading')">□</button>
-                <button class="win-btn close-btn" onclick="closeWindow('winTrading')">✕</button>
-            </div>
-        </div>
-        <div class="win95-body" id="tradingDeskContainer"></div>
-    </div>
 
     <!-- ====================================================================
          🎛️ AUTHENTIC WINDOWS 95 START MENU
@@ -306,15 +245,7 @@
                     <div class="start-app-text">Plantel de CS2</div>
                 </div>
 
-                <div class="start-app-item" onclick="openWindow('winTrading'); toggleStartMenu();">
-                    <img src="icons/trading.svg" class="start-app-icon-img" alt="Bolsa">
-                    <div class="start-app-text">Bolsa de Ações (Trading)</div>
-                </div>
 
-                <div class="start-app-item" onclick="openWindow('winCheckin'); toggleStartMenu();">
-                    <img src="icons/checkin.svg" class="start-app-icon-img" alt="Presenças">
-                    <div class="start-app-text">Presenças de Treinos (RSVP)</div>
-                </div>
 
                 <div class="start-app-item" onclick="openWindow('winResults'); toggleStartMenu();">
                     <img src="icons/results.svg" class="start-app-icon-img" alt="Resultados">
@@ -343,9 +274,7 @@
                 <button class="retro-btn" onclick="cycleWallpaper()">
                     <img src="icons/wallpaper.svg" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;">Mudar Fundo
                 </button>
-                <button class="retro-btn" onclick="openWindow('winAdmin'); toggleStartMenu();">
-                    <img src="icons/admin.svg" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;">Painel Admin
-                </button>
+
             </div>
         </div>
     </div>
@@ -353,7 +282,7 @@
     <!-- 🏴 TOP-RIGHT HEADER SUITE: LIVE EVENT NOTICE + VNDL BRAND -->
     <div class="top-header-suite">
         <!-- 🚨 LIVE EVENT COUNTDOWN BADGE (BESIDE VNDL) -->
-        <div id="liveEventBanner" class="retro-event-banner" onclick="openWindow('winCheckin')" title="Clica para abrir a Convocatória">
+        <div id="liveEventBanner" class="retro-event-banner" title="Próximo Confronto">
             <div class="event-banner-pulse"></div>
             <div class="event-banner-content">
                 <div class="event-banner-top-row">
@@ -390,6 +319,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260911_v2"></script>
+    <script src="script.js?v=20260911_v3"></script>
 </body>
 </html>

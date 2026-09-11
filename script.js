@@ -1073,24 +1073,13 @@ function renderHighlightVideo() {
 
                         <div class="yt2010-views-rating">
                             <div class="yt2010-views-num">${HIGHLIGHT_VIDEO.views || '18.420'} visualizações</div>
-                            <div class="yt2010-rating-line">
-                                <div class="yt2010-like-bar">
-                                    <div class="yt2010-dislike-bar" id="ytDislikeBar"></div>
-                                </div>
-                            </div>
-                            <div class="yt2010-like-counts">
-                                <span style="color:#008000;">👍 <strong id="ytLikeCount">${YT_LIKES_COUNT}</strong></span>
-                                <span style="color:#cc0000;">👎 <strong id="ytDislikeCount">${YT_DISLIKES_COUNT}</strong></span>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Actions Toolbar -->
                     <div class="yt2010-toolbar">
-                        <button class="yt2010-btn yt2010-btn-like" id="ytLikeBtn" onclick="toggleYtLike()">👍 Gosto</button>
-                        <button class="yt2010-btn yt2010-btn-dislike" id="ytDislikeBtn" onclick="toggleYtDislike()">👎 Não Gosto</button>
                         <button class="yt2010-btn" onclick="showToast('⭐ Adicionado aos teus Favoritos!')">+ Adicionar a</button>
-                        <button class="yt2010-btn" onclick="copyText(window.location.href, 'Link do vídeo copiado para a área de transferência!')">🔗 Partilhar</button>
+                        <button class="yt2010-btn" onclick="copyText(window.location.href, 'Link do vídeo copiado para a Área de transferência!')">🔗 Partilhar</button>
                         <button class="yt2010-btn" onclick="showToast('&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;${HIGHLIGHT_VIDEO.src}&quot;&gt;&lt;/iframe&gt;')">&lt;/&gt; Incorporar</button>
                     </div>
 
@@ -1109,19 +1098,6 @@ function renderHighlightVideo() {
                             <span>Licença padrão do YouTube</span>
                         </div>
                     </div>
-
-                    <!-- Comments Section -->
-                    <div class="yt2010-comments-box">
-                        <div class="yt2010-comments-title" id="ytCommentsCount">Todos os Comentários (${YT_COMMENTS.length + 10})</div>
-                        
-                        <div class="yt2010-comment-input-row">
-                            <img src="imagens/favicon.png" class="yt2010-comment-avatar" alt="Avatar">
-                            <textarea id="ytCommentInput" class="yt2010-comment-input" placeholder="Adicionar um comentário público..."></textarea>
-                            <button class="yt2010-btn" style="background:#4d90fe; color:#fff; border-color:#3079ed;" onclick="postYtComment()">Comentar</button>
-                        </div>
-
-                        <div class="yt2010-comment-list" id="ytCommentList"></div>
-                    </div>
                 </div>
 
                 <!-- Right Sidebar (Suggested Videos) -->
@@ -1132,8 +1108,6 @@ function renderHighlightVideo() {
             </div>
         </div>
     `;
-
-    renderYtCommentsList();
 }
 
 // ====================================================================
