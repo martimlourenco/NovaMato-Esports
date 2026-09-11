@@ -18,7 +18,7 @@ let CS2_TOP_PLAYER = {
 let HIGHLIGHT_VIDEO = {
     title: 'HIGHLIGHT CLUTCH CS2 — NOVAMATO ESPORTS (13-9 MIRAGE)',
     subtitle: 'Momento de destaque da nossa equipa de Counter-Strike 2 na Mirage!\nJogadas decisivas, retakes rápidos e clutches 1v3 para fechar a partida de Premier.',
-    src: 'imagens/videocs2.mp4',
+    src: 'imagens/video-cs2-highlight-3.mp4',
     views: '18.420',
     date: '14 de Ago de 2026',
     author: 'Novamato Esports',
@@ -1250,7 +1250,7 @@ function renderAdminVaultBody() {
     } else if (currentAdminTab === 'video') {
         // GESTÃO DO VÍDEO DE HIGHLIGHT
         const videoOptions = [
-            { label: 'Vídeo Padrão 1 (videocs2.mp4)', src: 'imagens/videocs2.mp4' },
+            { label: 'Vídeo Padrão 1 (video-cs2-highlight-3.mp4)', src: 'imagens/video-cs2-highlight-3.mp4' },
             { label: 'Melhores Jogadas (Melhores_Jogadas.mp4)', src: 'Melhores_Jogadas.mp4' }
         ];
 
@@ -1411,7 +1411,7 @@ function saveAdminVideo() {
 
     if (!srcInput) return;
 
-    HIGHLIGHT_VIDEO.src = srcInput.value.trim() || 'imagens/videocs2.mp4';
+    HIGHLIGHT_VIDEO.src = srcInput.value.trim() || 'imagens/video-cs2-highlight-3.mp4';
     if (titleInput) HIGHLIGHT_VIDEO.title = titleInput.value.trim() || 'HIGHLIGHT CLUTCH CS2';
     if (subInput) HIGHLIGHT_VIDEO.subtitle = subInput.value.trim() || 'Momento de destaque competitivo da nossa equipa.';
 
